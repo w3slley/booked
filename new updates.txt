@@ -1,0 +1,28 @@
+09/02/2019 
+Features implemented:
+	1)Made the transition to PDO in the backend. This is something I planned to do a long time ago but never had the time and patience to do it.
+
+I still have to fix the front end because I messed around with the month tag in the nav bar and still have to fix that. What I did today was transition everything I had coded to PDO. There's a lot of things to do though. The web app is the same but with the new backend.
+
+
+11/02/2019
+Feature implemented:
+	1) Used the goodreads api to improve the python script which downloads bookcovers. Now users can download even bookcovers from portuguese books. There're some issues I have to work on though.
+
+24/02/2019
+Features implemented:
+	1) Fixed the display of the months to select at the initial page.
+	2) Made sure that the book title will be deleted from database and the bookcover from the images folder when there's no other user who has the book added to their list. This will save storage space.
+	3) Messed around with the python script. First I tried to get the book id via the API, but I don't know if this is going to work. Then, I tried to get all the links of the bookcovers and display them in the webpage. The user could choose the right one. I don't know if that's going to work out either.
+
+30/05/2019
+I'm back - again - to implement some new features in the booked web app:
+	1) Changed again the python script to use googletrans and make search using google.
+Now it's runing as it use to (some error had occur with googletrans but now it's working fine). I have to implement some javascript features in the future.
+
+I'm back at the development of the web app. I need to implement some features:
+1)Use PDO in the interaction with the mysql database (DONE).
+2)Display categories and months when adding a new book to DB. Give the users the option to choose a category from the db or to add a new one. The same thing could work with the years. (DONE with months)
+3)Do it also in the edit section
+4)Implement AJAX calls in the website.
+5)

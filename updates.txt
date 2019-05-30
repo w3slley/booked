@@ -1,0 +1,119 @@
+15/05 14:05
+	Features done:
+	
+1) Now every time the user adds book that its authos is already in the DB it will no longer add him/her again, it will just gather their id.The same goes with the categories.
+	
+2) The user can now see wich books he/she read in each month (the books are displayed in a table).
+
+3) The years shown are gather from the database. I have to find a way to only display the years the user added books.	
+	4)Implemented error handlers: if one input is empty a message will appear telling the user he/she didn't fill in all the fields.
+	
+
+16/05 12:14
+	Features done:
+	
+1) Changed the design from tables to boxes with the images of the books (got to implement that).
+	
+2) Created a algorithm that searchs in the web for the book cover (it is too slow). Will use this to add the book cover everytime the user adds a new book. The cover image will be stored in a folder inside the server and its name will have the id of the book from the database.
+	
+3)Implemented search procedure (for now it only shows exact matches with the database - I gotta solve that) SOLVED.
+
+
+
+17/08 14:13
+	Features done:
+	
+1) Implemented system that when you add a new book, the image is downloaded from the internet and stored in a folder called "images" in the server. It is then showed in the home page. (Have to set error handlers).
+	
+2) Implemented error handlers so that if the image was not downloaded the add_book task will not be created and stored in the database.
+	
+3) Implemented an algorithm that translates the book title to english if the author name apears to be from a english speaking country - it makes the searchs into goodreads more precise (still has some flaws). Se for brasileiro, o livro não será traduzido.
+	
+
+
+18/05 14:32
+	Features done: 
+	
+1) Implemented the edit feature.
+	
+2) Added the delete button that erases the book from the list of books read.
+	
+3) Changed the color of the nav and div of the years to red and made them stick to the webpage even if the user scroll down.
+
+
+
+19/05 17:21
+	
+1) Added classification system. There's the styling part still left.
+	
+2) Implemented a delete button in the edit section that deletes the book's cover.
+	
+3) implemented a add button that adds a book cover.
+
+
+
+
+21/05 15:20
+	
+1) Fixed the add cover feature. Now when the user clicks to add a new cover for the book, the image is added.
+
+
+
+
+27/06 12:52
+Features done:
+	
+1) Added a new font.
+	
+2) Improved position of elements.
+	
+3) Add animation to notes 
+	
+4) Add animation in the month element (working)
+	
+5) Fixed page redirect when add note in the edit section (working)
+
+
+
+
+I got to figure out a way to:
+
+
+1) highlight the year the user is seeing.
+
+2) display right on the side of the month how many books the user read in that month of that particular year.(Done)
+
+3) allow the user to edit the books informations.(Done)
+
+4) when the user add a new book, the page must go the the correspondent year the book was read.(Done)
+
+5) change how the books are displayed - show pictures and so on...(Done)
+
+6) add star system (0-10 score) to the books so that the users can tell how much they like the book.
+
+7) display books per category
+
+8) add comments to the books - the user can write what he/she thought of the book.
+
+9) only show in the initial page the years the user added books to. If not, don't show it. (Done)
+
+10) make the images downloaded match with the book. Develop a way to allways (or at least in most cases) give the user the right image.(Done)
+
+11) don't translate when the book is in portuguese. Otherwise, the python algorith wont find any google search of it and it will give the wrong image.(Done)
+
+12) Display a message when the user inserts a non valid month.(Done)
+
+13) Delete cover image in the edit section.(Done)
+
+14) Fix the add cover button. Right now it doesn't do anything when pressed.(Done)
+
+15) Style the login page.
+
+16) Style the sign up page.
+
+17) Style the profile page.
+
+18) Create feature to allow user to upload images.
+
+19) Create a modal with the book's information, the classification system and an textarea to add what the user thought about it.
+		

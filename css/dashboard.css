@@ -1,0 +1,180 @@
+body {
+	margin: 0;
+	background-color: #2E2F2F;
+	font-family: Poiret One;
+}
+
+
+nav {
+	background-color: #EA9010;
+	padding-bottom: 0;
+	position: absolute;
+	top: 0;
+	padding-bottom: 40px;
+	width: 100%;
+
+}
+
+nav form {
+	position: relative;
+	top: 30%;
+
+}
+
+nav input {
+	border: none;
+	padding: 10px 10px 10px 10px;
+	border-radius: 5px;
+	font-family: Poiret One;
+	margin-left: 10px;
+	font-size: 15px;
+	width: 170px;
+
+
+}
+nav form button {
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	margin-left: 10px;
+}
+
+.add-img{
+	background: none;
+	cursor: pointer;
+	position: relative;
+	top:15px;
+
+}
+.add-img img {
+	width: 40px;
+		
+}
+#message-add {
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+
+/*BUTTONS NAV*/
+.logout-button {
+	position: relative;
+	float: right;
+	top: -38px;
+	margin-right: 40px;
+	background-color: white;
+	font-family: Poiret One;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.profile {
+	position: absolute;
+	top: 18%;
+	right: 10%;
+	text-decoration: none;
+	color: black;
+	background-color: white;
+	padding: 10px;
+	border-radius: 5px;
+}
+/*END*/
+
+.welcome {
+	font-size: 40px;
+}
+
+.home-icon {
+	width: 50px;
+	position: absolute;
+	left: 10px;
+	bottom: 5px;
+	z-index: 50;
+
+}
+
+.navbar {
+	text-align: center;
+	background-color: #EA9010;
+	position: absolute;
+	top: 100px;/*this is what makes work...*/
+	width: 100%;
+	padding-top: 0px;
+	padding-bottom: 0;
+	font-family: Poirot One;
+	
+
+}
+
+.navbar a {
+	text-decoration: none;
+	color: white;
+	font-size: 40px;
+	padding: 0 20px 1px 20px;
+	border-radius: 4px 4px 0 0;
+
+
+	
+}
+
+.text-month{
+	margin-top: 0;
+	font-size: 40px;
+	color: white;
+}
+
+
+/*END NAV*/
+
+.body-div {
+	background-color: #ACA885;
+	margin: 13% auto;
+	width: 90%;
+	border-radius: 5px;
+	padding: 10px 10px 600px 10px;
+	position: relative;
+
+}
+
+.search {
+	position: absolute;
+	top: 2%;
+	right: 2%;
+
+
+}
+.search input{
+	border: none;
+	width: 400px;
+	padding: 10px 5px 10px 5px;
+	border-radius: 5px;
+	font-family: Poiret One;
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+.search button {
+	padding: 8px;
+	border: none;
+	border-radius: 5px;
+	background-color: white;
+	font-family: Poiret One;
+	font-size: 20px;
+
+}
+.years{ /*Years displayed in the page - these are the years the user read any book*/
+	position: absolute;
+	display: block;
+
+
+}
+
+#year-unit{
+	font-size: 30px;
+	margin: 0 0 20px 0;
+	display: list-item;
+	text-decoration: none;
+	list-style-type: none;
+	color: black;
+
+}

@@ -1,0 +1,392 @@
+<GoodreadsResponse>
+  <Request>
+    <authentication>true</authentication>
+      <key><![CDATA[g8QqxfZPjUuFwitJQsp7Q]]></key>
+    <method><![CDATA[search_index]]></method>
+  </Request>
+  <search>
+  <query><![CDATA[Harry Potter sorcerer]]></query>
+    <results-start>1</results-start>
+    <results-end>18</results-end>
+    <total-results>79</total-results>
+    <source>Goodreads</source>
+    <query-time-seconds>0.19</query-time-seconds>
+    <results>
+        <work>
+  <id type="integer">4640799</id>
+  <books_count type="integer">649</books_count>
+  <ratings_count type="integer">5758569</ratings_count>
+  <text_reviews_count type="integer">92236</text_reviews_count>
+  <original_publication_year type="integer">1997</original_publication_year>
+  <original_publication_month type="integer">6</original_publication_month>
+  <original_publication_day type="integer">26</original_publication_day>
+  <average_rating>4.46</average_rating>
+  <best_book type="Book">
+    <id type="integer">3</id>
+    <title>Harry Potter and the Sorcerer's Stone (Harry Potter, #1)</title>
+    <author>
+      <id type="integer">1077326</id>
+      <name>J.K. Rowling</name>
+    </author>
+    <image_url>https://images.gr-assets.com/books/1474154022m/3.jpg</image_url>
+    <small_image_url>https://images.gr-assets.com/books/1474154022s/3.jpg</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">58213725</id>
+  <books_count type="integer">1</books_count>
+  <ratings_count type="integer">1</ratings_count>
+  <text_reviews_count type="integer">0</text_reviews_count>
+  <original_publication_year type="integer" nil="true"/>
+  <original_publication_month type="integer" nil="true"/>
+  <original_publication_day type="integer" nil="true"/>
+  <average_rating>5.00</average_rating>
+  <best_book type="Book">
+    <id type="integer">36497801</id>
+    <title>Harry Potter Sorcerers Stone Trivia Game</title>
+    <author>
+      <id type="integer">17277817</id>
+      <name>Matel Games</name>
+    </author>
+    <image_url>https://images.gr-assets.com/books/1509293913m/36497801.jpg</image_url>
+    <small_image_url>https://images.gr-assets.com/books/1509293913s/36497801.jpg</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">4073068</id>
+  <books_count type="integer">1</books_count>
+  <ratings_count type="integer">28</ratings_count>
+  <text_reviews_count type="integer">1</text_reviews_count>
+  <original_publication_year type="integer">2000</original_publication_year>
+  <original_publication_month type="integer">9</original_publication_month>
+  <original_publication_day type="integer" nil="true"/>
+  <average_rating>4.11</average_rating>
+  <best_book type="Book">
+    <id type="integer">4026532</id>
+    <title>Harry Potter &amp; the Sorcerers Stone Novel Unit - NOT the book</title>
+    <author>
+      <id type="integer">283310</id>
+      <name>Lori Mammen</name>
+    </author>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">17798592</id>
+  <books_count type="integer">1</books_count>
+  <ratings_count type="integer">0</ratings_count>
+  <text_reviews_count type="integer">0</text_reviews_count>
+  <original_publication_year type="integer" nil="true"/>
+  <original_publication_month type="integer" nil="true"/>
+  <original_publication_day type="integer" nil="true"/>
+  <average_rating type="float">0.0</average_rating>
+  <best_book type="Book">
+    <id type="integer">1475894</id>
+    <title>Novelty:    Harry Potter Sorcerer's Stone Amulet Specialty Kit</title>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">41405</id>
+  <books_count type="integer">31</books_count>
+  <ratings_count type="integer">7625</ratings_count>
+  <text_reviews_count type="integer">128</text_reviews_count>
+  <original_publication_year type="integer">2001</original_publication_year>
+  <original_publication_month type="integer" nil="true"/>
+  <original_publication_day type="integer" nil="true"/>
+  <average_rating>4.03</average_rating>
+  <best_book type="Book">
+    <id type="integer">124976</id>
+    <title>The Sorcerer's Companion: A Guide to the Magical World of Harry Potter</title>
+    <author>
+      <id type="integer">23599</id>
+      <name>Allan Zola Kronzek</name>
+    </author>
+    <image_url>https://images.gr-assets.com/books/1320413155m/124976.jpg</image_url>
+    <small_image_url>https://images.gr-assets.com/books/1320413155s/124976.jpg</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">3343444</id>
+  <books_count type="integer">14</books_count>
+  <ratings_count type="integer">6001</ratings_count>
+  <text_reviews_count type="integer">157</text_reviews_count>
+  <original_publication_year type="integer">1999</original_publication_year>
+  <original_publication_month type="integer">1</original_publication_month>
+  <original_publication_day type="integer">1</original_publication_day>
+  <average_rating>4.65</average_rating>
+  <best_book type="Book">
+    <id type="integer">2337379</id>
+    <title>The Harry Potter trilogy (Harry Potter, #1-3)</title>
+    <author>
+      <id type="integer">1077326</id>
+      <name>J.K. Rowling</name>
+    </author>
+    <image_url>https://images.gr-assets.com/books/1330972392m/2337379.jpg</image_url>
+    <small_image_url>https://images.gr-assets.com/books/1330972392s/2337379.jpg</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">15936347</id>
+  <books_count type="integer">1</books_count>
+  <ratings_count type="integer">3</ratings_count>
+  <text_reviews_count type="integer">0</text_reviews_count>
+  <original_publication_year type="integer" nil="true"/>
+  <original_publication_month type="integer" nil="true"/>
+  <original_publication_day type="integer" nil="true"/>
+  <average_rating>3.67</average_rating>
+  <best_book type="Book">
+    <id type="integer">11017086</id>
+    <title>Hogwarts School: Harry Potter Sorcerer's Stone Coloring Adventures [With Glow-In-The-Dark Magic Wand]</title>
+    <author>
+      <id type="integer">5609118</id>
+      <name>Scholastic Inc.</name>
+    </author>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">27452464</id>
+  <books_count type="integer">1</books_count>
+  <ratings_count type="integer">1</ratings_count>
+  <text_reviews_count type="integer">0</text_reviews_count>
+  <original_publication_year type="integer">2013</original_publication_year>
+  <original_publication_month type="integer">10</original_publication_month>
+  <original_publication_day type="integer">28</original_publication_day>
+  <average_rating>4.00</average_rating>
+  <best_book type="Book">
+    <id type="integer">19381550</id>
+    <title>Harry Potter &amp; the Sorcerer's Stone Novel Study Guide</title>
+    <author>
+      <id type="integer">3150462</id>
+      <name>Keith Whittington</name>
+    </author>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">46552</id>
+  <books_count type="integer">4</books_count>
+  <ratings_count type="integer">2421</ratings_count>
+  <text_reviews_count type="integer">54</text_reviews_count>
+  <original_publication_year type="integer">2005</original_publication_year>
+  <original_publication_month type="integer">12</original_publication_month>
+  <original_publication_day type="integer">11</original_publication_day>
+  <average_rating>4.31</average_rating>
+  <best_book type="Book">
+    <id type="integer">47530</id>
+    <title>Mapping the World of Harry Potter: Science Fiction and Fantasy Writers Explore the Bestselling Series of All Time</title>
+    <author>
+      <id type="integer">8685</id>
+      <name>Mercedes Lackey</name>
+    </author>
+    <image_url>https://images.gr-assets.com/books/1346946952m/47530.jpg</image_url>
+    <small_image_url>https://images.gr-assets.com/books/1346946952s/47530.jpg</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">18707056</id>
+  <books_count type="integer">2</books_count>
+  <ratings_count type="integer">185</ratings_count>
+  <text_reviews_count type="integer">10</text_reviews_count>
+  <original_publication_year type="integer">2012</original_publication_year>
+  <original_publication_month type="integer">1</original_publication_month>
+  <original_publication_day type="integer">14</original_publication_day>
+  <average_rating>4.47</average_rating>
+  <best_book type="Book">
+    <id type="integer">13414168</id>
+    <title>Mark Reads Harry Potter and the Sorcerer's Stone</title>
+    <author>
+      <id type="integer">5183642</id>
+      <name>Mark Oshiro</name>
+    </author>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">6534956</id>
+  <books_count type="integer">1</books_count>
+  <ratings_count type="integer">374</ratings_count>
+  <text_reviews_count type="integer">6</text_reviews_count>
+  <original_publication_year type="integer">1997</original_publication_year>
+  <original_publication_month type="integer" nil="true"/>
+  <original_publication_day type="integer" nil="true"/>
+  <average_rating>4.59</average_rating>
+  <best_book type="Book">
+    <id type="integer">43506</id>
+    <title>Harry Potter and the Sorcerer's Stone: A Deluxe Pop-Up Book</title>
+    <author>
+      <id type="integer">5762343</id>
+      <name>Jill Daniels</name>
+    </author>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">10766463</id>
+  <books_count type="integer">5</books_count>
+  <ratings_count type="integer">90</ratings_count>
+  <text_reviews_count type="integer">0</text_reviews_count>
+  <original_publication_year type="integer" nil="true"/>
+  <original_publication_month type="integer" nil="true"/>
+  <original_publication_day type="integer" nil="true"/>
+  <average_rating>4.57</average_rating>
+  <best_book type="Book">
+    <id type="integer">7796887</id>
+    <title>Harry Potter and the Sorcerer's Stone (SparkNotes Literature Guide Series)</title>
+    <author>
+      <id type="integer">6460726</id>
+      <name>SparkNotes</name>
+    </author>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">134223</id>
+  <books_count type="integer">1</books_count>
+  <ratings_count type="integer">117</ratings_count>
+  <text_reviews_count type="integer">5</text_reviews_count>
+  <original_publication_year type="integer">2001</original_publication_year>
+  <original_publication_month type="integer">12</original_publication_month>
+  <original_publication_day type="integer">1</original_publication_day>
+  <average_rating>4.26</average_rating>
+  <best_book type="Book">
+    <id type="integer">139245</id>
+    <title>PIANO SHEET MUSIC Themes from Harry Potter and the Sorcerer's Stone</title>
+    <author>
+      <id type="integer">616</id>
+      <name>John   Williams</name>
+    </author>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">14421654</id>
+  <books_count type="integer">3</books_count>
+  <ratings_count type="integer">35</ratings_count>
+  <text_reviews_count type="integer">1</text_reviews_count>
+  <original_publication_year type="integer">2010</original_publication_year>
+  <original_publication_month type="integer">4</original_publication_month>
+  <original_publication_day type="integer">11</original_publication_day>
+  <average_rating>4.29</average_rating>
+  <best_book type="Book">
+    <id type="integer">9535478</id>
+    <title>Harry Potter and the Sorcerer's Stone</title>
+    <author>
+      <id type="integer">3000965</id>
+      <name>Shmoop</name>
+    </author>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">7180</id>
+  <books_count type="integer">14</books_count>
+  <ratings_count type="integer">178</ratings_count>
+  <text_reviews_count type="integer">21</text_reviews_count>
+  <original_publication_year type="integer">2001</original_publication_year>
+  <original_publication_month type="integer">12</original_publication_month>
+  <original_publication_day type="integer">1</original_publication_day>
+  <average_rating>4.32</average_rating>
+  <best_book type="Book">
+    <id type="integer">3355</id>
+    <title>Harry Potter and the Sorcerer's Stone: Selected Themes from the Motion Picture : French Horn Solo, Duet, Trio (Instrumental Series)</title>
+    <author>
+      <id type="integer">616</id>
+      <name>John   Williams</name>
+    </author>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">14369754</id>
+  <books_count type="integer">2</books_count>
+  <ratings_count type="integer">36</ratings_count>
+  <text_reviews_count type="integer">1</text_reviews_count>
+  <original_publication_year type="integer" nil="true"/>
+  <original_publication_month type="integer" nil="true"/>
+  <original_publication_day type="integer" nil="true"/>
+  <average_rating>4.39</average_rating>
+  <best_book type="Book">
+    <id type="integer">862271</id>
+    <title>Harry Potter and the Sorcerer's Stone Literature Guide</title>
+    <author>
+      <id type="integer">274020</id>
+      <name>Linda Ward Beech</name>
+    </author>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">6328180</id>
+  <books_count type="integer">1</books_count>
+  <ratings_count type="integer">56</ratings_count>
+  <text_reviews_count type="integer">4</text_reviews_count>
+  <original_publication_year type="integer">2000</original_publication_year>
+  <original_publication_month type="integer">12</original_publication_month>
+  <original_publication_day type="integer" nil="true"/>
+  <average_rating>4.14</average_rating>
+  <best_book type="Book">
+    <id type="integer">6149138</id>
+    <title>A Guide for Using Harry Potter and the Sorcerer's Stone/Other Harry Potter Books in the Classroom</title>
+    <author>
+      <id type="integer">2803307</id>
+      <name>Michelle Bryer</name>
+    </author>
+    <image_url>https://images.gr-assets.com/books/1513717249m/6149138.jpg</image_url>
+    <small_image_url>https://images.gr-assets.com/books/1513717249s/6149138.jpg</small_image_url>
+  </best_book>
+</work>
+
+        <work>
+  <id type="integer">5278492</id>
+  <books_count type="integer">3</books_count>
+  <ratings_count type="integer">37</ratings_count>
+  <text_reviews_count type="integer">8</text_reviews_count>
+  <original_publication_year type="integer">2008</original_publication_year>
+  <original_publication_month type="integer">11</original_publication_month>
+  <original_publication_day type="integer">10</original_publication_day>
+  <average_rating>3.84</average_rating>
+  <best_book type="Book">
+    <id type="integer">5211259</id>
+    <title>Re-Read Harry Potter and the Sorcerer's Stone Today! an Unauthorized Guide</title>
+    <author>
+      <id type="integer">16291484</id>
+      <name>Graeme   Davis</name>
+    </author>
+    <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+    <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  </best_book>
+</work>
+
+    </results>
+</search>
+
+</GoodreadsResponse>

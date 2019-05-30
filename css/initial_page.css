@@ -1,0 +1,564 @@
+
+body {
+	margin: 0;
+	background-color: #2E2F2F;
+	font-family: Poiret One;
+}
+
+
+nav {
+	background-color: #EA9010;
+	padding-bottom: 0;
+	position: sticky;
+	top: 0;
+	padding-bottom: 40px;
+	z-index: 30;
+
+}
+
+nav form {
+	position: relative;
+	top: 30%;
+
+}
+
+nav input {
+	border: none;
+	padding: 10px 10px 10px 10px;
+	border-radius: 5px;
+	font-family: Poiret One;
+	margin-left: 10px;
+	font-size: 15px;
+	width: 170px;
+
+
+
+}
+nav form button {
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	margin-left: 10px;
+	outline: none;
+}
+.month_nav{
+	position: relative;
+	font-size: 22px;
+	margin-left: 10px;
+}
+
+.add-img{
+	background: none;
+	cursor: pointer;
+	position: relative;
+	top:15px;
+
+}
+.add-img img {
+	width: 40px;
+		
+}
+#message-add {
+	position: absolute;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+
+/*BUTTONS NAV*/
+.logout-button {
+	position: relative;
+	float: right;
+	top: -38px;
+	margin-right: 40px;
+	background-color: white;
+	font-family: Poiret One;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.profile {
+	position: absolute;
+	top: 24%;
+	right: 10%;
+	text-decoration: none;
+	color: black;
+	background-color: white;
+	padding: 10px;
+	border-radius: 5px;
+}
+/*END*/
+
+.welcome {
+	font-size: 40px;
+}
+
+.home-icon {
+	width: 50px;
+	position: absolute;
+	left: 10px;
+	bottom: 5px;
+	z-index: 50;
+
+}
+
+.navbar {
+	text-align: center;
+	background-color: #EA9010;
+	position: sticky;
+	top: 65px;/*this is what makes work...*/
+	z-index: 30;
+	padding-top: 0px;
+	padding-bottom: 0;
+	font-family: Poirot One;
+	box-shadow: 0 2px 5px -2px gray; /*This creates a shadow in the bottom of the element*/
+
+}
+
+.navbar a {
+	text-decoration: none;
+	color: white;
+	font-size: 40px;
+	padding: 0 20px 1px 20px;
+	border-radius: 4px 4px 0 0;
+
+
+	
+}
+.years{ /*Years displayed in the page - these are the years the user read any book*/
+	position: relative;
+	right: 10%;
+	font-family: Poiret One;
+
+
+}
+
+p .years {
+	font-family: Poiret One;
+
+}
+
+#year-style {/*This is the style the year number will have when clicked*/
+	background-color: black;
+}
+.search {
+	position: absolute;
+	right: 2%;
+	bottom: 0;
+
+}
+.search input{
+	border: none;
+	padding: 10px 5px 10px 5px;
+	border-radius: 5px;
+	font-family: Poiret One;
+	font-size: 20px;
+	margin-bottom: 5px;
+	width: 250px;
+}
+.search button {
+	padding: 8px;
+	border: none;
+	border-radius: 5px;
+	background-color: white;
+	font-family: Poiret One;
+	font-size: 20px;
+}
+
+.text_search_result {
+	font-size: 40px;
+	color: white;
+}
+
+.message_delete {
+	font-size: 40px;
+	text-align: center;
+	color: white;
+}
+
+.text-month{
+	margin: 0 0 20px 20px;
+	font-size: 40px;
+	color: white;
+}
+
+
+.choose {
+	font-size: 70px;
+	text-align: center;
+	color: white;
+}
+/*END NAV*/
+
+/*MONTH SECTION*/
+.books_year {
+	font-size: 40px;
+	text-align: center;
+	margin-bottom: 0;
+	margin-top: 10px;
+	background-color: #EA9010;
+	color: white;
+	font-family: Poiret One;
+	cursor: pointer;
+
+
+}
+
+.books_year p {
+	font-family: Poiret One;
+}
+
+.books_year a {
+	text-decoration: none;
+	color:white;
+	
+
+}
+
+.months {
+	position: sticky;
+	top: 27%;
+	font-size: 24px;
+	float: right;
+	right: 10px;
+	background: #ACA885;
+	width: 25%;
+	border-radius: 10px;
+	padding-bottom: 10px;
+	margin-top: 0px;
+
+}
+.months ul {
+	/*position: fixed;
+	right: 10%;
+	top: 32%;/*If you want to go back the way it was, just delete from position to top.*/
+	margin: 0 0 -5px 0;
+	display: none;
+	animation-name: month-in;
+	animation-duration: 1s;
+	
+}
+
+.months li {
+	text-decoration: none;
+	list-style-type: none;
+	padding-bottom: 5px;
+}
+
+.months li a {
+	text-decoration: none;
+	color: black;
+
+}
+
+@keyframes month-in {
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity:1;
+	}
+}
+@keyframes month-out {
+	from{opacity: 1;}
+	to{opacity: 0;}
+}
+
+@keyframes div-in {
+	from{
+		padding-bottom: 10px;
+	}
+	to{
+		padding-bottom: 450px;
+	}
+}
+@keyframes div-out {
+	from{display: block;}
+	to{display: none;}
+}
+/*END MONTH SECTION*/
+
+/*STARTS HERE THE STYLING OF THE BOOKS COVER*/
+
+.box{
+	
+	width: 40%;
+	padding: 0 0 190px 0;
+	background-color: #ACA885;
+	position: relative;
+	left: 10px;
+	border-radius: 10px;
+	width: 70%;
+	margin-bottom: 10px;
+	margin-left: 3px;
+	cursor: default;
+	animation-name: box-animation-out;
+	animation-duration: .5s;
+}
+
+.box input {
+	border: none;
+	padding: 0 2px 0 2px;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+.box button {
+	border: none;
+	font-family: Poiret One;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+/*.book_info { Need to organize this just as I did with the edit section
+	display: inline-block;
+}*/
+.title {
+	font-size: 39px;
+	text-align: center;
+	position: absolute;
+	left: 17%;
+	bottom: 55%;
+}	
+.author {
+	font-size: 20px;
+	position: absolute;
+	top: 25%;
+	left: 17%;
+}
+.authors_name {
+	font-size: 20px;
+	position: absolute;
+	top: 25%;
+	left: 24%;
+	font-weight: bold;
+}
+.category {
+	font-size: 20px;
+	position: absolute;
+	top: 40%;
+	left: 17%;
+}
+.category_name {
+	font-size: 20px;
+	position: absolute;
+	top: 40%;
+	left: 27%;
+	font-weight: bold;
+}
+.month {
+	font-size: 20px;
+	position: absolute;
+	top: 55%;
+	left: 17%;
+}
+.month_name {
+	font-size: 20px;
+	position: absolute;
+	top: 55%;
+	left: 31%;
+	font-weight: bold;
+}
+
+.date {
+	font-size: 20px;
+	position: absolute;
+	top: 70%;
+	left: 17%;
+}
+.date_info {
+	font-size: 20px;
+	position: absolute;
+	top: 70%;
+	left: 29%;
+	font-weight: bold;
+}
+
+/* This will make the button appears when the the mouse is over it!*/
+#button_books_box {
+  display: none; /* Hide button */
+  position: absolute;
+  right: 8%;
+  bottom: 2%;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  animation-name: animation-out;
+  animation-duration: 0.8s;
+}
+.delete_book_button {
+	display: none;
+	height: 10px;
+	width: 10px;
+	position: absolute;
+ 	right: 4.5%;
+ 	bottom: 12%;
+ 	animation-name: animation-out;
+   	animation-duration: 0.2s;
+}
+.box:hover {
+	animation-name: box-animation-in;
+	animation-duration: .2s;
+	padding: 5px 5px 195px 5px;
+}
+
+.box:hover #button_books_box {
+   display: block; /* On :hover of div show button */
+   animation-name: button-in;
+   animation-duration: 0.8s;
+}
+.box:hover .delete_book_button {
+	display: block;
+	animation-name: button-in;
+   animation-duration: 0.8s;
+}
+@keyframes box-animation-in {
+	from{padding: 0 0 190px 0;}
+	to{padding: 5px 5px 195px 5px;}	
+}
+
+@keyframes box-animation-out {
+	from{padding: 5px 5px 195px 5px;}
+	to{padding: 0 0 190px 0;}	
+}
+
+@keyframes button-in {/*Animation of delete and edit buttons*/
+	from{opacity: 0;}
+	to{opacity:1;}
+}
+
+@keyframes button-out {
+	from{opacity: 1;}
+	to{opacity: 0;}	
+}
+
+.cover {
+	width: 100px;
+	position: absolute;
+	left: 1%;
+	top: 6%;
+	border-radius: 2px;
+}
+
+.add_cover_button {
+	position: absolute;
+	top: 90%;
+	left: 1%;
+	text-decoration: none;
+	color: black;
+}
+
+.finished_search_name {
+	font-size: 20px;
+	position: absolute;
+	top: 55%;
+	left: 26%;
+	font-weight: bold;
+}
+
+
+
+/*THIS IS THE STYLING OF THE EDITING SECTION*/
+
+.edit_cover {
+	width: 200px;
+	position: absolute;
+	left: 1%;
+	top: 6%;
+	border-radius: 2px;
+
+}
+
+#add_cover {
+	
+	color: white;
+	position: absolute;
+	left: 9%;
+	top: 38%;
+	width: 50px;
+	display: none;
+
+}
+.box_edit{
+	position: absolute;
+	width: 40%;
+	padding: 0 0 50px 0;
+	background-color: #ACA885;
+	position: relative;
+	border-radius: 10px;
+	width: 70%;
+	margin-bottom: 10px;
+	margin-left: 15%;
+	cursor: default;
+
+}
+.box_edit:hover #add_cover {
+	display: block;
+}
+
+
+.edit_info {
+	margin:  0 10% 0 25%;
+
+}
+.edit_info p {
+	display: inline-block;
+	font-size: 20px;
+	padding: 0;
+	margin: 10px 0 0 0;
+	font-family: Poiret One;
+}
+.edit_info input {
+	font-size: 20px;
+	border-radius: 5px;
+	border: none;
+	width: 100%;
+	margin: 5px 0 5px 0;
+	padding: 5px 20px 5px 5px;
+	font-family: Poiret One;
+
+}
+
+.save_button_edit{
+	position: absolute;
+	font-size: 25px;
+	right: 2%;
+	bottom: 2%;
+	border-radius: 5px;
+	font-family: Poiret One;
+	border: none;
+	background-color: white;
+	cursor: pointer;
+
+}
+.delete_cover {
+	position: absolute;
+	font-size: 25px;
+	left: 1%;
+	bottom: 5%;
+	border-radius: 5px;
+	text-decoration: none;
+	padding: 3px;
+	background-color: white;
+	color: black;
+}
+.delete_cover:hover {
+	background-color: red;
+	color: white;
+	animation-name: delete-animation;
+	animation-duration: 0.2s;
+
+}
+@keyframes delete-animation {
+	from{
+		background-color: white;
+		color: black;
+	}
+	to{
+		background-color: red;
+		color: white;
+	}
+}
