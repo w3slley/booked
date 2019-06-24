@@ -591,7 +591,7 @@
 			$stmt->execute([$reading_event_id]);
 			$result = $stmt->fetch();
 
-			$month_id = $result['month_id'];
+			$month_id = $result['month_id'];//
 
 			$sql2 = "SELECT * FROM month_finished WHERE id = ?";//Searching for the month name.
 			$stmt2 = $this->connect()->prepare($sql2);
