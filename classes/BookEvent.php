@@ -484,14 +484,14 @@
 					<p class="month_text">Month finished:</p><br>
 					<?php 
 						$month = new BookEvent();
-						echo $month->display_months();?><br>
+						echo $month->display_months_edit($add_book_id);?><br>
 					<p class="year_text">Year finished:</p>
 					<?php echo ' <input class="edit_year_number" type="text" name="year_number" value="'.$data["year_number"].'"><br> '?>
 					<?php echo ' <input style="display:none" name="add_book_id" value="'.$add_book_id.'"> ' //In here a created a input that stores the add_book_id. It is then passed to the edit_book.php file to update the values. ?>
 					<?php echo ' <input style="display:none" name="book_id" value="'.$this->book_id.'"> ' //In here a created a input that stores the book id. It is then passed to the edit_book.php file to update the values.?>
 					<button type="submit" class="save_button_edit">Save changes</button><!--//This is the button that when clicked will lead the user into the update.php file (when all the database interaction will be done) and then back to the initial page.-->
 					<?php echo '<a class="delete_cover" href ="initial_page.php?edit=true&add_book='.$add_book_id.'&book_id='.$this->book_id.'&cover=delete" >Delete book cover</a>'; ?>
-					<?php echo '<a href ="initial_page.php?edit=true&add_book='.$add_book_id.'&book_id='.$this->book_id.'&addCover=true" ><img id="add_cover" src="plus.png"></a>'; ?>
+					<?php echo '<a href ="initial_page.php?edit=true&add_book='.$add_book_id.'&book_id='.$this->book_id.'&addCover=true" ><img id="add_cover" src="images/plus.png"></a>'; ?>
 				</form>
 
 			</div>
@@ -584,6 +584,46 @@
 
 
 		}
+		public function display_months_edit($reading_event_id){
+			//Getting the month the user read the edited book from the DB;
+			$sql = "SELECT * FROM add_book WHERE id = ?"; //Searching for the id.
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute([$reading_event_id]);
+			$result = $stmt->fetch();
+
+			$month_id = $result['month_id'];
+
+			$sql2 = "SELECT * FROM month_finished WHERE id = ?";//Searching for the month name.
+			$stmt2 = $this->connect()->prepare($sql2);
+			$stmt2->execute([$month_id]);
+			$result2 = $stmt2->fetch();
+			$month_name = $result2['month_name'];
+
+			//Getting all the months from the DB to be displayed in the edit page
+			$sql3= "SELECT * FROM month_finished";
+			$stmt3 = $this->connect()->prepare($sql3);
+			$stmt3->execute();
+			$result3 = $stmt3->fetchAll();
+
+			
+
+			echo'<select name="month" class="month_nav">';
+			foreach($result3 as $data){
+				if($data['month_name'] == $month_name){
+					
+					echo'<option selected value="'.$data['month_name'].'">'.$data['month_name'].'</option>';
+				}
+				else{
+					echo'<option value="'.$data['month_name'].'">'.$data['month_name'].'</option>';
+				}
+				
+			}
+			
+			echo '</select>';
+
+
+		}
+
 
 
 	}
