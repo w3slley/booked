@@ -24,7 +24,7 @@
 			$_SESSION['id'] = $data['id'];
 			$_SESSION['birth_date'] = $data['birth_date'];
 
-			header("Location: ../initial_page.php?home=success");
+			header("Location: ../dashboard.php");
 			
 		}
 		else{

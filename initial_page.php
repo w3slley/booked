@@ -16,7 +16,7 @@
 
 			<link rel="stylesheet" type="text/css" href="css/initial_page.css">
 			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One" rel="stylesheet">
-			<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+			<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 				
 		</head>
 		<body>
@@ -52,7 +52,6 @@
 				if($home = 'success'){
 					echo "<p class='choose'> Choose a year!</p>";
 				}
-				
 		}
 		?>
 		</form>
@@ -194,7 +193,8 @@
 			if($_GET['del']=='success'){
 
 					echo "<script>alert('The book you selected is no longer in your list!')</script>";
-					//header("Location: initial_page.php?year=".$_GET['year']);
+					
+					header("Location: initial_page.php?year=".$_GET['year']);
 				}
 		}
 

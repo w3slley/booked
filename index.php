@@ -1,9 +1,9 @@
 <?php  
 	include_once "includes/dbh.inc.php";
 	session_start();
-
 	
-	if(isset($_SESSION['first_name'])){
+	
+	if(isset($_SESSION['id'])){
 		header("Location: initial_page.php?home");
 	}
 	else { ?>
@@ -11,15 +11,13 @@
 	<!DOCTYPE html>
 	<html>
 	<head>
-		<title>
-		Book app
-		</title>
-		
+		<title>Booked: keep track of the books you read!</title>
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 	</head>
 	<body>
 
 	<?php 
-		if(!isset($_SESSION['first_name'])) {?>
+		if(!isset($_SESSION['id'])) {?>
 		
 			<h1>Login</h1>
 			<form method="POST" action="includes/login.inc.php">

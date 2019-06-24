@@ -10,8 +10,10 @@
 		<head>
 			<title>BookList | Welcome</title>
 			<link rel="stylesheet" type="text/css" href="css/dashboard.css">
+			<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One" rel="stylesheet">
 			<script src="javascript/main.js"></script>
+			
 		</head>
 		<body>
 			<nav>
@@ -22,7 +24,7 @@
 					<input type="text" name="category" placeholder="Category">
 					<input type="text" name="month" placeholder="Month finished">
 					<input type="text" name="year" placeholder="Year finished">
-					<button class= "add-img" type="submit" name="submit" onclick="alert('Wait while we are setting everything up...')"><img src="plus2.png"></button>
+					<button class= "add-img" type="submit" name="submit" onclick="alert('Wait while we are setting everything up...')"><img src="images/plus2.png"></button>
 				</form>
 
 				<form method="POST" action="includes/logout.inc.php">
@@ -34,7 +36,7 @@
 			</form>
 
 			<div class="navbar"> <!-- For now, you can only add books read from 2014 on(it takes from the database). Have to find a way so that the user can add the year he/she wants -->
-				<a href="#"><img class="home-icon" src="home.png"></a>
+				<a href="#"><img class="home-icon" src="images/home.png"></a>
 				
 				
 			</div>
@@ -46,7 +48,7 @@
 				?>
 				<form class="search" action="initial_page.php">
 					<input type="search" name="search" placeholder="Books, authors, categories...">
-					<button type="submit" name="submit">Search</button>
+					<button type="submit">Search</button>
 				</form>
 			</div>
 		</body>

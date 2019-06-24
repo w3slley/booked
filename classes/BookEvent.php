@@ -275,7 +275,7 @@
 
 			echo  '<a href="initial_page.php?edit=true&add_book='.$data['id'].'&book_id='.$data['book_id'].'" id="button_books_box">Edit book\'s information</a>';//This is the edit button where the user can adit the information on the books.
 			echo  '
-			<a href="initial_page.php?delete='.$data['id'].'" class = "delete_book_button"><img src="trash.png" width="30px" onclick="return confirm_alert(this);"></a>';//This is the delete button where the user can delete books added to the website.
+			<a href="initial_page.php?delete='.$data['id'].'" class = "delete_book_button"><img src="images/trash.png" width="30px" onclick="return confirm_alert(this);"></a>';//This is the delete button where the user can delete books added to the website.
 
 
 			?>
@@ -291,7 +291,7 @@
 			$this->year = $year;
 			$this->month = $month;
 
-			$sql = "SELECT add_book.id, book_title, book_id, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id JOIN books ON book_id = books.id JOIN authors ON author_id = authors.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? AND month_name = ?";
+			$sql = "SELECT add_book.id, book_title, book_id, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id JOIN books ON book_id = books.id JOIN authors ON author_id = authors.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? AND month_name = ? ORDER BY id DESC"; //When I use ORDER BY id DESC that means it will display always the last row added!
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->user_id, $this->year, $this->month]);
 			$result = $stmt->fetchAll();
@@ -330,7 +330,7 @@
 
 			echo  '<a href="initial_page.php?edit=true&add_book='.$data['id'].'&book_id='.$data['book_id'].'" id="button_books_box">Edit book\'s information</a>';//This is the edit button where the user can edit the information on the books.
 			echo  '
-			<a href="initial_page.php?delete='.$data['id'].'" class = "delete_book_button"><img src="trash.png" width="30px" onclick="return confirm_alert(this);"></a>';//This is the delete button where the user can delete books added to the website.
+			<a href="initial_page.php?delete='.$data['id'].'" class = "delete_book_button"><img src="images/trash.png" width="30px" onclick="return confirm_alert(this);"></a>';//This is the delete button where the user can delete books added to the website.
 
 
 			?>
@@ -441,7 +441,7 @@
 
 			echo  '<a href="initial_page.php?edit=true&add_book='.$data['id'].'&book_id='.$data['book_id'].'" id="button_books_box">Edit book\'s information</a>';//This is the edit button where the user can adit the information on the books.
 			echo  '
-			<a href="initial_page.php?delete='.$data['id'].'" class = "delete_book_button"><img src="trash.png" width="30px" onclick="return confirm_alert(this);"></a>';//This is the delete button where the user can delete books added to the website.
+			<a href="initial_page.php?delete='.$data['id'].'" class = "delete_book_button"><img src="images/trash.png" width="30px" onclick="return confirm_alert(this);"></a>';//This is the delete button where the user can delete books added to the website.
 
 
 			?>

@@ -2,14 +2,17 @@
 window.onscroll = function(){
 	//console.log(window.scrollY);//This is how you get the number of pixels scrolled!! I spend a lot of time trying to find this shit...
 	var scroll = window.scrollY;
-	var month = document.getElementsByClassName('months');
+	var month = document.querySelector('.months');
 	var ul = document.getElementById('month_names');
 	if(scroll > 100){//when the scrolling position is higher than 100 pixels:
 		ul.style.display = 'block';
+		month.style.height = "450px";
+		
 		
 	}
 	else {//When is lesser than 100 pixels:
 		ul.style.display = 'none';
+		month.style.height = "50px";
 
 		
 	}

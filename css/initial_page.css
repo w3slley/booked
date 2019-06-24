@@ -225,8 +225,9 @@ p .years {
 	background: #ACA885;
 	width: 25%;
 	border-radius: 10px;
-	padding-bottom: 10px;
+	height: 50px;
 	margin-top: 0px;
+	transition: height .5s;
 
 }
 .months ul {

@@ -22,7 +22,8 @@ Now it's runing as it use to (some error had occur with googletrans but now it's
 
 24/06/2019
 1)Today I started to change the way the url looks like. There were a lot of blank atributes in the url and I changed that. Now only the year will appear when the user wants to see all the books read in that year. Likewise, only the year and the month will be displayed in the url when the user wants to see the books read in that month of the year.
-
+2)fixed date format in the books component.
+3)Fixed the url of the searches (before the submit= appeared and now it doesn't).
 
 ######################################################################
 I'm back at the development of the web app. I need to implement some features:
