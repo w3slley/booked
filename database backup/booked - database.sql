@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 29-Jan-2019 às 21:38
--- Versão do servidor: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Host: localhost:3306
+-- Generation Time: 30-Maio-2019 às 23:00
+-- Versão do servidor: 5.7.26-0ubuntu0.19.04.1
+-- PHP Version: 7.2.17-0ubuntu0.19.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -118,7 +116,6 @@ INSERT INTO `add_book` (`id`, `user_id`, `book_id`, `author_id`, `catg_id`, `mon
 (81, 1, 90, 43, 10, 12, 1, 'Thu, 17 May 2018 12:33:14'),
 (82, 1, 91, 60, 9, 2, 2, 'Thu, 17 May 2018 14:16:39'),
 (83, 2, 92, 61, 15, 1, 6, 'Thu, 17 May 2018 14:20:07'),
-(85, 1, 95, 62, 1, 10, 2, 'Thu, 17 May 2018 15:03:25'),
 (89, 2, 96, 46, 3, 1, 7, 'Fri, 18 May 2018 18:00:46'),
 (90, 2, 97, 4, 1, 4, 1, 'Fri, 18 May 2018 18:03:20'),
 (92, 1, 98, 1, 10, 1, 3, 'Fri, 18 May 2018 18:12:52'),
@@ -131,7 +128,11 @@ INSERT INTO `add_book` (`id`, `user_id`, `book_id`, `author_id`, `catg_id`, `mon
 (101, 1, 13, 13, 1, 4, 5, 'Mon, 19 Nov 2018 00:11:57'),
 (102, 1, 106, 68, 15, 12, 5, 'Sun, 09 Dec 2018 20:15:35'),
 (104, 1, 108, 70, 15, 1, 8, 'Tue, 15 Jan 2019 11:07:26'),
-(105, 1, 109, 35, 1, 12, 5, 'Tue, 15 Jan 2019 11:08:46');
+(105, 1, 109, 35, 1, 12, 5, 'Tue, 15 Jan 2019 11:08:46'),
+(115, 1, 43, 71, 1, 5, 2, 'Tue, 29 Jan 2019 22:49:33'),
+(116, 1, 112, 72, 23, 2, 8, 'Fri, 08 Feb 2019 21:39:19'),
+(123, 1, 120, 40, 8, 4, 8, 'Thu, 30 May 2019 15:24:09'),
+(124, 1, 121, 73, 1, 4, 8, 'Thu, 30 May 2019 22:37:15');
 
 -- --------------------------------------------------------
 
@@ -215,7 +216,11 @@ INSERT INTO `authors` (`id`, `author_name`) VALUES
 (67, 'Dan Brown'),
 (68, 'Mark Manson'),
 (69, 'J. K. Rowlling'),
-(70, 'John Carreyrou');
+(70, 'John Carreyrou'),
+(71, 'Marry Shelley'),
+(72, 'Robert Galbraith'),
+(73, 'JoÃ«l Dicker '),
+(74, 'test');
 
 -- --------------------------------------------------------
 
@@ -306,9 +311,9 @@ INSERT INTO `books` (`id`, `book_title`, `classification`) VALUES
 (86, 'Os segredos da mente milionÃ¡ria', NULL),
 (87, 'Pai rico, pai pobre', NULL),
 (88, 'Sapiens: uma breve histÃ³ria da humanidade', NULL),
-(89, 'A study in scarlet', NULL),
+(89, 'Um estudo em Vermelho', NULL),
 (90, 'O signo dos quatro', NULL),
-(91, 'The martian', 9),
+(91, 'Perdido em Marte', 9),
 (92, 'No place to hide: Edward Snowden', NULL),
 (94, 'The selfish gene', NULL),
 (95, 'The Survivor', NULL),
@@ -323,9 +328,13 @@ INSERT INTO `books` (`id`, `book_title`, `classification`) VALUES
 (104, 'The Christmas Carrol', NULL),
 (105, 'Origin', NULL),
 (106, 'The subtle art of not giving a fuck', NULL),
-(107, 'Harry Potter', NULL),
 (108, 'Bad Blood', NULL),
-(109, 'A house at the bottom of a lake', NULL);
+(109, 'A house at the bottom of a lake', NULL),
+(110, 'Harry Potter And The Sorcerer\'s Stone', NULL),
+(111, 'Frankstein', NULL),
+(112, 'Cuckoo\'s Calling', NULL),
+(120, 'Leonardo Da Vinci', NULL),
+(121, 'A verdade sobre o caso Harry Quebert', NULL);
 
 -- --------------------------------------------------------
 
@@ -359,7 +368,9 @@ INSERT INTO `categories` (`id`, `catg_name`) VALUES
 (19, 'History'),
 (20, 'Productivity'),
 (21, 'Thriller'),
-(22, 'Psychology');
+(22, 'Psychology'),
+(23, 'Criminal Fiction'),
+(24, 'test');
 
 -- --------------------------------------------------------
 
@@ -495,45 +506,37 @@ ALTER TABLE `year_finished`
 -- AUTO_INCREMENT for table `add_book`
 --
 ALTER TABLE `add_book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 --
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `month_finished`
 --
 ALTER TABLE `month_finished`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `year_finished`
 --
 ALTER TABLE `year_finished`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

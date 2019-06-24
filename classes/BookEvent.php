@@ -198,7 +198,28 @@
 			$result = $stmt->fetchAll();
 			echo "<div class='years'>";
 			foreach($result as $data){
-				echo "<a id='year-unit' href='initial_page.php?year=".$data['year_number']."&month=' onclick='giveId()'>".$data['year_number']."</a>";
+				echo "<a id='year-unit' href='initial_page.php?year=".$data['year_number']."' onclick='giveId()'>".$data['year_number']."</a>";
+			}
+			echo "</div>";
+
+		}
+
+		public function display_years_input($user_id){
+			$this->user_id = $user_id;
+
+			$sql = "SELECT DISTINCT year_number FROM add_book  
+				JOIN users ON user_id = users.id
+				JOIN books ON book_id = books.id
+				JOIN authors ON author_id = authors.id
+				JOIN categories ON catg_id = categories.id
+				JOIN month_finished ON month_id = month_finished.id
+				JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? ORDER BY year_number;"; //This will display only the years where the user added books into his/her list!
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute([$this->user_id]);
+			$result = $stmt->fetchAll();
+			echo "<div class='years'>";
+			foreach($result as $data){
+				echo "<a id='year-unit' href='initial_page.php?year=".$data['year_number']."' onclick='giveId()'>".$data['year_number']."</a>";
 			}
 			echo "</div>";
 
@@ -307,7 +328,7 @@
 			</script>
 			<?php 
 
-			echo  '<a href="initial_page.php?edit=true&add_book='.$data['id'].'&book_id='.$data['book_id'].'" id="button_books_box">Edit book\'s information</a>';//This is the edit button where the user can adit the information on the books.
+			echo  '<a href="initial_page.php?edit=true&add_book='.$data['id'].'&book_id='.$data['book_id'].'" id="button_books_box">Edit book\'s information</a>';//This is the edit button where the user can edit the information on the books.
 			echo  '
 			<a href="initial_page.php?delete='.$data['id'].'" class = "delete_book_button"><img src="trash.png" width="30px" onclick="return confirm_alert(this);"></a>';//This is the delete button where the user can delete books added to the website.
 
@@ -485,6 +506,7 @@
 			$this->book_title = $result['book_title'];
 			$this->book_id = $result['book_id'];
 			$this->user_id = $result['user_id'];
+			$this->year = $result['year_number'];
 
 
 			$sql3 = "DELETE FROM add_book WHERE id = ?";
@@ -512,7 +534,7 @@
 			}
 
 			
-			header("Location: initial_page.php?del=success");
+			header("Location: initial_page.php?del=success&year=".$this->year);
 		}
 
 		public function delete_book_cover($book_id, $add_book_id){

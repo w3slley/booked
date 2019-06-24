@@ -2,8 +2,9 @@
 	session_start();
 	include "classes/BookEvent.php";
 	include "includes/dbh.inc.php";
+	$id = $_SESSION['id'];
 
-	if(!isset($_SESSION['first_name'])){
+	if(!isset($id)){
 		header("Location: index.php");
 	}
 	else {
@@ -17,11 +18,9 @@
 			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One" rel="stylesheet">
 			<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 				
-			
 		</head>
 		<body>
 			<nav>
-
 				<form id="nav-add" method="POST" action="includes/add_book.inc.php">
 					<input type="text" name="book" placeholder="Book title">
 					<input type="text" name="author" placeholder="Author">
@@ -34,8 +33,6 @@
 					<button class= "add-img" type="submit" name="submit" onclick="alert('Wait while we are setting everything up...')"><img src="plus2.png"></button>
 				</form>
 				<?php  
-					$id = $_SESSION['id'];
-
 					if(isset($_GET['failed'])){
 						$failed = $_GET['failed'];
 
@@ -43,35 +40,28 @@
 							echo "<p id='message-add'>You didn't fill in all the fields. Please, try again.</p>";
 						}
 					}
-
 				?>
 				<form method="POST" action="includes/logout.inc.php">
 					<button class="logout-button" type="submit" name="submit">Logout</button>
 				</form>
 				<a class="profile" href="profile.php">Profile</a>
-				
-				
-			
 			</nav>
 		<?php
 			if(isset($_GET['home'])){
 			$home = $_GET['home'];
-			if($home = 'success'){
-				echo "<p class='choose'> Choose a year!</p>";
-			}
-			
+				if($home = 'success'){
+					echo "<p class='choose'> Choose a year!</p>";
+				}
+				
 		}
 		?>
-		
-
-
 		</form>
 
-		<div class="navbar"> <!-- For now, you can only add books read from 2014 on(it takes from the database). Have to find a way so that the user can add the year he/she wants -->
+		<div class="navbar"> 
 			<a href="dashboard.php"><img class="home-icon" src="home.png"></a>
 			<?php
 			$years_nav = new BookEvent();
-			$years_nav->display_years_homepage($id); //I need to fix this so that the user will see only the years which he/she added books.
+			$years_nav->display_years_homepage($id); 
 
 			?>
 			<form class="search" action="initial_page.php">
@@ -131,25 +121,30 @@
 		}
 		//DISPLAY BOOKS READ IN A YEAR!
 		//This is how I got to display the books read in a especific month. 
-		if(isset($_GET['year']) and isset($_GET['month'])){ // if there's values in year and month
+		if(isset($_GET['year'])){ // if there's values in year and month
 			$year = $_GET['year'];
-			$month = $_GET['month'];			
-
-			if($month==''){//If there's value in the month, nothing will happen because it will show the results of the books read in the particular month.
+			$uri = $_SESSION['path'];
+			$check_position = strpos($uri, 'month');
+			if($check_position == false){ //If there's not month in the uri, then display all the books! A more elegant solution...
 				$display = new BookEvent();
 				while (!empty($display->display_books_year($id, $year))){
 					$display->display_books_year($id, $display->get_smallest_year());//Here goes the initial year in the database. Created a function that gets the smallest number from the year column!
 					$year++;
 						//This is a much more elegant solution. I created a while loop that until there's no result from the database it will continue to display the books read in that particular year. And in the end, it adds 1 to the year variable so it can do it again in the next year. Good job mate!
 					}
-				}							 
 			}
+						
+
+		//If there's value in the month, nothing will happen because it will show the results of the books read in the particular month.
+		
+		}							 
+			
 
 		//Display results from a search!
 		if(isset($_GET['search']) and isset($_GET['submit'])){//When there's the term 'search' and 'submit' in the URL, then:
 			$search = "%{$_GET['search']}%"; //This is how you use this variable with LIKE. You have to insert the $_GET inside {} and then use %!
 			$search_displayed = str_replace("%", "", $search);
-			echo "<p class='text_search_result'>Results for:  \"".$search_displayed."\".</p>";
+			echo "<p class='text_search_result'>Results for:  \"".$search_displayed."\"</p>";
 			$data = new BookEvent();
 			$data->search($id, $search);
 		}
@@ -186,12 +181,6 @@
 			}
 		}*/
 
-		//Invalid month:
-		if(isset($_GET['error'])){ //If the month iserted when editing is not valid, a message will appear.
-			if($_GET['error'] == 'month'){
-				echo "<script type='text/javascript'>alert('Please, insert a valid month name.');</script>";
-			}
-		}
 
 		//Procedure to delete the book from list:
 		if(isset($_GET['delete'])){
@@ -201,8 +190,11 @@
 			//display a message saying that the book was deleted!
 		}
 		if(isset($_GET['del'])){
+
 			if($_GET['del']=='success'){
-					echo "<p class='message_delete'>The book you selected is no longer in your list!</p>";
+
+					echo "<script>alert('The book you selected is no longer in your list!')</script>";
+					//header("Location: initial_page.php?year=".$_GET['year']);
 				}
 		}
 
@@ -219,7 +211,7 @@
 
 			}
 			elseif($_GET['cover'] == 'deleteSuccess'){
-				//display a message saying that the book's cover was deleted!
+				echo "<script>alert('The bookcover was deleted!')</script>";//display a message saying that the book's cover was deleted!
 			}		
 		}
 		//ADD NEW BOOK COVER FROM THE EDIT SECTION

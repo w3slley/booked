@@ -43,7 +43,7 @@
 			
 			$data->add_book_event($userId, $bookId, $authorId, $categoryId, $monthId, $yearId, $task_date);
 
-			header("Location: ../initial_page.php?add=success&year=".$year."&month=".strtolower($month));
+			header("Location: ../initial_page.php?year=".$year."&month=".strtolower($month));
 			 		
 					
 		}
