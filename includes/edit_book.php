@@ -10,7 +10,7 @@
 	$book_title = $_POST['book_title'];
 	$author_name = $_POST['author_name'];
 	$catg_name = $_POST['catg_name'];
-	$month_name = $_POST['month_name'];
+	$month_name = $_POST['month'];
 	$year_number = $_POST['year_number'];
 	$book_id = $_POST['book_id']; //This was gathered from the url. It was first given by the add_books_year() function, which created a button that lead in the url edit=true, add_book_id=its number(taken from the database) and book_id = its number (also taken from the database).
 	$add_book_id = $_POST['add_book_id']; //The same as the above.

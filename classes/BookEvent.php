@@ -176,8 +176,8 @@
 		}
 
 		public function download_book_cover($book, $book_id, $author){
-			//Download the book cover into the file "images" where the user add a new book read.
-		shell_exec('python3 /var/www/html/booked/get_book_url_img.py "'.$book.'" "'.$author.'" "'.$book_id.'" ');
+			//Download the book cover into the file "bookcovers" where the user add a new book read.
+		shell_exec('python3 /var/www/html/booked/python/get_book_url_img.py "'.$book.'" "'.$author.'" "'.$book_id.'" ');
 
 		}
 
@@ -244,7 +244,7 @@
 			foreach($result as $data){ ?>
 
 			<div class="box">
-			<?php $location = 'images/bookcover'.$data['book_id'].'.jpg'; ?>
+			<?php $location = 'bookcovers/bookcover'.$data['book_id'].'.jpg'; ?>
 			
 			<?php 
 			if(file_exists($location)==True){
@@ -252,7 +252,7 @@
 			}
 			else {
 				
-				echo '<img class="cover" src="images/default_bookcover.jpg">';
+				echo '<img class="cover" src="bookcovers/default_bookcover.jpg">';
 			}
 			?>
 			<div class="book_info">
@@ -299,7 +299,7 @@
 			foreach($result as $data){ ?>
 
 			<div class="box">
-			<?php $location = 'images/bookcover'.$data['book_id'].'.jpg'; ?>
+			<?php $location = 'bookcovers/bookcover'.$data['book_id'].'.jpg'; ?>
 			
 			<?php 
 			if(file_exists($location)==True){
@@ -307,7 +307,7 @@
 			}
 			else {
 				
-				echo '<img class="cover" src="images/default_bookcover.jpg">';
+				echo '<img class="cover" src="bookcovers/default_bookcover.jpg">';
 			}
 			?>
 			<div class="book_info">
@@ -410,7 +410,7 @@
 			foreach($result as $data){ ?>
 
 			<div class="box">
-			<?php $location = 'images/bookcover'.$data['book_id'].'.jpg'; ?>
+			<?php $location = 'bookcovers/bookcover'.$data['book_id'].'.jpg'; ?>
 			
 			<?php 
 			if(file_exists($location)==True){
@@ -418,7 +418,7 @@
 			}
 			else {
 				
-				echo '<img class="cover" src="images/default_bookcover.jpg">';
+				echo '<img class="cover" src="bookcovers/default_bookcover.jpg">';
 			}
 			?>
 			<div class="book_info">
@@ -470,7 +470,7 @@
 				}
 				else {
 					
-					echo '<img class="edit_cover" src="images/default_bookcover.jpg">';
+					echo '<img class="edit_cover" src="bookcovers/default_bookcover.jpg">';
 				}
 				?>
 				
@@ -481,8 +481,10 @@
 					<?php echo ' <input class="edit_authors_name" type="text" name="author_name" value="'.$data["author_name"].'"><br>  '?>
 					<p class="category_text">Category:</p>
 					<?php echo ' <input class="edit_category_name" type="text" name="catg_name" value="'.$data["catg_name"].'"><br>  '?>
-					<p class="month_text">Month finished:</p>
-					<?php echo ' <input class="edit_month_name" type="text" name="month_name" value="'.$data["month_name"].'"><br>  '?>
+					<p class="month_text">Month finished:</p><br>
+					<?php 
+						$month = new BookEvent();
+						echo $month->display_months();?><br>
 					<p class="year_text">Year finished:</p>
 					<?php echo ' <input class="edit_year_number" type="text" name="year_number" value="'.$data["year_number"].'"><br> '?>
 					<?php echo ' <input style="display:none" name="add_book_id" value="'.$add_book_id.'"> ' //In here a created a input that stores the add_book_id. It is then passed to the edit_book.php file to update the values. ?>
@@ -526,7 +528,7 @@
 				$stmt2 = $this->connect()->prepare($sql2);
 				$stmt2->execute([$this->book_title]);
 
-				$file_path = 'images/bookcover'.$this->book_id.'.jpg';
+				$file_path = 'bookcovers/bookcover'.$this->book_id.'.jpg';
 				
 				if(file_exists($file_path)){
 					unlink($file_path);
@@ -540,7 +542,7 @@
 		public function delete_book_cover($book_id, $add_book_id){
 			$this->book_id = $book_id;
 
-			$location = "/var/www/html/booked/images/bookcover".$this->book_id.".jpg";
+			$location = "/var/www/html/booked/bookcovers/bookcover".$this->book_id.".jpg";
 			if(file_exists($location)){ //If there's a file with that id, than delete it. If not, nothing happens. This is to prevent the user to click the delete cover button when the book already doesn't have any cover image.
 				unlink($location);
 				header("Location: initial_page.php?edit=true&add_book=".$add_book_id."&book_id=".$this->book_id);//It will not show anything in the URL after deletes the book cover. It was giving me some trobles and I changed this feature.
@@ -560,7 +562,7 @@
 			$book_id = $result['book_id'];
 			
 
-			shell_exec('python3 /var/www/html/booked/get_book_url_img.py "'.$book_title.'" "'.$author_name.'" "'.$book_id.'" ');	
+			shell_exec('python3 /var/www/html/booked/python/get_book_url_img.py "'.$book_title.'" "'.$author_name.'" "'.$book_id.'" ');	
 			//I think I finally got it. The problem was because in the download cover function the path of the python script was one folder directory behind the initial page file. But, they are in the same page. 
 			
 

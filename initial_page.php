@@ -30,7 +30,7 @@
 						echo $month->display_months();
 					 ?>
 					<input type="text" name="year" placeholder="Year finished">
-					<button class= "add-img" type="submit" name="submit" onclick="alert('Wait while we are setting everything up...')"><img src="plus2.png"></button>
+					<button class= "add-img" type="submit" name="submit" onclick="alert('Wait while we are setting everything up...')"><img src="images/plus2.png"></button>
 				</form>
 				<?php  
 					if(isset($_GET['failed'])){
@@ -58,7 +58,7 @@
 		</form>
 
 		<div class="navbar"> 
-			<a href="dashboard.php"><img class="home-icon" src="home.png"></a>
+			<a href="dashboard.php"><img class="home-icon" src="images/home.png"></a>
 			<?php
 			$years_nav = new BookEvent();
 			$years_nav->display_years_homepage($id); 
@@ -66,7 +66,7 @@
 			?>
 			<form class="search" action="initial_page.php">
 			<input type="search" name="search" placeholder="Books, authors, categories...">
-			<button type="submit" name="submit">Search</button>
+			<button type="submit">Search</button>
 			</form>
 		</div>
 
@@ -141,7 +141,7 @@
 			
 
 		//Display results from a search!
-		if(isset($_GET['search']) and isset($_GET['submit'])){//When there's the term 'search' and 'submit' in the URL, then:
+		if(isset($_GET['search'])){//When there's the term 'search' and 'submit' in the URL, then:
 			$search = "%{$_GET['search']}%"; //This is how you use this variable with LIKE. You have to insert the $_GET inside {} and then use %!
 			$search_displayed = str_replace("%", "", $search);
 			echo "<p class='text_search_result'>Results for:  \"".$search_displayed."\"</p>";
@@ -153,7 +153,7 @@
 			if($_GET['edit']=='true'){
 				$add_book_id = $_GET['add_book'];
 				$book_id = $_GET['book_id'];
-				$location = 'images/bookcover'.$book_id.'.jpg';
+				$location = 'bookcovers/bookcover'.$book_id.'.jpg';
 
 				$edit = new BookEvent();
 				$edit->display_edit_book($id, $book_id, $add_book_id, $location);//Executes the function that displays the box with the values the user can edit.

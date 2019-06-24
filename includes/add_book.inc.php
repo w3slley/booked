@@ -26,15 +26,19 @@
 			$data->add_author ($author); //Function I created that adds the author's name into the DB if he/she is not already there.
 			$data->add_category ($category);//Function I created that adds the category name into the DB if it's not already there.
 			$data->add_year($year);
-
+			
+			
 			$userId = $_SESSION['id'];
 			$bookId = $data->select_book_id($book);
 			$authorId = $data->select_author_id($author);
 			$categoryId = $data->select_category_id($category);
 			$monthId = $data->select_month_id($month);
 			$yearId = $data->select_year_id($year);
-			$task_date = date('D, d M Y H:i:s'); //This is how you echo the date (with the year, month, day, hour, minutes and seconds)
+			$task_date = date('d/m/Y');
+			//$task_date = date('D, d M Y H:i:s'); //This is how you echo the date (with the year, month, day, hour, minutes and seconds)
+			
 
+			
 			$_SESSION['book'] = $book;
 			$_SESSION['bookId'] = $bookId;
 			$_SESSION['author'] = $author;
@@ -45,7 +49,7 @@
 
 			header("Location: ../initial_page.php?year=".$year."&month=".strtolower($month));
 			 		
-					
+			
 		}
 	}
 
