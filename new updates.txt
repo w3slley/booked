@@ -25,6 +25,7 @@ Now it's runing as it use to (some error had occur with googletrans but now it's
 2)fixed date format in the books component.
 3)Fixed the url of the searches (before the submit= appeared and now it doesn't).
 4) Fixed problem with select tag in the editing section. Now the month the user read the book will appear in the select tag.
+5) Fixed a problem I had with the years displayed. The problem was that they didn't have space between them and they were treated as one single word. I just inserted a space and it became the way I wanted.
 
 ######################################################################
 I'm back at the development of the web app. I need to implement some features:
@@ -34,3 +35,4 @@ I'm back at the development of the web app. I need to implement some features:
 4)Implement AJAX calls on the entire website.
 5)Create the front end of the index page.
 6)Create the front end of the profile page.
+7)Make sure when the user exclude one book and it's the only one read in the year that the user is redirected to another page - and not the page of that year (it was already excluded anyways).

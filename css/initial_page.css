@@ -3,6 +3,7 @@ body {
 	margin: 0;
 	background-color: #2E2F2F;
 	font-family: Poiret One;
+	
 }
 
 
@@ -11,8 +12,10 @@ nav {
 	padding-bottom: 0;
 	position: sticky;
 	top: 0;
-	padding-bottom: 40px;
+	padding-bottom: 10px;
 	z-index: 30;
+	
+	
 
 }
 
@@ -99,21 +102,20 @@ nav form button {
 	position: absolute;
 	left: 10px;
 	bottom: 5px;
-	z-index: 50;
+	
 
 }
 
 .navbar {
 	text-align: center;
 	background-color: #EA9010;
-	position: sticky;
-	top: 65px;/*this is what makes work...*/
-	z-index: 30;
+	position: relative;
+	/*top: 65px;/*this is what makes work...*/
 	padding-top: 0px;
 	padding-bottom: 0;
 	font-family: Poirot One;
-	box-shadow: 0 2px 5px -2px gray; /*This creates a shadow in the bottom of the element*/
-
+	/*box-shadow: 0 2px 5px -2px gray; /*This creates a shadow in the bottom of the element*/
+	
 }
 
 .navbar a {
@@ -126,13 +128,18 @@ nav form button {
 
 	
 }
-.years{ /*Years displayed in the page - these are the years the user read any book*/
-	position: relative;
-	right: 10%;
-	font-family: Poiret One;
 
+.years{ /*Years displayed in the page - these are the years the user read any book*/
+	font-family: Poiret One;
+	margin: 0 auto;
+	width: 80%;
+	
+	
+	/*word-break: break-word; /*If you want to break text, that's how you do it!*/
+	
 
 }
+
 
 p .years {
 	font-family: Poiret One;
@@ -142,13 +149,17 @@ p .years {
 #year-style {/*This is the style the year number will have when clicked*/
 	background-color: black;
 }
+
+
 .search {
-	position: absolute;
-	right: 2%;
-	bottom: 0;
+	position: sticky;
+	top:14%;
+	right: 0;
 
 }
 .search input{
+	position: absolute;
+	right: 90px;
 	border: none;
 	padding: 10px 5px 10px 5px;
 	border-radius: 5px;
@@ -158,6 +169,8 @@ p .years {
 	width: 250px;
 }
 .search button {
+	position: absolute;
+	right:10px;
 	padding: 8px;
 	border: none;
 	border-radius: 5px;
@@ -218,7 +231,7 @@ p .years {
 
 .months {
 	position: sticky;
-	top: 27%;
+	top: 25%;
 	font-size: 24px;
 	float: right;
 	right: 10px;
@@ -226,7 +239,7 @@ p .years {
 	width: 25%;
 	border-radius: 10px;
 	height: 50px;
-	margin-top: 0px;
+	margin-top: 50px;
 	transition: height .5s;
 
 }
@@ -237,7 +250,7 @@ p .years {
 	margin: 0 0 -5px 0;
 	display: none;
 	animation-name: month-in;
-	animation-duration: 1s;
+	animation-duration: 2s;
 	
 }
 
@@ -485,6 +498,7 @@ p .years {
 }
 .box_edit{
 	position: absolute;
+	top: 50px;
 	width: 40%;
 	padding: 0 0 50px 0;
 	background-color: #ACA885;

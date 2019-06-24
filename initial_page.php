@@ -20,11 +20,12 @@
 				
 		</head>
 		<body>
-			<nav>
+			<nav class="nav">
 				<form id="nav-add" method="POST" action="includes/add_book.inc.php">
 					<input type="text" name="book" placeholder="Book title">
 					<input type="text" name="author" placeholder="Author">
 					<input type="text" name="category" placeholder="Category">
+					
 					<?php 
 						$month = new BookEvent();
 						echo $month->display_months();
@@ -58,15 +59,13 @@
 
 		<div class="navbar"> 
 			<a href="dashboard.php"><img class="home-icon" src="images/home.png"></a>
+			<div class="years">
 			<?php
 			$years_nav = new BookEvent();
 			$years_nav->display_years_homepage($id); 
-
 			?>
-			<form class="search" action="initial_page.php">
-			<input type="search" name="search" placeholder="Books, authors, categories...">
-			<button type="submit">Search</button>
-			</form>
+			</div>
+			
 		</div>
 
 		<br>
@@ -80,9 +79,6 @@
 		$yearInUrl = substr($url, $year_url_initial, 4); //This works like variable[0:5] in python... substr(string, start, lenght)
 		
 		
-
-		
-		
 		//The links will take the year from the url! #I also added a new function (books_read_month and books_read_year) that output the number of books read in that particular month and year, respectively!
 
 		$query = $_GET;
@@ -93,7 +89,12 @@
 		$_SESSION['path'] = $path;
 
 		
-		
+		?>
+		<form class="search" action="initial_page.php">
+			<input type="search" name="search" placeholder="Books, authors, categories...">
+			<button type="submit">Search</button>
+			</form>
+		<?php
 		if(!isset($_GET['home']) AND !isset($_GET['search']) AND !isset($_GET['edit']) AND !isset($_GET['del'])) { //This means that the tab with the months will only be shown when there are no 'home', 'search' and 'edit' with values in the url! That means the months will not be shown when the user logs in, when he/she searchs for something and when he/she edits information on books.
 			$data = new BookEvent();
 
@@ -143,7 +144,7 @@
 		if(isset($_GET['search'])){//When there's the term 'search' and 'submit' in the URL, then:
 			$search = "%{$_GET['search']}%"; //This is how you use this variable with LIKE. You have to insert the $_GET inside {} and then use %!
 			$search_displayed = str_replace("%", "", $search);
-			echo "<p class='text_search_result'>Results for:  \"".$search_displayed."\"</p>";
+			echo "<p style='margin: 0 0 10px 0;'class='text_search_result'>Results for  \"".$search_displayed."\":</p>";
 			$data = new BookEvent();
 			$data->search($id, $search);
 		}
@@ -194,7 +195,7 @@
 
 					echo "<script>alert('The book you selected is no longer in your list!')</script>";
 					
-					header("Location: initial_page.php?year=".$_GET['year']);
+					//header("Location: initial_page.php?year=".$_GET['year']);
 				}
 		}
 
@@ -243,52 +244,52 @@
 
 				//And if month is equal to these values,
 				if($month_name == "january"){
-					echo '<p class="text-month">Books read in january:</p>';
+					echo '<p class="text-month">Books read in january of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);
 
 				}
 				elseif($month_name == "february"){
-					echo '<p class="text-month">Books read in february:</p>';
+					echo '<p class="text-month">Books read in february of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);	
 				}
 				elseif($month_name == "march"){
-					echo '<p class="text-month">Books read in march:</p>';
+					echo '<p class="text-month">Books read in march of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);	
 				}
 				elseif($month_name == "april"){
-					echo '<p class="text-month">Books read in april:</p>';
+					echo '<p class="text-month">Books read in april of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);	
 				}
 				elseif($month_name == "may"){
-					echo '<p class="text-month">Books read in may:</p>';
+					echo '<p class="text-month">Books read in may of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);	
 				}
 				elseif($month_name == "june"){
-					echo '<p class="text-month">Books read in june:</p>';
+					echo '<p class="text-month">Books read in june of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);	
 				}
 				elseif($month_name == "july"){
-					echo '<p class="text-month">Books read in july:</p>';
+					echo '<p class="text-month">Books read in july of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);	
 				}
 				elseif($month_name == "august"){
-					echo '<p class="text-month">Books read in august:</p>';
+					echo '<p class="text-month">Books read in august of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);	
 				}
 				elseif($month_name == "september"){
-					echo '<p class="text-month">Books read in september:</p>';
+					echo '<p class="text-month">Books read in september of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);	
 				}
 				elseif($month_name == "october"){
-					echo '<p class="text-month">Books read in october:</p>';
+					echo '<p class="text-month">Books read in october of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);	
 				}
 				elseif($month_name == "november"){
-					echo '<p class="text-month">Books read in november:</p>';
+					echo '<p class="text-month">Books read in november of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);	
 				}
 				elseif($month_name == "december"){
-					echo '<p class="text-month">Books read in december:</p>';
+					echo '<p class="text-month">Books read in december of '.$year_number.':</p>';
 					$data->display_books_month($id, $month_name, $year_number);	
 				}
 				//Else, nothing is displayed.

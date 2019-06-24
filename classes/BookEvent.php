@@ -196,11 +196,12 @@
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->user_id]);
 			$result = $stmt->fetchAll();
-			echo "<div class='years'>";
+			
 			foreach($result as $data){
-				echo "<a id='year-unit' href='initial_page.php?year=".$data['year_number']."' onclick='giveId()'>".$data['year_number']."</a>";
+				echo "<a id='year-unit' href='initial_page.php?year=".$data['year_number']."' onclick='giveId()'>".$data['year_number']." </a>";
 			}
-			echo "</div>";
+			
+			
 
 		}
 
@@ -241,6 +242,9 @@
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->user_id, $this->year]);
 			$result = $stmt->fetchAll();
+
+			echo '<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books read in '.$result[0]['year_number'].':</p>';//Just got the first entry and took the year it was added. Since all have the same year, that's ok.
+
 			foreach($result as $data){ ?>
 
 			<div class="box">
@@ -535,7 +539,8 @@
 				}
 			}
 
-			
+			//I need to create a way so that if the book is the only on in the year, when it is deleted the year that goes to the url needs to be different.
+
 			header("Location: initial_page.php?del=success&year=".$this->year);
 		}
 
