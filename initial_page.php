@@ -17,7 +17,7 @@
 			<link rel="stylesheet" type="text/css" href="css/initial_page.css">
 			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One" rel="stylesheet">
 			<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-				
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		</head>
 		<body>
 			<nav class="nav">
@@ -95,7 +95,7 @@
 			<button type="submit">Search</button>
 			</form>
 		<?php
-		if(!isset($_GET['home']) AND !isset($_GET['search']) AND !isset($_GET['edit']) AND !isset($_GET['del'])) { //This means that the tab with the months will only be shown when there are no 'home', 'search' and 'edit' with values in the url! That means the months will not be shown when the user logs in, when he/she searchs for something and when he/she edits information on books.
+		if(!isset($_GET['home']) AND !isset($_GET['search']) AND !isset($_GET['edit'])) { //This means that the tab with the months will only be shown when there are no 'home', 'search' and 'edit' with values in the url! That means the months will not be shown when the user logs in, when he/she searchs for something and when he/she edits information on books.
 			$data = new BookEvent();
 
 			echo '
@@ -182,13 +182,7 @@
 		}*/
 
 
-		//Procedure to delete the book from list:
-		if(isset($_GET['delete'])){
-			$delete_add_book = $_GET['delete'];
-			$delete = new BookEvent();
-			$delete->delete_book($delete_add_book);
-			//display a message saying that the book was deleted!
-		}
+		//Error handler when book is deleted
 		if(isset($_GET['del'])){
 
 			if($_GET['del']=='success'){
@@ -202,19 +196,8 @@
 
 		//Action:
 
-		//Delete book cover:
-		if(isset($_GET['cover'])){
-			$id_book = $_GET['book_id'];
-			$add_book_id = $_GET['add_book'];
-			if($_GET['cover'] = 'delete'){
-				$delete = new BookEvent();
-				$delete->delete_book_cover($id_book, $add_book_id);
-
-			}
-			elseif($_GET['cover'] == 'deleteSuccess'){
-				echo "<script>alert('The bookcover was deleted!')</script>";//display a message saying that the book's cover was deleted!
-			}		
-		}
+		
+		
 		//ADD NEW BOOK COVER FROM THE EDIT SECTION
 		if(isset($_GET['addCover'])){
 			$add_book_id= $_GET['add_book'];
@@ -223,7 +206,7 @@
 				$download->download_book_cover_edit($add_book_id);
 				$url = $_SERVER['QUERY_STRING'];
 				$newUrl = str_replace('&addCover=true', '', $url);
-				header('Location: initial_page.php?'.$newUrl);	//This is supose to solve the problem I'm having with the page not showing the new book cover image.
+				//header('Location: initial_page.php?'.$newUrl);	//This is supose to solve the problem I'm having with the page not showing the new book cover image.
 			}
 			
 				

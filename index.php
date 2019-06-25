@@ -4,7 +4,7 @@
 	
 	
 	if(isset($_SESSION['id'])){
-		header("Location: initial_page.php?home");
+		header("Location: dashboard.php");
 	}
 	else { ?>
 

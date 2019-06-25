@@ -26,13 +26,33 @@ Now it's runing as it use to (some error had occur with googletrans but now it's
 3)Fixed the url of the searches (before the submit= appeared and now it doesn't).
 4) Fixed problem with select tag in the editing section. Now the month the user read the book will appear in the select tag.
 5) Fixed a problem I had with the years displayed. The problem was that they didn't have space between them and they were treated as one single word. I just inserted a space and it became the way I wanted.
+6) Made sure that when any reading event is excluded, if the author or book aren't being use in any other, they are excluded from the database. This will save space and storage in the DB. I only need to implement this for the years. Tomorrow I'll try to do it.
+
+
+25/06/2019
+1)Implemented item 6) for the years.
+2)Fixed problem I was having while deleting reading events.
+3)Fixed font-family in the navbar select.
+4)Fixed position of text inside the box div. Now they are floated insted of being manually assign a position (like it was before).
+5)Fixed problem reguarding the animation in and out of the buttons in the box of the reading event.
+6)Created a section in the dashboard that displays the last book added in the system. I also added the total number of books added in the databases.
+7)Changed the way the books are displayed. Before they were shown from december on the top to january on the bottom. Now it's the oposite.
+
 
 ######################################################################
 I'm back at the development of the web app. I need to implement some features:
 1)Use PDO in the interaction with the mysql database (DONE).
 2)Display categories and months when adding a new book to DB. Give the users the option to choose a category from the db or to add a new one. The same thing could work with the years. (DONE with months)
-3)Do it also in the edit section
+3)Do it also in the edit section (DONE with months)
 4)Implement AJAX calls on the entire website.
 5)Create the front end of the index page.
 6)Create the front end of the profile page.
-7)Make sure when the user exclude one book and it's the only one read in the year that the user is redirected to another page - and not the page of that year (it was already excluded anyways).
+7)Make sure when the user delete one book and it's the only one read in that particular year, then the user has to be redirected to another page - and not the page of the excluded year (DONE).
+8)Add a last added book in the dashboard.
+9)Add a counter of how many books the user read in total.
+10)Add a loading animation when the user downloads the bookcover in the edit section.
+11)When solving the mechanisms of the delete function, I acidentally programed the logic to go to the last year the user has regardless of what book the user deleted... I have to fix this ASAP. (DONE)
+12) Solve problem with delete funcionality (DONE)
+13) Create section where users can add comments and classification on the books.
+
+

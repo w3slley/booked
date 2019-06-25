@@ -7,21 +7,11 @@ import sys
 def remover_acentos(txt):
     return normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII') #This function removes all the special characteres from a string(acentos)
 
-book =  sys.argv[1]+"+"    	#By using sys.argv[1] I can insert a variable from the PHP file to be inserted here!!! 
+book =  sys.argv[1]    	#By using sys.argv[1] I can insert a variable from the PHP file to be inserted here!!! 
 author_name = sys.argv[2]	#This is the second variable on PHP!
 data = book +" "+ author_name  	#This is the the name of the book and the name of the author.
 book_title = remover_acentos(data)  #This will remove any special character (acentos) from the data variable.
-translator = Translator()
-language = translator.detect(author_name) #This will detect the language of the book by analyzing the name of the author.
-if language.lang == 'pt': #If the author is detected as a portuguese writer, then:
-    search_book = book_title.replace(" ", "+") #the search term will be in portuguese.
- 
-elif language.lang == 'en':
-    book_translated = translator.translate(book, dest='en') #the book title will be translated into english!
-    book_english = book_translated.text+author_name #and then bind togheter with the author's name
-    search_book = book_english.replace(" ", "+") #all the spaces are replaced with + for google search.
-else: 
-	search_book = book_title.replace(" ", "+")
+search_book = book_title.replace(" ", "+")
 
 
 def get_img_url (search_book): #This function gets the url of image of the books's cover.
