@@ -6,60 +6,78 @@ body {
 	
 }
 
+.add-book{
+	margin: 0; 
+	font-size: 40px;
+	cursor: pointer;
+	margin: 0 auto;
+	width: 19%;
+
+}
+
+
+.modal{
+	display: none;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content{
+	padding: 20px;
+	margin: 4% auto;
+	width: 40%;
+	background-color: white;
+	height: 550px;
+	border: solid 1px #888;
+	border-radius: 5px;
+	text-align: center;
+	
+}
+.modal-content .close{
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: 100px;
+	margin: 0;
+}
+
+.modal-content input {
+	outline: none;
+	border: solid 1px black;
+	padding: 10px 10px 10px 10px;
+	border-radius: 5px;
+	margin: 0 0 20px 0;
+	font-size: 35px;
+	width: 80%;
+	font-family: Poiret One;
+
+}
+
+.modal-content select{
+	position: relative;
+	font-size: 22px;
+	margin: 0 0 20px 0;
+	font-family: Poiret One;
+}
+
+.modal-content button{
+	font-size: 30px;
+	font-family: Poiret One;
+	
+}
 
 nav {
 	background-color: #EA9010;
 	padding-bottom: 0;
 	position: sticky;
 	top: 0;
-	padding-bottom: 10px;
 	z-index: 30;
-	
-	
 
 }
 
-nav form {
-	position: relative;
-	top: 30%;
-
-}
-
-nav input {
-	border: none;
-	padding: 10px 10px 10px 10px;
-	border-radius: 5px;
-	font-family: Poiret One;
-	margin-left: 10px;
-	font-size: 15px;
-	width: 170px;
-
-}
-nav form button {
-	padding: 10px;
-	border-radius: 5px;
-	border: none;
-	margin-left: 10px;
-	outline: none;
-}
-.month_nav{
-	position: relative;
-	font-size: 22px;
-	margin-left: 10px;
-	font-family: Poiret One;
-}
-
-.add-img{
-	background: none;
-	cursor: pointer;
-	position: relative;
-	top:15px;
-
-}
-.add-img img {
-	width: 40px;
-		
-}
 #message-add {
 	position: absolute;
 	margin-left: 10px;
@@ -69,21 +87,25 @@ nav form button {
 
 
 /*BUTTONS NAV*/
+
 .logout-button {
-	position: relative;
-	float: right;
-	top: -38px;
-	margin-right: 40px;
+	position: absolute;
+	right: 5px;
+	top: 5px;
 	background-color: white;
+	padding: 10px;
+	border-radius: 5px;
+	border:none;
 	font-family: Poiret One;
 	font-size: 15px;
 	cursor: pointer;
+	
 }
 
 .profile {
 	position: absolute;
-	top: 24%;
-	right: 10%;
+	top: 5px;
+	right: 85px;
 	text-decoration: none;
 	color: black;
 	background-color: white;
@@ -152,7 +174,7 @@ p .years {
 
 .search {
 	position: sticky;
-	top:14%;
+	top:10%;
 	right: 0;
 
 }
@@ -195,11 +217,6 @@ p .years {
 	color: white;
 }
 
-.text-year{
-
-}
-
-
 .choose {
 	font-size: 70px;
 	text-align: center;
@@ -234,8 +251,8 @@ p .years {
 
 .months {
 	position: sticky;
-	top: 25%;
-	font-size: 24px;
+	top: 22%;
+	font-size: 26px;
 	float: right;
 	right: 10px;
 	background: #ACA885;
@@ -246,6 +263,7 @@ p .years {
 	transition: height .5s;
 
 }
+
 .months ul {
 	/*position: fixed;
 	right: 10%;
@@ -347,6 +365,24 @@ p .years {
 .book_info span{
 	font-weight: bold;
 }
+.rating{
+	position: absolute;
+	top: 60px;
+	right: 10px;
+	padding: 20px 10px;
+	border: 1px solid black;
+	border-radius: 50%;
+	display: none;
+
+	
+}
+.rating p{
+	font-size: 60px;
+	margin: 0;
+	color: white;
+	font-family: Dosis;
+
+}
 
 
 /* This will make the button appears when the the mouse is over it!*/
@@ -424,7 +460,28 @@ p .years {
 }
 
 
+/*STYLING OF THE EDIT MODAL*/
 
+.edit-modal{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(1,1,1, 0.7);
+	z-index: 101;
+}
+.edit-modal-content{
+	padding: 20px;
+	margin: 4% auto;
+	width: 90%;
+	background-color: white;
+	height: 550px;
+	border: solid 1px #888;
+	border-radius: 5px;
+	text-align: center;
+}
 /*THIS IS THE STYLING OF THE EDITING SECTION*/
 
 .edit_cover {
@@ -504,7 +561,7 @@ p .years {
 	position: absolute;
 	font-size: 25px;
 	left: 1%;
-	bottom: 5%;
+	bottom: 25%;
 	border-radius: 5px;
 	text-decoration: none;
 	padding: 3px;

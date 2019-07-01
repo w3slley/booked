@@ -1,0 +1,66 @@
+body{
+    margin: 0;
+    background-color: #6DAEDB;
+
+}
+
+.login{ /*This was how I managed to center the div! */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 400px;
+    height: 500px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: Poiret One;
+    padding: 0 20px 0 20px;
+    
+    
+    
+}
+
+.logo {
+    margin: 0 auto;
+    width: 100%;
+    
+}
+.logo p img{
+    width: 80px;
+    
+}
+.logo p{
+    
+    display: inline;
+    font-size: 100px;
+    font-family: Satisfy;
+}
+.login p{
+    margin: 15px 0 0 0;
+}
+.login input{
+   width: 100%;
+   padding: 0;
+   border: solid 1px gray;
+   border-radius: 5px;
+   font-size: 25px;
+   padding: 10px 0;
+   font-family: Poiret One;
+
+}
+.login button{
+    margin: 50px auto;
+    width: 100%;
+    padding: 15px;
+    background-color:#9BC53D;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 35px;
+    font-family: Acme;
+
+}

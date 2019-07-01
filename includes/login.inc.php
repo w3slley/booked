@@ -17,12 +17,11 @@
 		if($data != False){
 			session_start();
 
-			$_SESSION['first_name'] = $data['first_name'];
-			$_SESSION['last_name'] = $data['last_name'];
-			$_SESSION['user_name'] = $data['user_name'];
+		
+			$_SESSION['name'] = $data['name'];
 			$_SESSION['email'] = $data['email'];
 			$_SESSION['id'] = $data['id'];
-			$_SESSION['birth_date'] = $data['birth_date'];
+			
 
 			header("Location: ../dashboard.php");
 			

@@ -12,50 +12,51 @@
 		<!DOCTYPE html>
 		<html>
 		<head>
-			<title>Booked! Add the books you read througout the year.</title>
+			<title>Booked | Keep track of books you read!</title>
 
 			<link rel="stylesheet" type="text/css" href="css/initial_page.css">
-			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One|Dosis" rel="stylesheet">
 			<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		</head>
 		<body>
-			<nav class="nav">
-				<form id="nav-add" method="POST" action="includes/add_book.inc.php">
-					<input type="text" name="book" placeholder="Book title">
-					<input type="text" name="author" placeholder="Author">
-					<input type="text" name="category" placeholder="Category">
-					
-					<?php 
-						$month = new BookEvent();
-						echo $month->display_months();
-					 ?>
-					<input type="text" name="year" placeholder="Year finished">
-					<button class= "add-img" type="submit" name="submit" onclick="alert('Wait while we are setting everything up...')"><img src="images/plus2.png"></button>
-				</form>
-				<?php  
-					if(isset($_GET['failed'])){
-						$failed = $_GET['failed'];
+			<div class="modal">
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<form id="nav-add" method="POST" action="includes/add_book.inc.php">
+						<input type="text" name="book" placeholder="Book title"><br>
+						<input type="text" name="author" placeholder="Author"><br>
+						<input type="text" name="category" placeholder="Category"><br>
+						
+						<?php 
+							$month = new BookEvent();
+							echo $month->display_months();
+						?><br>
+						<input type="text" name="year" placeholder="Year finished"><br>
+						<input type="text" name="classification" placeholder="Your grade (0-100)"><br>
+						<button type="submit" name="submit" onclick="alert('Wait while we are setting everything up...')">Add book</button>
+					</form>
+					<?php  
+						if(isset($_GET['failed'])){
+							$failed = $_GET['failed'];
 
-						if($failed == 'empty') {
-							echo "<p id='message-add'>You didn't fill in all the fields. Please, try again.</p>";
+							if($failed == 'empty') {
+								echo "<p id='message-add'>You didn't fill in all the fields. Please, try again.</p>";
+							}
 						}
-					}
-				?>
+					?>
+				</div>
+			</div>
+			<nav class="nav">
+				
+				<p class="add-book"><img style="width: 30px" src="images/plus2.png">Add book</p>
+				
 				<form method="POST" action="includes/logout.inc.php">
 					<button class="logout-button" type="submit" name="submit">Logout</button>
 				</form>
 				<a class="profile" href="profile.php">Profile</a>
 			</nav>
-		<?php
-			if(isset($_GET['home'])){
-			$home = $_GET['home'];
-				if($home = 'success'){
-					echo "<p class='choose'> Choose a year!</p>";
-				}
-		}
-		?>
-		</form>
+	
 
 		<div class="navbar"> 
 			<a href="dashboard.php"><img class="home-icon" src="images/home.png"></a>
@@ -103,18 +104,18 @@
 				<p class="books_year">All year: '.$data->books_read_year($id, $yearInUrl).' books!</p>
 				<ul id="month_names">			
 					
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=january">January: </a>'.$data->books_read_month($id, $yearInUrl, 'January').'</li>
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=february">February: </a>'.$data->books_read_month($id, $yearInUrl, 'February').'</li>
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=march">March: </a>'.$data->books_read_month($id, $yearInUrl, 'March').'</li>
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=april">April: </a>'.$data->books_read_month($id, $yearInUrl, 'April').'</li>
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=may">May: </a>'.$data->books_read_month($id, $yearInUrl, 'May').'</li>
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=june">June: </a>'.$data->books_read_month($id, $yearInUrl, 'June').'</li>
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=july">July: </a>'.$data->books_read_month($id, $yearInUrl, 'July').'</li>
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=august">August: </a>'.$data->books_read_month($id, $yearInUrl, 'August').'</li>
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=september">September: </a>'.$data->books_read_month($id, $yearInUrl, 'September').'</li>
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=october">October: </a>'.$data->books_read_month($id, $yearInUrl, 'October').'</li>
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=november">November: </a>'.$data->books_read_month($id, $yearInUrl, 'November').'</li>
-					<li><a href="'.$url_path.'?year='.$yearInUrl.'&month=december">December: </a>'.$data->books_read_month($id, $yearInUrl, 'December').'</li>
+					<li><a class="January" href="'.$url_path.'?year='.$yearInUrl.'&month=january">January: '.$data->books_read_month($id, $yearInUrl, 'January').'</a></li>
+					<li><a class="February"  href="'.$url_path.'?year='.$yearInUrl.'&month=february">February: '.$data->books_read_month($id, $yearInUrl, 'February').'</a></li>
+					<li><a class="March"  href="'.$url_path.'?year='.$yearInUrl.'&month=march">March: '.$data->books_read_month($id, $yearInUrl, 'March').'</a></li>
+					<li><a class="April"  href="'.$url_path.'?year='.$yearInUrl.'&month=april">April: '.$data->books_read_month($id, $yearInUrl, 'April').'</a></li>
+					<li><a class="May"  href="'.$url_path.'?year='.$yearInUrl.'&month=may">May: </a>'.$data->books_read_month($id, $yearInUrl, 'May').'</a></li>
+					<li><a  class="June"  href="'.$url_path.'?year='.$yearInUrl.'&month=june">June: '.$data->books_read_month($id, $yearInUrl, 'June').'</a></li>
+					<li><a  class="July"  href="'.$url_path.'?year='.$yearInUrl.'&month=july">July: '.$data->books_read_month($id, $yearInUrl, 'July').'</a></li>
+					<li><a  class="August"  href="'.$url_path.'?year='.$yearInUrl.'&month=august">August: '.$data->books_read_month($id, $yearInUrl, 'August').'</a></li>
+					<li><a class="September"  href="'.$url_path.'?year='.$yearInUrl.'&month=september">September: '.$data->books_read_month($id, $yearInUrl, 'September').'</a></li>
+					<li><a class="October"  href="'.$url_path.'?year='.$yearInUrl.'&month=october">October: '.$data->books_read_month($id, $yearInUrl, 'October').'</a></li>
+					<li><a class="November"  href="'.$url_path.'?year='.$yearInUrl.'&month=november">November: '.$data->books_read_month($id, $yearInUrl, 'November').'</a></li>
+					<li><a class="December" href="'.$url_path.'?year='.$yearInUrl.'&month=december">December: '.$data->books_read_month($id, $yearInUrl, 'December').' </a></li>
 				</ul>
 			</div>
 			';
@@ -133,12 +134,8 @@
 						//This is a much more elegant solution. I created a while loop that until there's no result from the database it will continue to display the books read in that particular year. And in the end, it adds 1 to the year variable so it can do it again in the next year. Good job mate!
 					}
 			}
-						
-
 		//If there's value in the month, nothing will happen because it will show the results of the books read in the particular month.
-		
-		}							 
-			
+		}	
 
 		//Display results from a search!
 		if(isset($_GET['search'])){//When there's the term 'search' and 'submit' in the URL, then:
@@ -212,9 +209,15 @@
 				
 		}
 
-
-
 		?>
+
+		<!-- EDIT MODAL -->		
+		<div class="edit-modal">
+			<div class="edit-modal-content">
+				
+			</div>
+		</div>
+			
 
 
 		<?php
@@ -280,7 +283,7 @@
 			}
 		?>
 
-		<script src="javascript/javascript.js"></script>
+		<script src="javascript/main.js"></script>
 		</body>
 		</html>
 

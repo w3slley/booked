@@ -2,11 +2,10 @@
 include 'Database.php';
 class User extends Database{
 
-	private $user_name;
+	private $name;
 	private $email;
 	private $password;
-	private $first_name;
-	private $last_name;
+
 	
 
 
@@ -15,15 +14,15 @@ class User extends Database{
 			$this->email = $email;
 			$this->password = $password;
 
-			$sql = "SELECT * FROM users WHERE email = ? or user_name = ?";
+			$sql = "SELECT * FROM users WHERE email = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->email, $this->email]);
+			$stmt->execute([$this->email]);
 
 			$result = $stmt->fetch();
 			if(isset($result)){
 				$dbPassword = $result['password'];
 				if(password_verify($this->password, $dbPassword) == True){
-					$data = array('id' => $result['id'], 'first_name' => $result['first_name'], 'last_name'=>$result['last_name'], 'user_name' => $result['user_name'], 'email' => $result['email'], 'birth_date' => $result['birth_date']); //Created an associative array to use in the login.php file and start session.
+					$data = array('id' => $result['id'], 'name' => $result['name'], 'email' => $result['email'], 'birth_date' => $result['birth_date']); //Created an associative array to use in the login.php file and start session.
 						return $data;
 				}
 			}
@@ -32,17 +31,16 @@ class User extends Database{
 			}
 		}
 
-		public function signup($user_name, $email, $password, $first_name, $last_name){
-			$this->user_name = $user_name;
+		public function signup($name, $email, $password){
+			$this->name = $name;
 			$this->email = $email;
 			$this->password = $password;
-			$this->first_name = $first_name;
-			$this->last_name = $last_name;
+			
 			
 
-			$sql = "INSERT INTO users (first_name, last_name, user_name, email, password) VALUES (?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->first_name, $this->last_name,$this->user_name, $this->email, $this->password]);
+			$stmt->execute([$this->name, $this->email, $this->password]);
 		}
 }
 

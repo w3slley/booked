@@ -37,7 +37,21 @@ Now it's runing as it use to (some error had occur with googletrans but now it's
 5)Fixed problem reguarding the animation in and out of the buttons in the box of the reading event.
 6)Created a section in the dashboard that displays the last book added in the system. I also added the total number of books added in the databases.
 7)Changed the way the books are displayed. Before they were shown from december on the top to january on the bottom. Now it's the oposite.
+8)Implemented feature that displays the number of books read in the current month.
 
+28/06/2019
+1)Create a partial classification system. I need to implement the backend so that the user can add a grade to the book while adding it to the system.
+
+30/06/2019
+1)Users can now update the value of the classification in the edit section.
+2)Inserted all the functions in the edit.php file in the bookEvent.php file. They are now all inside the class and are responsible for updating the information on the books and book reading event.
+3)Created a modal to add new books. The input tags are all in there. I still have to create a modal to edit the books using ajax.
+4)Created a modal where users can edit it the books. Right now it doen't work async, but it will soon.
+
+01/07/2019
+1)Created the front-end of the index page. There's a lot of things to do yet, but it's kind of nice. I have to create the front end for mobile.
+2)Created the front-end for the login page.
+3)Started to arrange things in the dashboar for a brand new user.
 
 ######################################################################
 I'm back at the development of the web app. I need to implement some features:
@@ -48,11 +62,17 @@ I'm back at the development of the web app. I need to implement some features:
 5)Create the front end of the index page.
 6)Create the front end of the profile page.
 7)Make sure when the user delete one book and it's the only one read in that particular year, then the user has to be redirected to another page - and not the page of the excluded year (DONE).
-8)Add a last added book in the dashboard.
-9)Add a counter of how many books the user read in total.
+8)Add a last added book in the dashboard. (DONE)
+9)Add a counter of how many books the user read in total. (DONE)
 10)Add a loading animation when the user downloads the bookcover in the edit section.
 11)When solving the mechanisms of the delete function, I acidentally programed the logic to go to the last year the user has regardless of what book the user deleted... I have to fix this ASAP. (DONE)
 12) Solve problem with delete funcionality (DONE)
 13) Create section where users can add comments and classification on the books.
+14) Need to make the classification unique for each user. Right now it's enbeded in the books table. I have to add another column in the add_book table with the name 'classification' or 'grade'.
+15) Add error handlers in the grade part of the modal. I need to make sure that the user can only insert a number from 0 to 100.
+16) I need to fix the problem with the years in the edit section. When you alter the year on it, it doesn't happen. I need to make sure that when a new year is inserted there, it needs the be created in the DB (if it doesn't exist yet) and redirected to there.
+17)Finish the editing section using AJAX.
+18)Create a design for the editing section.
+19)Don't forget to fix the security problem in the edit section. Right now, I can edit anyone's books if I know the add_book_id. I need to make sure that only the user that added the book can access it.
 
 

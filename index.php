@@ -1,7 +1,4 @@
 <?php  
-	include_once "includes/dbh.inc.php";
-	session_start();
-	
 	
 	if(isset($_SESSION['id'])){
 		header("Location: dashboard.php");
@@ -13,45 +10,61 @@
 	<head>
 		<title>Booked: keep track of the books you read!</title>
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/index.css">
+		<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One|Dosis|Acme|Rajdhani|Satisfy" rel="stylesheet">
+		
 	</head>
 	<body>
-
+		
 	<?php 
 		if(!isset($_SESSION['id'])) {?>
 		
-			<h1>Login</h1>
-			<form method="POST" action="includes/login.inc.php">
-				<input type="name" name="email" placeholder="E-mail adress or username">
-				<input type="password" name="password" placeholder="Your password">
-				<button type="submit" name="submit">Login</button>
-			</form>
-
-			<?php
-			if(isset($_GET['login'])) {
-				$login = $_GET['login'];
-		
-				if($login=="failed") {
-				echo "Please verify your e-mail address and password.";
-				}
-				if($login == "empty"){
-				echo "Please insert your e-mail address and password.";
-				}
+		<div class="header">
+			<nav>
+				<div class="logo">
+					<img src="images/books.svg" >
+					<p>Booked</p>
+				</div>
+				<ul>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a class="login" href="login.php">Log in</a></li>
+				</ul>
+			</nav>
+			<div class="welcome">
 			
-			}?>
+			<span class="text"></span>
+			</div>
+			<div class="sign-up">
+				<form method="POST" action="includes/signup.inc.php">
+					
+					<input type="text" name="name" placeholder="Name"><br>
+					<input type="email" name="email" placeholder="E-mail"><br>
+					<input type="password" name="password" placeholder="Password"><br>
+					<input type="password" name="password2" placeholder="Repeat password"><br>
+					<button type="submit" name="submit">Sign up</button>
+				</form>
+			</div>
+		</div>	
 
-			<br><br>
-			<h1>Sign up</h1>
-			<form method="POST" action="includes/signup.inc.php">
-				<input type="name" name="first" placeholder="First name"><br>
-				<input type="name" name="last" placeholder="Last name"><br>
-				<input type="name" name="user_name" placeholder="Username"><br>
-				<input type="email" name="email" placeholder="E-mail"><br>
-				<input type="password" name="password" placeholder="Password"><br>
-				<input type="password" name="password2" placeholder="Repeat password"><br>
-				<button type="submit" name="submit">Sign up</button>
-			</form>
-			<br>
-
+		<div class="body">
+			<div class="container1">
+				<div class="row1">
+				</div>
+				<div class="row2">
+				</div>
+			</div>
+			<div class="container2">
+				<div class="row1">
+				</div>
+				<div class="row2">
+				</div>
+			</div>
+			
+		</div>
+		
 			<?php
 			if(isset($_GET['password'])) {
 				$password = $_GET['password'];
@@ -86,7 +99,7 @@
 		}	
 		?>
 		
-
+		<script src="javascript/index.js"></script>
 	</body>
 	</html>
 	<?php }

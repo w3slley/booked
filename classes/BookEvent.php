@@ -18,6 +18,9 @@
 		private $year;
 		private $year_id;
 
+		private $add_book_id;
+		private $classification;
+
 		public function add_book_event($user_id, $book_id, $author_id, $category_id, $month_id, $year_id, $task_date){
 
 			$this->user_id = $user_id;
@@ -33,7 +36,7 @@
 
 		}
 
-		public function add_book_title($book_title){
+		public function add_book_title($book_title, $classification){
 			$this->book_title = $book_title;
 
 			$sql = "SELECT * FROM books WHERE book_title = ?";
@@ -42,9 +45,9 @@
 			$result = $stmt->fetch();
 
 			if(empty($result)){
-				$sql2 = "INSERT INTO books (book_title) VALUES (?)";
+				$sql2 = "INSERT INTO books (book_title, classification) VALUES (?, ?)";
 				$stmt2 = $this->connect()->prepare($sql2);
-				$stmt2->execute([$this->book_title]);
+				$stmt2->execute([$this->book_title, $classification]);
 			}
 		}
 
@@ -112,6 +115,7 @@
 			}
 
 		}
+
 
 		public function select_year_id($year){
 			$this->year = $year;
@@ -238,7 +242,7 @@
 			$this->user_id = $user_id;
 			$this->year = $year;
 
-			$sql = "SELECT add_book.id, book_title, book_id, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id JOIN books ON book_id = books.id JOIN authors ON author_id = authors.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? ORDER BY month_id;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
+			$sql = "SELECT add_book.id, book_title, book_id, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id JOIN books ON book_id = books.id JOIN authors ON author_id = authors.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? ORDER BY month_id, add_book.id;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->user_id, $this->year]);
 			$result = $stmt->fetchAll();
@@ -247,7 +251,7 @@
 
 			foreach($result as $data){ ?>
 
-			<div class="box">
+			<div onclick="editReadingEvent(<?php echo $data['id'] ?>)" class="box" value="<?php echo $data['month_name'] ?>">
 			<?php $location = 'bookcovers/bookcover'.$data['book_id'].'.jpg'; ?>
 			
 			<?php 
@@ -265,6 +269,10 @@
 				<p class="category">Category: <span><?php echo $data['catg_name']; ?></span></p>
 				<p class="month">Month finished: <span><?php echo $data['month_name']; ?></span></p>
 				<p class="date">Date added: <span><?php echo $data['task_date']; ?></span></p>
+
+				<div class="rating">
+					<p><span class="grade"><?php echo $data['classification']?></span>%</p>
+				</div>
 			</div>
 			
 			<?php 
@@ -313,6 +321,9 @@
 				<p class="category">Category: <span><?php echo $data['catg_name']; ?></span></p>
 				<p class="month">Month finished: <span><?php echo $data['month_name']; ?></span></p>
 				<p class="date">Date added: <span><?php echo $data['task_date']; ?></span></p>
+				<div class="rating">
+					<p><span class="grade"><?php echo $data['classification']?></span>%</p>
+				</div>
 			</div>
 			
 			<?php 
@@ -433,27 +444,31 @@
 			}
 		}
 
-		public function display_edit_book($user_id, $book_id, $add_book_id, $location){
+		public function display_edit_book($user_id, $add_book_id){
 			$this->user_id = $user_id;
-			$this->book_id = $book_id;
+			$this->add_book_id = $add_book_id;
 
-			$sql = "SELECT add_book.id, book_title, book_id, author_name, catg_name, month_name, year_number, task_date FROM add_book JOIN users ON user_id = users.id JOIN books ON book_id = books.id JOIN authors ON author_id = authors.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND add_book.id = ?";
+			$sql = "SELECT add_book.id, book_title, book_id, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id JOIN books ON book_id = books.id JOIN authors ON author_id = authors.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND add_book.id = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->user_id, $add_book_id]);
+			$stmt->execute([$this->user_id, $this->add_book_id]);
 			$result = $stmt->fetchAll();
+
+			
 
 			foreach($result as $data){
 			?> 
 			<div class="box_edit">
 
 				<?php
+				$location = '../bookcovers/bookcover'.$data['book_id'].'.jpg';//this variable is assined inside the includes folder. Therefore, it has to go back one directory. Since this will be passed to the initial_page.php, I decided to just copy the actual location string into the if statement.
+				
 				if(file_exists($location)==True){
-					echo '<img class="edit_cover" src="'.$location.'">';
+					echo '<img class="edit_cover" src="bookcovers/bookcover'.$data['book_id'].'.jpg">';
 				}
-				else {
-					
+				else{
 					echo '<img class="edit_cover" src="bookcovers/default_bookcover.jpg">';
 				}
+				
 				?>
 				
 				<form class="edit_info" method="POST" action="includes/edit_book.php">
@@ -469,12 +484,14 @@
 						echo $month->display_months_edit($add_book_id);?><br>
 					<p class="year_text">Year finished:</p>
 					<?php echo ' <input class="edit_year_number" type="text" name="year_number" value="'.$data["year_number"].'"><br> '?>
+					<p class="classification">Grade:</p>
+					<input name="classification" value="<?php echo $data['classification']; ?>">
 					<?php echo ' <input style="display:none" name="add_book_id" value="'.$add_book_id.'"> ' //In here a created a input that stores the add_book_id. It is then passed to the edit_book.php file to update the values. ?>
-					<?php echo ' <input style="display:none" name="book_id" value="'.$this->book_id.'"> ' //In here a created a input that stores the book id. It is then passed to the edit_book.php file to update the values.?>
+					<?php echo ' <input style="display:none" name="book_id" value="'.$data['book_id'].'"> ' //In here a created a input that stores the book id. It is then passed to the edit_book.php file to update the values.?>
 					<button type="submit" class="save_button_edit">Save changes</button><!--//This is the button that when clicked will lead the user into the update.php file (when all the database interaction will be done) and then back to the initial page.-->
 					<div>
 						<input hidden class="add_book_id_input" value="<?php echo $add_book_id ?>" name="add_book_id" type="text">
-						<input hidden class="book_id_input" value="<?php echo $book_id ?>" name="book_id" type="text">
+						<input hidden class="book_id_input" value="<?php echo $data['book_id']; ?>" name="book_id" type="text">
 						<button class="delete_cover">Delete book cover</button>
 					</div>
 					
@@ -486,6 +503,107 @@
 			
 			}
 		}
+
+		public function update_book_title ($add_book_id, $book_title) {//Updates the book's title!
+			$this->book_title = $book_title;
+			$this->add_book_id = $add_book_id;
+
+			$sql = "UPDATE add_book
+			JOIN users ON user_id = users.id
+			JOIN books ON book_id = books.id
+			JOIN authors ON author_id = authors.id
+			JOIN categories ON catg_id = categories.id
+			JOIN month_finished ON month_id = month_finished.id
+			JOIN year_finished ON year_id = year_finished.id
+			SET book_title = ? WHERE add_book.id = ?;";
+	
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute([$this->book_title, $this->add_book_id]);
+				
+		}
+	
+		public function update_author_name ($add_book_id, $author_name) {//Updates the author's name
+			$this->author_name = $author_name;
+			$this->add_book_id = $add_book_id;
+
+			$sql = "UPDATE add_book
+			JOIN users ON user_id = users.id
+			JOIN books ON book_id = books.id
+			JOIN authors ON author_id = authors.id
+			JOIN categories ON catg_id = categories.id
+			JOIN month_finished ON month_id = month_finished.id
+			JOIN year_finished ON year_id = year_finished.id
+			SET author_name = ? WHERE add_book.id = ?;";
+	
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute([$this->author_name, $this->add_book_id]);
+						
+		}
+	
+		public function update_category ($add_book_id, $category) {//Updates the category's name
+			$this->add_book_id = $add_book_id;
+			$this->category = $category;
+
+			$data = new BookEvent();
+			$data->add_category($this->category); //adds the category if it's not in the DB yet. If it is, nothing happens because:
+			$catg_id = $data->select_category_id($this->category); //this will select the id of the category.
+			
+			$sql = "UPDATE add_book
+			JOIN users ON user_id = users.id
+			JOIN books ON book_id = books.id
+			JOIN authors ON author_id = authors.id
+			JOIN categories ON catg_id = categories.id
+			JOIN month_finished ON month_id = month_finished.id
+			JOIN year_finished ON year_id = year_finished.id
+			SET catg_id = ? WHERE add_book.id = ?;";
+	
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute([$catg_id, $this->add_book_id]);	
+			
+		}
+	
+		public function update_month_finished ($add_book_id, $month) {//Updates the category's name
+			$this->add_book_id = $add_book_id;
+			$this->month_name = $month;
+
+			$data = new BookEvent();
+			$month_id = $data->select_month_id($this->month_name); //this will select the id of the category.
+			
+			
+				$sql = "UPDATE add_book
+				JOIN users ON user_id = users.id
+				JOIN books ON book_id = books.id
+				JOIN authors ON author_id = authors.id
+				JOIN categories ON catg_id = categories.id
+				JOIN month_finished ON month_id = month_finished.id
+				JOIN year_finished ON year_id = year_finished.id
+				SET month_id = ? WHERE add_book.id = ?;";
+	
+				$stmt = $this->connect()->prepare($sql);
+				$stmt->execute([$month_id, $this->add_book_id]);
+				
+			
+		}
+
+		public function update_classification($book_title, $classification){
+			$this->book_title = $book_title;
+			$this->classification = $classification;
+
+			$sql = "UPDATE books SET classification = ? WHERE book_title = ?";
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute([$this->classification, $this->book_title]);
+		}
+
+		public function update_info($add_book_id, $book_title, $author_name, $category, $month, $classification){
+			$update = new BookEvent();
+			$update->update_book_title($add_book_id, $book_title);
+			$update->update_author_name($add_book_id, $author_name);
+			$update->update_category($add_book_id, $category);
+			$update->update_month_finished($add_book_id, $month);
+			$update->update_classification($book_title, $classification);
+		}
+		
+
 		public function get_last_year($user_id){
 			$this->user_id = $user_id;
 

@@ -15,6 +15,7 @@
 		$category = $_POST['category'];
 		$month = $_POST['month'];
 		$year = $_POST['year'];
+		$classification = $_POST['classification'];
 
 		if(empty($book) || empty($author) || empty($category) || empty($month) || empty($year)){
 			header("Location: ".$_SESSION['path']."&failed=empty");//This is a temporary fix. Still have to find a way to make the url not repeat itself every time the button is clicked!
@@ -22,10 +23,12 @@
 		else {
 			$data = new BookEvent();
 
-			$data->add_book_title($book); //Function I created that adds the book inserted by the user into the DB.
+			$data->add_book_title($book, $classification); //Function I created that adds the book inserted by the user into the DB.
 			$data->add_author ($author); //Function I created that adds the author's name into the DB if he/she is not already there.
 			$data->add_category ($category);//Function I created that adds the category name into the DB if it's not already there.
 			$data->add_year($year);
+
+			
 			
 			
 			$userId = $_SESSION['id'];
