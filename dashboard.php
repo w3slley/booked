@@ -11,7 +11,7 @@
 			<title>Booked | Dashboard</title>
 			<link rel="stylesheet" type="text/css" href="css/dashboard.css">
 			<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One|Satisfy" rel="stylesheet">
 			
 			
 		</head>
@@ -45,7 +45,10 @@
 				</div>
 			</div>
 			<nav>
-				
+				<div class="logo">
+					<img src="images/books.svg" >
+					<p>Booked</p>
+				</div>
 				<p class="add-book"><img style="width: 30px" src="images/plus2.png">Add book</p>
 				
 				<form method="POST" action="includes/logout.inc.php">
@@ -118,6 +121,15 @@
 					<p>You read <?php echo $number; ?> books this month!</p>
 				</div>
 			</div>
+
+			<footer>
+				<ul>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+				<p class="trademark">Created by Weslley. 2018-2019. All rights reserved. </p>
+    		</footer>
 
 			<script src="javascript/dashboard.js"></script>
 		</body>

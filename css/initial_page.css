@@ -6,6 +6,8 @@ body {
 	
 }
 
+
+
 .add-book{
 	margin: 0; 
 	font-size: 40px;
@@ -76,6 +78,21 @@ nav {
 	top: 0;
 	z-index: 30;
 
+}
+.logo{
+    float: left;
+}
+.logo img{
+    width: 35px;
+    margin: 5px 0 0 5px;
+}
+.logo p{
+    position: absolute;
+    top: -35px;
+    left: 45px;
+    font-size: 35px;
+    font-family: Satisfy;
+    cursor: default;
 }
 
 #message-add {
@@ -473,7 +490,7 @@ p .years {
 	z-index: 101;
 }
 .edit-modal-content{
-	padding: 20px;
+
 	margin: 4% auto;
 	width: 90%;
 	background-color: white;
@@ -482,13 +499,13 @@ p .years {
 	border-radius: 5px;
 	text-align: center;
 }
+
+
 /*THIS IS THE STYLING OF THE EDITING SECTION*/
 
 .edit_cover {
 	width: 200px;
-	position: absolute;
-	left: 1%;
-	top: 6%;
+	float: left;
 	border-radius: 2px;
 
 }
@@ -504,47 +521,27 @@ p .years {
 	cursor: pointer;
 
 }
+
+
 .box_edit{
-	position: absolute;
-	top: 50px;
-	width: 40%;
-	padding: 0 0 50px 0;
-	background-color: #ACA885;
-	position: relative;
-	border-radius: 10px;
-	width: 70%;
-	margin-bottom: 10px;
-	margin-left: 15%;
-	cursor: default;
-
-}
-.box_edit:hover #add_cover {
-	display: block;
-}
-
-
-.edit_info {
-	margin:  0 10% 0 25%;
-
-}
-.edit_info p {
-	display: inline-block;
-	font-size: 20px;
-	padding: 0;
-	margin: 10px 0 0 0;
-	font-family: Poiret One;
-}
-.edit_info input {
-	font-size: 20px;
-	border-radius: 5px;
-	border: none;
+	background-color: red;
+	margin: auto;
 	width: 100%;
-	margin: 5px 0 5px 0;
-	padding: 5px 20px 5px 5px;
-	font-family: Poiret One;
+	height: 100%;
+	position: relative;
+}
+.box_edit form{
+	background-color: blue;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	height: 90%;
+	width: 30%;
 
 }
-
 .save_button_edit{
 	position: absolute;
 	font-size: 25px;
@@ -560,8 +557,8 @@ p .years {
 .delete_cover {
 	position: absolute;
 	font-size: 25px;
-	left: 1%;
-	bottom: 25%;
+	left: 0;
+	bottom: 0;
 	border-radius: 5px;
 	text-decoration: none;
 	padding: 3px;
@@ -587,4 +584,31 @@ p .years {
 		background-color: red;
 		color: white;
 	}
+}
+
+/*FOOTER*/
+
+footer{
+	background-color: black;
+	color: white;
+}
+footer ul li{
+
+	list-style-type: none;
+}
+footer ul li a {
+	text-decoration: none;
+	color: white;
+    margin-top: 5px;
+    font-size: 17px;
+}
+footer ul li a:hover{
+	color: white;
+    text-decoration: underline white;
+}
+footer .trademark{
+	margin: 0;
+	text-align: center;
+	position: relative;
+	bottom: 0;
 }

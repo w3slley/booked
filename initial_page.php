@@ -15,8 +15,8 @@
 			<title>Booked | Keep track of books you read!</title>
 
 			<link rel="stylesheet" type="text/css" href="css/initial_page.css">
-			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One|Dosis" rel="stylesheet">
-			<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One|Dosis|Satisfy" rel="stylesheet">
+			<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		</head>
 		<body>
@@ -48,7 +48,10 @@
 				</div>
 			</div>
 			<nav class="nav">
-				
+				<div class="logo">
+					<img src="images/books.svg" >
+					<p>Booked</p>
+				</div>
 				<p class="add-book"><img style="width: 30px" src="images/plus2.png">Add book</p>
 				
 				<form method="POST" action="includes/logout.inc.php">
@@ -282,6 +285,15 @@
 				
 			}
 		?>
+
+		<footer>
+			<ul>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Blog</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+			<p class="trademark">Created by Weslley. 2018-2019. All rights reserved. </p>
+		</footer>
 
 		<script src="javascript/main.js"></script>
 		</body>

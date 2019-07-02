@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    background-color: #F1F3F2;
 }
 .header{
     
@@ -24,6 +25,7 @@ body{
     left: 75px;
     font-size: 55px;
     font-family: Satisfy;
+    cursor: default;
 }
 nav{
     margin: 0;
@@ -71,6 +73,7 @@ nav ul li a:hover{
     left: 15px;
     font-family: Acme;
     color: white;
+    cursor: default;
 
 
 }
@@ -131,7 +134,140 @@ nav ul li a:hover{
 }
 
 .body{
-
     margin: 0 auto;
-    width: 70%;
+    width: 80%;
+}
+
+.container1{
+    position: relative;
+    height: 600px;
+    margin: 50px 0;
+    
+}
+.container1 .row1{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    
+}
+
+.container1 .row1 p{
+    margin: auto;
+    width: 90%;
+    font-family: Ubuntu;
+    font-size: 35px;
+}
+
+.container1 .row2 img{
+   position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    height: 100%;
+    
+  
+
+}
+
+.container2{
+    position: relative;
+    height: 600px;
+    margin: 50px 0;
+  
+}
+
+
+.container2 .row1 img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 40%;
+    height: 100%;
+    
+  
+
+}
+
+.container2 .row2{
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    
+}
+.container2 .row2 p{
+    margin: auto;
+    width: 100%;
+    font-size: 35px;
+    font-family: Ubuntu;
+   
+}
+
+.container3{
+    position: relative;
+    height: 500px;
+    margin: 100px 0;
+    text-align: center;
+}
+
+.container3 p{
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right:0;
+   margin: 0 auto;
+   width: 100%;
+   
+   font-size: 55px;
+   font-family: Ubuntu;
+}
+.container3 img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: auto;
+    width: 100%;
+    height: 70%;
+}
+.container3 p a{
+    color: black;
+}
+
+
+/*FOOTER*/
+
+footer{
+	background-color: black;
+	color: white;
+}
+footer ul li{
+
+	list-style-type: none;
+}
+footer ul li a {
+	text-decoration: none;
+	color: white;
+    margin-top: 5px;
+    font-size: 17px;
+}
+footer ul li a:hover{
+	color: white;
+    text-decoration: underline white;
+}
+footer .trademark{
+	margin: 0;
+	text-align: center;
+	position: relative;
+	bottom: 0;
 }

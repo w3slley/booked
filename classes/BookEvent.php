@@ -471,7 +471,7 @@
 				
 				?>
 				
-				<form class="edit_info" method="POST" action="includes/edit_book.php">
+				<form method="POST" action="includes/edit_book.php">
 					<p class="title_text">Title: </p>
 					<?php echo ' <input class="edit_title_name" type="text" name="book_title" value="'.$data["book_title"].'"><br> '?>
 					<p class="author_text">Author: </p>

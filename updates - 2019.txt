@@ -49,7 +49,7 @@ Now it's runing as it use to (some error had occur with googletrans but now it's
 4)Created a modal where users can edit it the books. Right now it doen't work async, but it will soon.
 
 01/07/2019
-1)Created the front-end of the index page. There's a lot of things to do yet, but it's kind of nice. I have to create the front end for mobile.
+1)Created the front-end of the index page. There's a lot of things to do yet, but it's kind of nice. I used the typed.js library in the main page. It looks really good. I still have to create the front end for mobile.
 2)Created the front-end for the login page.
 3)Started to arrange things in the dashboar for a brand new user.
 
@@ -59,7 +59,7 @@ I'm back at the development of the web app. I need to implement some features:
 2)Display categories and months when adding a new book to DB. Give the users the option to choose a category from the db or to add a new one. The same thing could work with the years. (DONE with months)
 3)Do it also in the edit section (DONE with months)
 4)Implement AJAX calls on the entire website.
-5)Create the front end of the index page.
+5)Create the front end of the index and login page. (DONE - partially)
 6)Create the front end of the profile page.
 7)Make sure when the user delete one book and it's the only one read in that particular year, then the user has to be redirected to another page - and not the page of the excluded year (DONE).
 8)Add a last added book in the dashboard. (DONE)
@@ -74,5 +74,6 @@ I'm back at the development of the web app. I need to implement some features:
 17)Finish the editing section using AJAX.
 18)Create a design for the editing section.
 19)Don't forget to fix the security problem in the edit section. Right now, I can edit anyone's books if I know the add_book_id. I need to make sure that only the user that added the book can access it.
-
+20)Create a new layout for the dashboard.
+21)I need to add error handlers in the sign up process.
 

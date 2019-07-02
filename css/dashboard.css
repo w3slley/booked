@@ -81,6 +81,21 @@ nav {
 	z-index: 30;
 
 }
+.logo{
+    float: left;
+}
+.logo img{
+    width: 35px;
+    margin: 5px 0 0 5px;
+}
+.logo p{
+    position: absolute;
+    top: -35px;
+    left: 45px;
+    font-size: 35px;
+    font-family: Satisfy;
+    cursor: default;
+}
 /*BUTTONS NAV*/
 
 .logout-button {
@@ -263,4 +278,33 @@ nav {
 	list-style-type: none;
 	color: black;
 
+}
+
+
+/*FOOTER*/
+
+footer{
+	margin-top: 100px;
+	background-color: black;
+	color: white;
+}
+footer ul li{
+
+	list-style-type: none;
+}
+footer ul li a {
+	text-decoration: none;
+	color: white;
+    margin-top: 5px;
+    font-size: 17px;
+}
+footer ul li a:hover{
+	color: white;
+    text-decoration: underline white;
+}
+footer .trademark{
+	margin: 0;
+	text-align: center;
+	position: relative;
+	bottom: 0;
 }

@@ -22,7 +22,7 @@ class User extends Database{
 			if(isset($result)){
 				$dbPassword = $result['password'];
 				if(password_verify($this->password, $dbPassword) == True){
-					$data = array('id' => $result['id'], 'name' => $result['name'], 'email' => $result['email'], 'birth_date' => $result['birth_date']); //Created an associative array to use in the login.php file and start session.
+					$data = array('id' => $result['id'], 'name' => $result['name'], 'email' => $result['email']); //Created an associative array to use in the login.php file and start session.
 						return $data;
 				}
 			}

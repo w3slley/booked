@@ -9,10 +9,10 @@
 	<html>
 	<head>
 		<title>Booked: keep track of the books you read!</title>
-		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="images/books.svg" type="image/x-icon"/>
 		<link rel="stylesheet" href="css/index.css">
 		<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One|Dosis|Acme|Rajdhani|Satisfy" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Ubuntu|Poiret+One|Dosis|Acme|Rajdhani|Satisfy" rel="stylesheet">
 		
 	</head>
 	<body>
@@ -22,10 +22,12 @@
 		
 		<div class="header">
 			<nav>
+				
 				<div class="logo">
 					<img src="images/books.svg" >
 					<p>Booked</p>
 				</div>
+
 				<ul>
 					<li><a href="#">About</a></li>
 					<li><a href="#">Blog</a></li>
@@ -52,15 +54,28 @@
 		<div class="body">
 			<div class="container1">
 				<div class="row1">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.</p>
 				</div>
 				<div class="row2">
+					<img src="images/open-book.svg">
 				</div>
 			</div>
 			<div class="container2">
 				<div class="row1">
+					<img src="images/bookshelf.svg">
 				</div>
 				<div class="row2">
+					<p>Uis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 				</div>
+			</div>
+
+			<div class="container3">
+				<img src="images/education.svg">
+				<p>So, what are you waiting for? Sign up <a href="#">here</a>!</p>
 			</div>
 			
 		</div>
@@ -99,6 +114,15 @@
 		}	
 		?>
 		
+
+		<footer>
+			<ul>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Blog</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+			<p class="trademark">Created by Weslley. 2018-2019. All rights reserved. </p>
+    	</footer>
 		<script src="javascript/index.js"></script>
 	</body>
 	</html>

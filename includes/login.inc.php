@@ -27,7 +27,7 @@
 			
 		}
 		else{
-			header("Location: ../index.php?login=error");
+			header("Location: ../login.php?login=error");
 		}
 		
 
