@@ -1,8 +1,10 @@
 
 body {
 	margin: 0;
+	padding: 0;
 	background-color: #2E2F2F;
 	font-family: Poiret One;
+	height: 100%;
 	
 }
 
@@ -102,6 +104,11 @@ nav {
 	margin-bottom: 0;
 }
 
+.container{
+	width: 100%;
+	min-height: 100%;
+	position: relative;
+}
 
 /*BUTTONS NAV*/
 
@@ -241,6 +248,7 @@ p .years {
 }
 /*END NAV*/
 
+
 /*MONTH SECTION*/
 .books_year {
 	font-size: 40px;
@@ -251,6 +259,7 @@ p .years {
 	color: white;
 	font-family: Poiret One;
 	cursor: pointer;
+	z-index: 1;
 
 
 }
@@ -278,6 +287,7 @@ p .years {
 	height: 50px;
 	margin-top: 50px;
 	transition: height .5s;
+	z-index: 1;
 
 }
 
@@ -388,7 +398,7 @@ p .years {
 	right: 10px;
 	padding: 20px 10px;
 	border: 1px solid black;
-	border-radius: 50%;
+	border-radius: 5px;
 	display: none;
 
 	
@@ -415,17 +425,32 @@ p .years {
   text-decoration: none;
   transition: opacity .5s;
 }
+.edit_book_button{
+	background-color: transparent;
+	border: none;
+	position: absolute;
+	right: 7%;
+	bottom: 0%;
+	opacity: 0;
+	transition: opacity .5s;
+	outline: none;
+}
+.edit_book_button img{
+	width: 50px;
+}
 .delete_book_button {
 	border: none;
 	outline: none;
 	background-color: transparent; /*Will do the trick for now. I wanted to the gray background of the button to go away.*/
 	opacity: 0;
-	height: 10px;
-	width: 10px;
 	position: absolute;
- 	right: 4.5%;
-	bottom: 12%;
+ 	right: 2%;
+	bottom: 3%;
 	transition: opacity .5s;
+	
+}
+.delete_book_button img{
+	width: 40px;
 }
 .box:hover {
 	animation-name: box-animation-in;
@@ -433,7 +458,7 @@ p .years {
 	padding: 0px 15px 250px 15px;
 }
 
-.box:hover #button_books_box {
+.box:hover .edit_book_button {
    opacity: 1; /* On :hover of div show button */
  
 }
@@ -504,7 +529,7 @@ p .years {
 /*THIS IS THE STYLING OF THE EDITING SECTION*/
 
 .edit_cover {
-	width: 200px;
+	width: 300px;
 	float: left;
 	border-radius: 2px;
 
@@ -535,12 +560,29 @@ p .years {
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	left: 0;
-	right: 0;
+	left: 25%;
 	margin: auto;
-	height: 90%;
+	height: 100%;
 	width: 30%;
 
+}
+.box_edit p{
+	margin: 5px 40px 5px 40px;
+	font-size: 25px;
+	text-align: left;
+
+}
+.box_edit input{
+	margin: 0 auto;
+	width: 80%;
+	font-size: 25px;
+	border-radius: 5px;
+	font-family: Poiret One;
+}
+.box_edit select{
+	font-size: 25px;
+	font-family: Poiret One;
+	margin: 0;
 }
 .save_button_edit{
 	position: absolute;
@@ -589,6 +631,10 @@ p .years {
 /*FOOTER*/
 
 footer{
+	
+	width: 100%;
+	height: 120px;
+	margin-top: 200px;
 	background-color: black;
 	color: white;
 }

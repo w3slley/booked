@@ -10,7 +10,7 @@
 		<head>
 			<title>Booked | Dashboard</title>
 			<link rel="stylesheet" type="text/css" href="css/dashboard.css">
-			<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+			<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One|Satisfy" rel="stylesheet">
 			
 			
@@ -82,7 +82,7 @@
 						?>
 				<div class="last-book-added">
 					<h1>The last book you read:</h1>
-					<img src="bookcovers/bookcover<?php echo $data['book_id'] ?>.jpg" alt="">
+					<img src="bookcovers/bookcover<?php echo $data['id'] ?>.jpg" alt="">
 					<div class="info">
 						<p class="title">Title: <span><?php echo $data['book_title'] ?></span> </p>
 						<p class="author">Author: <span><?php echo $data['author_name'] ?></span> </p>

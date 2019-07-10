@@ -9,7 +9,7 @@
 	<html>
 	<head>
 		<title>Booked: keep track of the books you read!</title>
-		<link rel="shortcut icon" href="images/books.svg" type="image/x-icon"/>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 		<link rel="stylesheet" href="css/index.css">
 		<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Ubuntu|Poiret+One|Dosis|Acme|Rajdhani|Satisfy" rel="stylesheet">
@@ -54,6 +54,7 @@
 		<div class="body">
 			<div class="container1">
 				<div class="row1">
+					<h1>This is a text.</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -68,6 +69,7 @@
 					<img src="images/bookshelf.svg">
 				</div>
 				<div class="row2">
+					<h1>This is another text.</h1>
 					<p>Uis aute irure dolor in reprehenderit in voluptate velit esse
 					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 				</div>

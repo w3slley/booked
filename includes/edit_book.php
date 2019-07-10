@@ -4,23 +4,38 @@
 	session_start();
 	//Take all the information given from the edit_book() function. Including the book id and add book id task which are hidden(display: none).
 	
+	if(isset($_POST['title'])){
+		$book_title = $_POST['title'];
+		$add_book_id = $_POST['addBookId'];
 
-	$book_title = $_POST['book_title'];
-	$author_name = $_POST['author_name'];
-	$catg_name = $_POST['catg_name'];
-	$month_name = $_POST['month'];
-	$year_number = $_POST['year_number'];
-	$classification = $_POST['classification'];
-	$book_id = $_POST['book_id']; //This was gathered from the url. It was first given by the add_books_year() function, which created a button that lead in the url edit=true, add_book_id=its number(taken from the database) and book_id = its number (also taken from the database).
-	$add_book_id = $_POST['add_book_id']; //The same as the above.
+		$data = new BookEvent();
+		$data->update_book_title($add_book_id, $book_title);
+	}
+	else if(isset($_POST['author'])){
+		$author_name = $_POST['author'];
+		$add_book_id = $_POST['addBookId'];
 
-	$data = new BookEvent();
-	$data->update_info($add_book_id, $book_title, $author_name, $catg_name, $month_name, $classification);
+		$data = new BookEvent();
+		$data->update_author_name($add_book_id, $author_name);
+	}
+	//I removed the update_category function because the user is not suposed to change that right now. Eventually I will implement a feature where the user will add their own categories. So, in the categories table it will have a column of user_id. Only the categories the user added can be changed.
+	else if(isset($_POST['month'])){
+		$month = $_POST['month'];
+		$add_book_id = $_POST['addBookId'];
 
-	header("Location: ../initial_page.php?year=".$year_number."&month=".strtolower($month_name));
-	/*
-	update_book_title($conn, $book_title, $add_book_id);
-	update_author_name($conn, $author_name, $add_book_id);
-	update_category($conn, $catg_name, $add_book_id);
-	update_month_finished($conn, $month_name, $add_book_id, $year_number, $month_name, $book_id);//This is long as fuck.. kkk. But it needed the month_name and book_id variables to give the location when throwing an error. U got to do what u got to do. ;D
-	*/
+		$data = new BookEvent();
+		$data->update_month_finished($add_book_id, $month);
+	}
+	
+	else if(isset($_POST['classification'])){
+		$classification = $_POST['classification'];
+		$add_book_id = $_POST['addBookId'];
+
+		$data = new BookEvent();
+		$data->update_classification($add_book_id, $classification);
+	}
+
+	//I still have to figure out how the user will edit the year he/she read the book.
+
+	
+	//$year_number = $_POST['year']; I still have to implement the update of the year finished

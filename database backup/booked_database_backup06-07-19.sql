@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 30-Maio-2019 às 23:00
+-- Generation Time: 06-Jul-2019 às 12:56
 -- Versão do servidor: 5.7.26-0ubuntu0.19.04.1
--- PHP Version: 7.2.17-0ubuntu0.19.04.1
+-- PHP Version: 7.2.19-0ubuntu0.19.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -101,7 +101,7 @@ INSERT INTO `add_book` (`id`, `user_id`, `book_id`, `author_id`, `catg_id`, `mon
 (66, 1, 75, 48, 15, 10, 3, 'Wed, 16 May 2018 19:15:28'),
 (67, 1, 76, 25, 3, 9, 3, 'Wed, 16 May 2018 19:16:48'),
 (68, 1, 77, 49, 18, 9, 3, 'Wed, 16 May 2018 19:17:08'),
-(69, 1, 78, 50, 19, 10, 3, 'Wed, 16 May 2018 19:17:24'),
+(69, 1, 78, 50, 19, 9, 3, 'Wed, 16 May 2018 19:17:24'),
 (70, 1, 79, 51, 8, 8, 3, 'Wed, 16 May 2018 19:17:46'),
 (71, 1, 80, 52, 1, 8, 3, 'Wed, 16 May 2018 19:18:04'),
 (72, 1, 81, 53, 2, 7, 3, 'Wed, 16 May 2018 19:20:10'),
@@ -129,10 +129,35 @@ INSERT INTO `add_book` (`id`, `user_id`, `book_id`, `author_id`, `catg_id`, `mon
 (102, 1, 106, 68, 15, 12, 5, 'Sun, 09 Dec 2018 20:15:35'),
 (104, 1, 108, 70, 15, 1, 8, 'Tue, 15 Jan 2019 11:07:26'),
 (105, 1, 109, 35, 1, 12, 5, 'Tue, 15 Jan 2019 11:08:46'),
-(115, 1, 43, 71, 1, 5, 2, 'Tue, 29 Jan 2019 22:49:33'),
 (116, 1, 112, 72, 23, 2, 8, 'Fri, 08 Feb 2019 21:39:19'),
-(123, 1, 120, 40, 8, 4, 8, 'Thu, 30 May 2019 15:24:09'),
-(124, 1, 121, 73, 1, 4, 8, 'Thu, 30 May 2019 22:37:15');
+(124, 1, 121, 73, 1, 4, 8, 'Thu, 30 May 2019 22:37:15'),
+(125, 5, 122, 75, 1, 4, 8, 'Fri, 31 May 2019 00:02:47'),
+(126, 5, 86, 58, 25, 2, 8, 'Fri, 31 May 2019 00:04:01'),
+(127, 5, 123, 76, 1, 2, 8, 'Fri, 31 May 2019 00:04:21'),
+(128, 5, 90, 43, 1, 3, 8, 'Fri, 31 May 2019 00:04:53'),
+(129, 5, 124, 77, 25, 1, 8, 'Fri, 31 May 2019 00:05:21'),
+(130, 5, 48, 37, 1, 2, 5, 'Fri, 31 May 2019 00:07:03'),
+(131, 5, 125, 78, 1, 2, 5, 'Fri, 31 May 2019 00:07:35'),
+(132, 5, 126, 79, 15, 3, 5, 'Fri, 31 May 2019 00:08:16'),
+(133, 5, 30, 25, 3, 4, 5, 'Fri, 31 May 2019 00:08:47'),
+(134, 5, 87, 59, 25, 7, 5, 'Fri, 31 May 2019 00:09:40'),
+(139, 6, 43, 34, 1, 1, 8, 'Sun, 16 Jun 2019 20:56:42'),
+(140, 6, 20, 17, 1, 5, 5, 'Sun, 16 Jun 2019 20:58:02'),
+(161, 1, 1, 78, 1, 1, 2, '24/06/2019'),
+(173, 1, 160, 97, 8, 4, 8, '25/06/2019'),
+(174, 1, 161, 98, 27, 6, 8, '25/06/2019'),
+(183, 1, 170, 105, 28, 2, 3, '25/06/2019'),
+(184, 1, 171, 106, 13, 2, 3, '25/06/2019'),
+(185, 1, 172, 107, 13, 4, 3, '25/06/2019'),
+(186, 1, 173, 108, 13, 5, 3, '25/06/2019'),
+(187, 1, 174, 109, 25, 5, 3, '25/06/2019'),
+(188, 1, 65, 97, 8, 12, 3, '25/06/2019'),
+(189, 1, 77, 49, 3, 9, 3, '25/06/2019'),
+(190, 1, 1, 110, 1, 1, 2, '25/06/2019'),
+(193, 1, 177, 97, 8, 6, 8, '25/06/2019'),
+(194, 1, 178, 1, 1, 6, 8, '28/06/2019'),
+(198, 11, 182, 116, 1, 5, 5, '02/07/2019'),
+(199, 11, 183, 76, 16, 7, 2, '02/07/2019');
 
 -- --------------------------------------------------------
 
@@ -150,7 +175,7 @@ CREATE TABLE `authors` (
 --
 
 INSERT INTO `authors` (`id`, `author_name`) VALUES
-(1, 'Harlen Coben'),
+(1, 'Harlan Coben'),
 (3, 'Brad Stone'),
 (4, 'Fyodor Dostoesky'),
 (5, 'Yuval Noah Harari'),
@@ -186,7 +211,6 @@ INSERT INTO `authors` (`id`, `author_name`) VALUES
 (37, 'A. S. A. Harrison'),
 (38, 'Jane Austen'),
 (39, 'Charles Darwin'),
-(40, 'Walter Isaacson'),
 (41, 'Jurandir Jr.'),
 (42, 'Bernard Cornwell'),
 (43, 'Arthur Conan Doyle'),
@@ -217,10 +241,24 @@ INSERT INTO `authors` (`id`, `author_name`) VALUES
 (68, 'Mark Manson'),
 (69, 'J. K. Rowlling'),
 (70, 'John Carreyrou'),
-(71, 'Marry Shelley'),
 (72, 'Robert Galbraith'),
 (73, 'JoÃ«l Dicker '),
-(74, 'test');
+(74, 'test'),
+(75, 'Markus Zusak'),
+(76, 'John Boyne'),
+(77, 'Natanael de Oliveira'),
+(79, 'Spencer Johnson'),
+(80, 'Laurentino Gomes'),
+(82, 'Marie Shelley'),
+(97, 'Walter Isaacson'),
+(98, 'J. K. Rowling'),
+(105, 'Alexandre Versignassi'),
+(106, 'Barbara Pease'),
+(107, 'Richard la Ruina'),
+(108, 'Raiam Santos'),
+(109, 'Bastter'),
+(110, 'Harlan Coben'),
+(116, 'Blake Crouch');
 
 -- --------------------------------------------------------
 
@@ -242,8 +280,8 @@ INSERT INTO `books` (`id`, `book_title`, `classification`) VALUES
 (1, 'Confie em mim', NULL),
 (3, 'A loja de tudo', NULL),
 (4, 'Os irmÃ£os Karamazov', NULL),
-(5, 'Homo deus: uma histÃ³ria do amanhÃ£', NULL),
-(6, 'Briga de cachorro grande', NULL),
+(5, 'Homo deus: uma histÃ³ria do amanhÃ£', 90),
+(6, 'Briga de cachorro grande', 85),
 (7, 'Thinner', NULL),
 (8, 'De zero a um', NULL),
 (9, 'Sexta extinÃ§Ã£o: uma histÃ³ria nÃ£o natural', NULL),
@@ -254,7 +292,7 @@ INSERT INTO `books` (`id`, `book_title`, `classification`) VALUES
 (16, 'Misery: louca obsessÃ£o', NULL),
 (17, 'Crime and punishment', NULL),
 (18, 'Surely you are joking, Mr. Feynman', NULL),
-(19, 'Como chegamos atÃ© aqui', NULL),
+(19, 'How we got to now', 90),
 (20, 'Fahrenheit 451', NULL),
 (21, 'O mundo assombrado por demÃ´nios', NULL),
 (22, 'MatÃ©ria escura', NULL),
@@ -303,38 +341,54 @@ INSERT INTO `books` (`id`, `book_title`, `classification`) VALUES
 (78, 'HistÃ³ria antiga', NULL),
 (79, 'Elon Musk', NULL),
 (80, 'Animal farm', NULL),
-(81, 'Criatividade S.A', NULL),
+(81, 'Criatividade S.A', 90),
 (82, 'O poder do hÃ¡bito', NULL),
-(83, 'O monge e o executivo', NULL),
+(83, 'O monge e o executivo', 75),
 (84, 'Como fazer amigos e influenciar pessoas', NULL),
 (85, 'O lobo de Wall Street', NULL),
 (86, 'Os segredos da mente milionÃ¡ria', NULL),
 (87, 'Pai rico, pai pobre', NULL),
-(88, 'Sapiens: uma breve histÃ³ria da humanidade', NULL),
-(89, 'Um estudo em Vermelho', NULL),
+(88, 'Sapiens: uma breve histÃ³ria da humanidade', 90),
+(89, 'Um estudo em vermelho', 89),
 (90, 'O signo dos quatro', NULL),
-(91, 'Perdido em Marte', 9),
+(91, 'The martian', 97),
 (92, 'No place to hide: Edward Snowden', NULL),
 (94, 'The selfish gene', NULL),
 (95, 'The Survivor', NULL),
 (96, 'Death by Black Hole', NULL),
 (97, 'O idiota', NULL),
-(98, 'Confie em mim', NULL),
+(98, 'Tell no one', NULL),
 (99, 'RÃ¡pido e devagar', NULL),
 (100, 'Frankeinstein', NULL),
-(101, '1984', NULL),
+(101, '1984', 95),
 (102, 'The big short', NULL),
-(103, 'Sofia\'s world', NULL),
+(103, 'Sofia\'s world', 90),
 (104, 'The Christmas Carrol', NULL),
-(105, 'Origin', NULL),
-(106, 'The subtle art of not giving a fuck', NULL),
-(108, 'Bad Blood', NULL),
-(109, 'A house at the bottom of a lake', NULL),
+(105, 'Origin', 96),
+(106, 'The subtle art of not giving a fuck', 75),
+(108, 'Bad Blood', 95),
+(109, 'A house at the bottom of a lake', 60),
 (110, 'Harry Potter And The Sorcerer\'s Stone', NULL),
 (111, 'Frankstein', NULL),
-(112, 'Cuckoo\'s Calling', NULL),
-(120, 'Leonardo Da Vinci', NULL),
-(121, 'A verdade sobre o caso Harry Quebert', NULL);
+(112, 'Cuckoo\'s Calling', 93),
+(121, 'A verdade sobre o caso Harry Quebert', 89),
+(122, 'A menina que roubava livros', NULL),
+(123, 'O menino do pijama listrado', NULL),
+(124, 'Seja o empresÃ¡rio da sua idÃ©ia', NULL),
+(125, 'NÃ£o conte a ninguÃ©m', NULL),
+(126, 'Quem comeu o meu queijo?', NULL),
+(142, 'Truly madly guilty', NULL),
+(160, 'Leonardo Da Vinci', 95),
+(161, 'Harry Potter and the philosopher\'s stone', 90),
+(170, 'Crash', NULL),
+(171, 'Desvendando a linguagem corporal', NULL),
+(172, 'A arte natural da seduÃ§Ã£o', NULL),
+(173, 'Hackeando tudo ', NULL),
+(174, 'Eu quero ser rico', 50),
+(177, 'Einstein: His life and universe', 90),
+(178, 'Just one look', 80),
+(182, 'Dark Matter', 100),
+(183, 'The boy in the striped pajamas', 80);
 
 -- --------------------------------------------------------
 
@@ -370,7 +424,24 @@ INSERT INTO `categories` (`id`, `catg_name`) VALUES
 (21, 'Thriller'),
 (22, 'Psychology'),
 (23, 'Criminal Fiction'),
-(24, 'test');
+(24, 'test'),
+(25, 'Financial Education'),
+(26, 'Horror'),
+(27, 'Fantasy'),
+(28, 'Economy'),
+(29, '195'),
+(30, 'Mister'),
+(31, 'Miste'),
+(32, 'Mist'),
+(33, 'Mis'),
+(34, 'Mi'),
+(35, 'Mii'),
+(36, 'MistÃ©r'),
+(37, 'MistÃ©ri'),
+(38, 'MistÃ©rio'),
+(39, 'MistÃ©'),
+(40, 'Non-Fictionn'),
+(41, 'Biographyd');
 
 -- --------------------------------------------------------
 
@@ -409,23 +480,20 @@ INSERT INTO `month_finished` (`id`, `month_name`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `first_name` text NOT NULL,
-  `last_name` text NOT NULL,
-  `user_name` text NOT NULL,
+  `name` varchar(256) DEFAULT NULL,
   `email` text NOT NULL,
-  `password` text NOT NULL,
-  `birth_date` text
+  `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `user_name`, `email`, `password`, `birth_date`) VALUES
-(1, 'Weslley', 'Victor', 'wvictor07', 'wvictor07@gmail.com', '$2y$10$wuMyK7/jKcMefpSuVeeXKOJbKS5tIxvcxf3ZnCof/UWHXj8UXTt7S', ''),
-(2, 'User', 'Test', 'usertest', 'usertest@gmail.com', '$2y$10$VU4lJm7RA6hys/dAxn/D3OTu0g4yAOc.zzgOdrfeTcJ.OOs.XXtWi', ''),
-(3, 'Miriam', 'GonÃ§alves', 'mirygcv', 'mirygcv@gmail.com', '$2y$10$tG1GB7l872d0w6RdwJ4iuuBzpE7BiWWnlKlfu2JBr14H9qShQ1xSW', ''),
-(4, 'User', 'Test', 'test', 'user@gmail.com', '$2y$10$F.X45UYOMUK2B8MmvJ9REO3sVvdtVn7A9Nv2UfTJ0xuU.y4CLHV.i', NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
+(1, 'wvictor07', 'wvictor07@gmail.com', '$2y$10$wuMyK7/jKcMefpSuVeeXKOJbKS5tIxvcxf3ZnCof/UWHXj8UXTt7S'),
+(3, 'mirygcv', 'mirygcv@gmail.com', '$2y$10$tG1GB7l872d0w6RdwJ4iuuBzpE7BiWWnlKlfu2JBr14H9qShQ1xSW'),
+(11, 'Wellyson Vieira', 'bielshow7@gmail.com', '$2y$10$LkoA.kL5hDxHeY/bn/imdOWZGzUnYHu4N7H1gUog8wriL/3wkMUHy'),
+(13, 'user', 'user@gmail.com', '$2y$10$NBNZc4M6Kpsv6L4O7xTKIOrbrEkE4/c0bcpmA1mVlayLvtNQGtKae');
 
 -- --------------------------------------------------------
 
@@ -450,7 +518,13 @@ INSERT INTO `year_finished` (`id`, `year_number`) VALUES
 (5, 2018),
 (6, 2013),
 (7, 2012),
-(8, 2019);
+(8, 2019),
+(11, 2022),
+(12, 2023),
+(13, 2024),
+(14, 2025),
+(15, 2026),
+(16, 2027);
 
 --
 -- Indexes for dumped tables
@@ -506,22 +580,22 @@ ALTER TABLE `year_finished`
 -- AUTO_INCREMENT for table `add_book`
 --
 ALTER TABLE `add_book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
 --
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `month_finished`
 --
@@ -531,12 +605,12 @@ ALTER TABLE `month_finished`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `year_finished`
 --
 ALTER TABLE `year_finished`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

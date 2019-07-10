@@ -63,31 +63,36 @@ $('#add_cover').click(function(e){
 	});
 });
 
-//CLASSIFICATION SYSTEM
-let grade = document.querySelectorAll('.grade');
-let rating = document.querySelectorAll('.rating');
+function displayGrade(){
+	//CLASSIFICATION SYSTEM
+	let grade = document.querySelectorAll('.grade');
+	let rating = document.querySelectorAll('.rating');
 
 
-for (let i=0; i<rating.length;i++){//loop that goes through the books
-	if(grade[i].innerHTML >=0 & grade[i].innerHTML <= 50){//if the grade is between 0 and 50
-		rating[i].style.backgroundColor = 'red';//background red
-		rating[i].style.display = 'block';//it's displayed. In the css file the class .rating has the atribute display:none;
+	for (let i=0; i<rating.length;i++){//loop that goes through the books
+		if(grade[i].innerHTML >=0 & grade[i].innerHTML <= 50){//if the grade is between 0 and 50
+			rating[i].style.backgroundColor = 'red';//background red
+			rating[i].style.display = 'block';//it's displayed. In the css file the class .rating has the atribute display:none;
+			
+		}
+		else if(grade[i].innerHTML > 50 & grade[i].innerHTML < 80){//if the grade is between 51 and 79
+			rating[i].style.backgroundColor = 'orange';//orange background
+			rating[i].style.display = 'block';//it's displayed
+		}
+		else if(grade[i].innerHTML >= 80 & grade[i].innerHTML <=100){//if grade is between 80 and 100
+			rating[i].style.backgroundColor = 'green';//green background
+			rating[i].style.display = 'block'; //it's displayed
+		}
+
+		if(grade[i].innerHTML == ''){//if doesn't have classification yet
+			rating[i].style.display = 'none';//it's not displayed
+		}
 		
 	}
-	else if(grade[i].innerHTML > 50 & grade[i].innerHTML < 80){//if the grade is between 51 and 79
-		rating[i].style.backgroundColor = 'orange';//orange background
-		rating[i].style.display = 'block';//it's displayed
-	}
-	else if(grade[i].innerHTML >= 80 & grade[i].innerHTML <=100){//if grade is between 80 and 100
-		rating[i].style.backgroundColor = 'green';//green background
-		rating[i].style.display = 'block'; //it's displayed
-	}
-
-	if(grade[i].innerHTML == ''){//if doesn't have classification yet
-		rating[i].style.display = 'none';//it's not displayed
-	}
-	
 }
+
+//When page loads:
+displayGrade();
 
 //ADD BOOK MODAL
 modal = document.querySelector('.modal');
@@ -103,7 +108,7 @@ editModal = document.querySelector('.edit-modal');
 editModalContent = document.querySelector('.edit-modal-content');
 
 window.onclick = function(event){
-	if(event.target == editModal){//if clicked outise the edit book modal content
+	if(event.target == editModal){//if clicked outside the edit book modal content
 		editModal.style.display = 'none';
 		editModalContent.innerHTML = '';
 	}
@@ -111,9 +116,78 @@ window.onclick = function(event){
 		modal.style.display = 'none';
 	}
 }
+
+window.onkeyup = function(event){
+	if(event.keyCode == 27){
+		editModal.style.display = 'none';
+		editModalContent.innerHTML = '';
+	}
+}
+
 function editReadingEvent($add_book_id){
 	editModal.style.display = 'block';
 	$.post('includes/edit_modal.php', {add_book_id: $add_book_id}, function(data){
 		editModalContent.innerHTML = data;
+
+		//AJAX in EDIT SECTION
+
+		let title = document.querySelector('.edit_title_name');
+		let author = document.querySelector('.edit_authors_name');
+		let category = document.querySelector('.edit_category_name');
+		let month = document.querySelector('.month_edit');
+		let year = document.querySelector('.edit_year_number');
+		let classificationEdit = document.querySelector('.classification_input');
+		let addBookIdEdit = document.querySelector('.add_book_id_input'); 
+
+		//let url = window.location.search;
+		
+		//update info
+		title.onkeyup = function(){
+			$.post('includes/edit_book.php', {addBookId: addBookIdEdit.value, title: title.value}, function(){
+				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
+					$('.books').html(data);
+					displayGrade();
+				});
+				
+				
+			});
+		}
+		author.onkeyup = function(){
+			$.post('includes/edit_book.php', {addBookId: addBookIdEdit.value, author: author.value}, function(){
+				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
+					$('.books').html(data);
+					displayGrade();
+				});
+				
+			});
+		}
+		
+
+		month.onchange = function(){
+
+			$.post('includes/edit_book.php', {addBookId: addBookIdEdit.value, month: month.value}, function(){
+				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
+					$('.books').html(data);
+					displayGrade();
+				});
+				
+			});
+		}
+
+		classificationEdit.onkeyup = function(){
+			$.post('includes/edit_book.php', {addBookId: addBookIdEdit.value, classification: classificationEdit.value}, function(){
+				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
+					$('.books').html(data);
+					displayGrade();
+				});
+				
+			});
+		}
+
+		//refresh initial page
+		
+	
 	});
+
+	
 }

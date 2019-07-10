@@ -20,6 +20,7 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		</head>
 		<body>
+		<div class="container">
 			<div class="modal">
 				<div class="modal-content">
 					<span class="close">&times;</span>
@@ -47,6 +48,7 @@
 					?>
 				</div>
 			</div>
+		
 			<nav class="nav">
 				<div class="logo">
 					<img src="images/books.svg" >
@@ -94,6 +96,7 @@
 
 		
 		?>
+		
 		<form class="search" action="initial_page.php">
 			<input type="search" name="search" placeholder="Books, authors, categories...">
 			<button type="submit">Search</button>
@@ -125,19 +128,16 @@
 		}
 		//DISPLAY BOOKS READ IN A YEAR!
 		//This is how I got to display the books read in a especific month. 
-		if(isset($_GET['year'])){ // if there's values in year and month
+		if(isset($_GET['year']) AND !isset($_GET['month'])){ // if there's values in year and no month
 			$year = $_GET['year'];
+			echo '<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books read in '.$year.':</p>';
 			$uri = $_SESSION['path'];
 			$check_position = strpos($uri, 'month');
-			if($check_position == false){ //If there's not month in the uri, then display all the books! A more elegant solution...
+			if($check_position == false){ //If there's no month in the uri, then display all the books read in the year! A more elegant solution...
 				$display = new BookEvent();
-				while (!empty($display->display_books_year($id, $year))){
-					$display->display_books_year($id, $display->get_smallest_year());//Here goes the initial year in the database. Created a function that gets the smallest number from the year column!
-					$year++;
-						//This is a much more elegant solution. I created a while loop that until there's no result from the database it will continue to display the books read in that particular year. And in the end, it adds 1 to the year variable so it can do it again in the next year. Good job mate!
-					}
+				$display->display_books_year($id, $year);
+
 			}
-		//If there's value in the month, nothing will happen because it will show the results of the books read in the particular month.
 		}	
 
 		//Display results from a search!
@@ -294,7 +294,7 @@
 			</ul>
 			<p class="trademark">Created by Weslley. 2018-2019. All rights reserved. </p>
 		</footer>
-
+		</div>
 		<script src="javascript/main.js"></script>
 		</body>
 		</html>

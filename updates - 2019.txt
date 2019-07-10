@@ -53,6 +53,15 @@ Now it's runing as it use to (some error had occur with googletrans but now it's
 2)Created the front-end for the login page.
 3)Started to arrange things in the dashboar for a brand new user.
 
+03/07/2019
+1)Implemented a rudimentary way of editing the books using AJAX. However I realized that if a user edits the book name or author or category, it will change for every other user in the site! Therefore, I need to make things unique: every author and category and books for each user.
+
+09/07/2019
+1)Changed the entire database schema when adding books. The table continues to be called add_book, but the book_title and author_name are unique for every book read. There's not a table for authors and books anymore. Also the classification is unique for each book added.Therefore, the user can edit the book's name, the author's name and the classification for now. I still need to figure out a way to let users edit the year they read the book. By doing that, another row will be created in the DB and the id will go to the add_book table. I still need to scketch the details of this new system. But at least the users can now edit the book's information without reloading the page.
+
+10/07/2019
+1)Fixed some issues with the async editing of the books. I changed the design of the classification from a circle to a square. It's not the way I want and I'll probably change again later. I also fixed the problems with the change I made before regarding the author's and book's table. These were just code I forgot to delete in the BookEvent.php file.
+
 ######################################################################
 I'm back at the development of the web app. I need to implement some features:
 1)Use PDO in the interaction with the mysql database (DONE).
@@ -76,4 +85,7 @@ I'm back at the development of the web app. I need to implement some features:
 19)Don't forget to fix the security problem in the edit section. Right now, I can edit anyone's books if I know the add_book_id. I need to make sure that only the user that added the book can access it.
 20)Create a new layout for the dashboard.
 21)I need to add error handlers in the sign up process.
+22) There are major things I need to implement. First, I have to change the way the reading events are stored in the database. There won't be more books and authors tables. They will be added directely into the reading event. I'll need to do this with the year and category as well. It's going to be a pain in the ass but I need to do it. I won't probabily need to do this with the months and years tables though. If the user made a mistake and inserted a wrong year, they just need to add the book again. (DONE)
+23) Add error handlers in the modal for adding a new book.
+24) Implement the feature where only the books in that month are displayed when the user changes its information.
 
