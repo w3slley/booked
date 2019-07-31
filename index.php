@@ -66,7 +66,7 @@
 			</div>
 			<div class="container2">
 				<div class="row1">
-					<img src="images/bookshelf.svg">
+					<img src="images/shelf_of_books.png">
 				</div>
 				<div class="row2">
 					<h1>This is another text.</h1>

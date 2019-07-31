@@ -188,14 +188,13 @@ nav ul li a:hover{
 
 .container2 .row1 img{
     position: absolute;
-    left: 10px;
+    left: 0;
     top: 0;
     bottom: 0;
     margin: auto;
-    width: 40%;
+    width: 50%;
     height: 100%;
     
-  
 
 }
 
@@ -206,7 +205,7 @@ nav ul li a:hover{
     bottom: 0;
     margin: auto;
     width: 50%;
-    height: 50%;
+    height: 40%;
     
 }
 .container2 .row2 p{

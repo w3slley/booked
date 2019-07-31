@@ -24,28 +24,26 @@
 			<div class="modal">
 				<div class="modal-content">
 					<span class="close">&times;</span>
-					<form id="nav-add" method="POST" action="includes/add_book.inc.php">
-						<input type="text" name="book" placeholder="Book title"><br>
-						<input type="text" name="author" placeholder="Author"><br>
-						<input type="text" name="category" placeholder="Category"><br>
+					<form class="nav-add" method="POST" action="includes/add_book.inc.php">
+						<input class="book-title" type="text" name="book" placeholder="Book title"><br>
+						<input class="author-name" type="text" name="author" placeholder="Author"><br>
+						<input class="category" type="text" name="category" placeholder="Category"><br>
 						
 						<?php 
 							$month = new BookEvent();
 							echo $month->display_months();
 						?><br>
-						<input type="text" name="year" placeholder="Year finished"><br>
-						<input type="text" name="classification" placeholder="Your grade (0-100)"><br>
-						<button type="submit" name="submit" onclick="alert('Wait while we are setting everything up...')">Add book</button>
+						<input class="year" type="text" name="year" placeholder="Year finished"><br>
+						<input class="classification" type="text" name="classification" placeholder="Your grade (0-100)"><br>
+						
+						<button type="submit" name="submit">Add book</button>
+						<p class="message"></p>
 					</form>
-					<?php  
-						if(isset($_GET['failed'])){
-							$failed = $_GET['failed'];
-
-							if($failed == 'empty') {
-								echo "<p id='message-add'>You didn't fill in all the fields. Please, try again.</p>";
-							}
-						}
-					?>
+					<div class="loading-modal">
+						<div class="loader"></div>
+					</div>
+					
+					
 				</div>
 			</div>
 		
@@ -148,39 +146,10 @@
 			$data = new BookEvent();
 			$data->search($id, $search);
 		}
-		//Display books when the user click the 'edit' button!	
-		if(isset($_GET['edit'])) {////When there's the term 'edit' in the URL, then:
-			if($_GET['edit']=='true'){
-				$add_book_id = $_GET['add_book'];
-				$book_id = $_GET['book_id'];
-				$location = 'bookcovers/bookcover'.$book_id.'.jpg';
-
-				$edit = new BookEvent();
-				$edit->display_edit_book($id, $book_id, $add_book_id, $location);//Executes the function that displays the box with the values the user can edit.
-			}
-		}
-
+		
 		//Messages!
 
-		//Book added to the database:
-		if(isset($_GET['add'])) { //It will be shown when the user adds a new book to the list of books read. It will pop up a message saying the book was added.
-			$add = $_GET['add'];
-			$message = "Your book was added!";
-
-			if($add == 'success'){
-				echo "<script type='text/javascript'>alert('$message');</script>";
-			}
-		}
-		//Book edited:
-		/*if(isset($_GET['update'])) { //This will be displayed when the user edits a book. It will pop up a message saying the book was edited!
-			$update = $_GET['update'];
-			$message = "Your book was edited!";
-
-			if($update == 'success'){
-				echo "<script type='text/javascript'>alert('$message');</script>";
-			}
-		}*/
-
+		
 
 		//Error handler when book is deleted
 		if(isset($_GET['del'])){
@@ -222,8 +191,13 @@
 		</div>
 			
 
-
 		<?php
+			if(isset($_GET['book'])){
+				$book = new BookEvent();
+				$book->showUniqueBook($_GET['book']);
+			}
+
+
 			//This is how I managed to display only the books read in the month selected:
 			
 			$data = new BookEvent();

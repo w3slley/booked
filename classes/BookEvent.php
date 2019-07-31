@@ -19,10 +19,11 @@
 		private $year_id;
 
 		private $add_book_id;
+		private $hash_id;
 		private $classification;
 
-		public function add_book_event($user_id, $book_title, $author_name, $category_id, $month_id, $classification, $year_id, $task_date){
-
+		public function add_book_event($user_id, $book_title, $author_name, $category_id, $month_id, $classification, $year_id, $task_date, $hash_id){
+			$this->hash_id = $hash_id;
 			$this->user_id = $user_id;
 			$this->book_title = $book_title;
 			$this->author_name = $author_name;
@@ -32,9 +33,9 @@
 			$this->year_id = $year_id;
 			
 
-			$sql = "INSERT INTO add_book (user_id, book_title, author_name, catg_id, month_id, year_id, classification, task_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO add_book (user_id, book_title, author_name, catg_id, month_id, year_id, classification, task_date, hash_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->user_id, $this->book_title, $this->author_name, $this->category_id, $this->month_id,$this->classification, $this->year_id, $task_date ]);
+			$stmt->execute([$this->user_id, $this->book_title, $this->author_name, $this->category_id, $this->month_id,$this->classification, $this->year_id, $task_date, $this->hash_id]);
 
 		}
 
@@ -200,7 +201,7 @@
 			$this->user_id = $user_id;
 			$this->year = $year;
 
-			$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? ORDER BY month_id, add_book.id;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
+			$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date, classification, hash_id FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? ORDER BY month_id, add_book.id;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->user_id, $this->year]);
 			$result = $stmt->fetchAll();
@@ -240,9 +241,9 @@
 			
 			?>
 			<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
-				<input hidden class="delete_book_input" value="<?php echo $data['add_book_id'] ?>">
-				<button class="edit_book_button" onclick="editReadingEvent(<?php echo $data['add_book_id']; ?>)"><img alt="edit books' information" src="images/edit.png"></button>
-				<button onclick="deleteBook(<?php echo $data['add_book_id']; ?>, <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
+				<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
+				<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
+				<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
 			</div>
 	
 
@@ -258,7 +259,7 @@
 			$this->user_id = $user_id;
 			$this->year = $year;
 
-			$sql = "SELECT add_book.id, book_title, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? ORDER BY month_id, add_book.id;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
+			$sql = "SELECT add_book.id, book_title, author_name, catg_name, month_name, year_number, task_date, classification, hash_id FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? ORDER BY month_id, add_book.id;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->user_id, $this->year]);
 			$result = $stmt->fetchAll();
@@ -267,7 +268,7 @@
 			echo '<div class="books">';
 			foreach($result as $data){ ?>
 			
-			<div onclick="editReadingEvent(<?php echo $data['id'] ?>)" class="box" value="<?php echo $data['month_name'] ?>">
+			<div class="box" value="<?php echo $data['month_name'] ?>">
 			
 			
 			<?php 
@@ -298,9 +299,9 @@
 		
 			?>
 			<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
-				<input hidden class="delete_book_input" value="<?php echo $data['add_book_id'] ?>">
-				<button class="edit_book_button" onclick="editReadingEvent(<?php echo $data['add_book_id'] ?>)"><img alt="edit books' information" src="images/edit.png"></button>
-				<button onclick="deleteBook(<?php echo $data['add_book_id']; ?>, <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
+				<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
+				<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
+				<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
 			</div>
 	
 
@@ -316,7 +317,7 @@
 			$this->year = $year;
 			$this->month_name = $month;
 
-			$sql = "SELECT add_book.id, book_title, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? and month_name = ? ORDER BY month_id, add_book.id;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
+			$sql = "SELECT add_book.id, book_title, author_name, catg_name, month_name, year_number, task_date, classification, hash_id FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? and month_name = ? ORDER BY month_id, add_book.id;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->user_id, $this->year, $this->month_name]);
 			$result = $stmt->fetchAll();
@@ -325,7 +326,7 @@
 			echo '<div class="books">';
 			foreach($result as $data){ ?>
 			
-			<div onclick="editReadingEvent(<?php echo $data['id'] ?>)" class="box" value="<?php echo $data['month_name'] ?>">
+			<div class="box" value="<?php echo $data['month_name'] ?>">
 			
 			
 			<?php 
@@ -356,9 +357,9 @@
 		
 			?>
 			<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
-				<input hidden class="delete_book_input" value="<?php echo $data['add_book_id'] ?>">
-				<button class="edit_book_button" onclick="editReadingEvent(<?php echo $data['add_book_id'] ?>)"><img alt="edit books' information" src="images/edit.png"></button>
-				<button onclick="deleteBook(<?php echo $data['add_book_id']; ?>, <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
+				<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
+				<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
+				<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
 			</div>
 	
 
@@ -370,13 +371,67 @@
 		}
 
 
+		public function refresh_book($hash_id){
+			$this->$hash_id = $hash_id;
+			
+
+			$sql = "SELECT add_book.id, book_title, author_name, catg_name, month_name, year_number, task_date, classification, hash_id FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE hash_id = ?"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute([$this->hash_id]);
+			$data = $stmt->fetch();
+			
+			?>
+			<div class="books">
+			
+			<div class="box" value="<?php echo $data['month_name'] ?>">
+			
+			<?php 
+			$location = '../bookcovers/bookcover'.$data['id'].'.jpg';
+			
+			if(file_exists($location)==True){
+				echo '<img class="cover" src="bookcovers/bookcover'.$data['id'].'.jpg">';
+			}
+			else {
+				
+				echo '<img class="cover" src="bookcovers/default_bookcover.jpg">';
+			}
+			?>
+			<div class="book_info">
+				<p class="title"><?php echo $data['book_title']; ?></p> <br>
+				<p class="author">Author: <span><?php echo $data['author_name']; ?></span></p>
+				<p class="category">Category: <span><?php echo $data['catg_name']; ?></span></p>
+				<p class="month">Month finished: <span><?php echo $data['month_name']; ?></span></p>
+				<p class="date">Date added: <span><?php echo $data['task_date']; ?></span></p>
+
+				<div class="rating">
+					<p><span class="grade"><?php echo $data['classification']?></span>%</p>
+				</div>
+			</div>
+			
+			<?php 
+
+		
+			?>
+			<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
+				<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
+				<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
+				<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
+			</div>
+	
+
+			</div>
+			
+			<?php  
+			
+		echo '</div>';
+		}
 
 		public function display_books_month($user_id,$month, $year){
 			$this->user_id = $user_id;
 			$this->year = $year;
 			$this->month = $month;
 
-			$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id  JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? AND month_name = ? ORDER BY month_id, add_book.id DESC"; //When I use ORDER BY id DESC that means it will display always the last row added!
+			$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date, classification, hash_id FROM add_book JOIN users ON user_id = users.id  JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? AND month_name = ? ORDER BY month_id, add_book.id DESC"; //When I use ORDER BY id DESC that means it will display always the last row added!
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->user_id, $this->year, $this->month]);
 			$result = $stmt->fetchAll(); ?>
@@ -413,9 +468,9 @@
 			
 			?>
 			<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
-				<input hidden class="delete_book_input" value="<?php echo $data['add_book_id'] ?>">
-				<button class="edit_book_button" onclick="editReadingEvent(<?php echo $data['add_book_id']; ?>)"><img alt="edit books' information" src="images/edit.png"></button>
-				<button onclick="deleteBook(<?php echo $data['add_book_id']; ?>, <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
+				<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
+				<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
+				<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
 			</div>
 
 			</div>
@@ -513,9 +568,9 @@
 			
 			?>
 				<div>
-					<input hidden class="delete_book_input" value="<?php echo $data['add_book_id'] ?>">
-					<button class="edit_book_button" onclick="editReadingEvent(<?php echo $data['add_book_id']; ?>)"><img alt="edit books' information" src="images/edit.png"></button>
-					<button onclick="deleteBook(<?php echo $data['add_book_id']; ?>, <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
+					<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
+				<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
+				<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
 
 				</div>
 		
@@ -525,13 +580,13 @@
 			}
 		}
 
-		public function display_edit_book($user_id, $add_book_id){
+		public function display_edit_book($user_id, $hash_id){
 			$this->user_id = $user_id;
-			$this->add_book_id = $add_book_id;
+			$this->hash_id = $hash_id;
 
-			$sql = "SELECT add_book.id, book_title, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND add_book.id = ?";
+			$sql = "SELECT add_book.id, book_title, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND hash_id = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->user_id, $this->add_book_id]);
+			$stmt->execute([$this->user_id, $this->hash_id]);
 			$result = $stmt->fetchAll();
 
 			if(empty($result)){
@@ -564,16 +619,16 @@
 					<p class="month_text">Month finished:</p><br>
 					<?php 
 						$month = new BookEvent();
-						echo $month->display_months_edit($add_book_id);?><br>
+						echo $month->display_months_edit($hash_id);?><br>
 					<p class="year_text">Year finished:</p>
 					<?php echo ' <p class="edit_year_number">'.$data["year_number"].'</p> '?>
 					<p class="classification">Grade:</p>
 					<input name="classification" class="classification_input" value="<?php echo $data['classification']; ?>">
-					<?php echo ' <input style="display:none" name="add_book_id" value="'.$add_book_id.'"> ' //In here a created a input that stores the add_book_id. It is then passed to the edit_book.php file to update the values. ?>
+					<?php echo ' <input style="display:none" name="hash_id" value="'.$hash_id.'"> ' //In here a created a input that stores the hash_id. It is then passed to the edit_book.php file to update the values. ?>
 					
 					<div>
-						<input hidden class="add_book_id_input" value="<?php echo $add_book_id ?>" name="add_book_id" type="text">
-						<input hidden class="book_id_input" value="<?php echo $data['book_id']; ?>" name="book_id" type="text">
+						<input hidden class="hash_id_input" value="<?php echo $hash_id; ?>" name="hash_id" type="text">
+						<input hidden class="type-reload" name="type-reload" value="<?php  ?>">
 						
 					</div>
 					<button class="delete_cover">Delete book cover</button>
@@ -586,32 +641,32 @@
 			}
 		}
 
-		public function update_book_title ($add_book_id, $book_title) {//Updates the book's title!
+		public function update_book_title ($hash_id, $book_title) {//Updates the book's title!
 			$this->book_title = $book_title;
-			$this->add_book_id = $add_book_id;
+			$this->hash_id = $hash_id;
 
 			$sql = "UPDATE add_book
-			SET book_title = ? WHERE add_book.id = ?;";
+			SET book_title = ? WHERE hash_id= ?";
 	
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->book_title, $this->add_book_id]);
+			$stmt->execute([$this->book_title, $this->hash_id]);
 				
 		}
 	
-		public function update_author_name ($add_book_id, $author_name) {//Updates the author's name
+		public function update_author_name ($hash_id, $author_name) {//Updates the author's name
+			$this->hash_id = $hash_id;
 			$this->author_name = $author_name;
-			$this->add_book_id = $add_book_id;
 
 			$sql = "UPDATE add_book
-			SET author_name = ? WHERE add_book.id = ?;";
+			SET author_name = ? WHERE hash_id = ?;";
 	
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->author_name, $this->add_book_id]);
+			$stmt->execute([$this->author_name, $this->hash_id]);
 						
 		}
 	
-		public function update_category ($add_book_id, $category) {//Updates the category's name
-			$this->add_book_id = $add_book_id;
+		public function update_category ($hash_id, $category) {//Updates the category's name
+			$this->hash_id = $hash_id;
 			$this->category = $category;
 
 			$data = new BookEvent();
@@ -621,17 +676,17 @@
 			$sql = "UPDATE add_book
 			JOIN users ON user_id = users.id
 			JOIN categories ON catg_id = categories.id
-			SET catg_id = ? WHERE add_book.id = ?;";
+			SET catg_id = ? WHERE hash_id = ?;";
 	
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$catg_id, $this->add_book_id]);	
+			$stmt->execute([$catg_id, $this->hash_id]);	
 		
 			//On this one, I need to implement a system so that the user can only add, edit and delete their categories.
 			
 		}
 	
-		public function update_month_finished ($add_book_id, $month) {//Updates the category's name
-			$this->add_book_id = $add_book_id;
+		public function update_month_finished ($hash_id, $month) {//Updates the category's name
+			$this->hash_id = $hash_id;
 			$this->month_name = $month;
 
 			$data = new BookEvent();
@@ -641,29 +696,29 @@
 				$sql = "UPDATE add_book
 				JOIN users ON user_id = users.id
 				JOIN month_finished ON month_id = month_finished.id
-				SET month_id = ? WHERE add_book.id = ?;";
+				SET month_id = ? WHERE hash_id = ?;";
 	
 				$stmt = $this->connect()->prepare($sql);
-				$stmt->execute([$month_id, $this->add_book_id]);
+				$stmt->execute([$month_id, $this->hash_id]);
 				
 			
 		}
 
-		public function update_classification($add_book_id, $classification){
-			$this->add_book_id = $add_book_id;
+		public function update_classification($hash_id, $classification){
+			$this->hash_id = $hash_id;
 			$this->classification = $classification;
 
 			$sql = "UPDATE add_book SET classification = ? WHERE id = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->classification, $this->add_book_id]);
+			$stmt->execute([$this->classification, $this->hash_id]);
 		}
 
-		public function update_info($add_book_id, $book_title, $author_name, $category, $month, $classification){
+		public function update_info($hash_id, $book_title, $author_name, $category, $month, $classification){
 			$update = new BookEvent();
-			$update->update_book_title($add_book_id, $book_title);
-			$update->update_author_name($add_book_id, $author_name);
-			$update->update_category($add_book_id, $category);
-			$update->update_month_finished($add_book_id, $month);
+			$update->update_book_title($hash_id, $book_title);
+			$update->update_author_name($hash_id, $author_name);
+			$update->update_category($hash_id, $category);
+			$update->update_month_finished($hash_id, $month);
 			$update->update_classification($book_title, $classification);
 		}
 		
@@ -683,10 +738,10 @@
 			return $result['year_number'];
 		}
 
-		public function delete_book($add_book_id){
-			$sql = "SELECT book_title, author_name, month_name, year_id, year_number, user_id FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE add_book.id = ?";
+		public function delete_book($hash_id){
+			$sql = "SELECT add_book.id AS add_book_id, book_title, author_name, month_name, year_id, year_number, user_id FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE hash_id = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$add_book_id]);
+			$stmt->execute([$hash_id]);
 			$result = $stmt->fetch();
 			$this->book_title = $result['book_title'];
 			$this->author_name = $result['author_name'];
@@ -694,11 +749,12 @@
 			$this->year = $result['year_number'];
 			$this->year_id = $result['year_id'];
 			
-			
+			$add_book_id = $result['add_book_id']; //add_book id got from hash_id
+
 			//Deleting add_book item
-			$sql = "DELETE FROM add_book WHERE id = ?";
+			$sql = "DELETE FROM add_book WHERE hash_id = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$add_book_id]);
+			$stmt->execute([$hash_id]);
 
 			//Since I excluded the author's and book's table, I didn't needed the functionality it was here. So I excluded them.
 
@@ -779,11 +835,11 @@
 
 
 		}
-		public function display_months_edit($reading_event_id){
+		public function display_months_edit($hash_id){
 			//Getting the month the user read the edited book from the DB;
-			$sql = "SELECT * FROM add_book WHERE id = ?"; //Searching for the id.
+			$sql = "SELECT * FROM add_book WHERE hash_id = ?"; //Searching for the id.
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$reading_event_id]);
+			$stmt->execute([$hash_id]);
 			$result = $stmt->fetch();
 
 			$month_id = $result['month_id'];//
@@ -868,4 +924,54 @@
 			return $result['number'];
 
 		}
+
+		public function showUniqueBook($hash_id){
+			$this->hash_id = $hash_id;
+			$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date, classification, hash_id FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE hash_id = ?"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute([$this->hash_id]);
+			$data = $stmt->fetch();
+			?>
+			
+			<div class="box" value="<?php echo $data['month_name'] ?>">
+			
+			
+			<?php 
+			$location = 'bookcovers/bookcover'.$data['add_book_id'].'.jpg';
+
+			if(file_exists($location)==True){
+				echo '<img class="cover" src="'.$location.'">';
+			}
+			else {
+				
+				echo '<img class="cover" src="bookcovers/default_bookcover.jpg">';
+			}
+			?>
+			<div class="book_info">
+				<p class="title"><?php echo $data['book_title']; ?></p> <br>
+				<p class="author">Author: <span><?php echo $data['author_name']; ?></span></p>
+				<p class="category">Category: <span><?php echo $data['catg_name']; ?></span></p>
+				<p class="month">Month finished: <span><?php echo $data['month_name']; ?></span></p>
+				<p class="date">Date added: <span><?php echo $data['task_date']; ?></span></p>
+
+				<div class="rating">
+					<p><span class="grade"><?php echo $data['classification']?></span>%</p>
+				</div>
+			</div>
+			
+			<?php 
+
+			
+			?>
+			<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
+				<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
+				<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
+				<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
+			</div>
+	
+
+			</div>
+			
+			<?php  
+			}
 	}

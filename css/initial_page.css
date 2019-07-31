@@ -26,13 +26,13 @@ body {
 	height: 100%;
 	width: 100%;
 	z-index: 100;
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content{
 	padding: 20px;
 	margin: 4% auto;
-	width: 40%;
+	width: 50%;
 	background-color: white;
 	height: 550px;
 	border: solid 1px #888;
@@ -42,10 +42,15 @@ body {
 }
 .modal-content .close{
 	position: absolute;
-	right: 0;
-	top: 0;
-	font-size: 100px;
+	right: 30px;
+	top: -30px;
+	font-size: 150px;
 	margin: 0;
+	cursor: pointer;
+	color: white;
+}
+.close:hover{
+	color: black;
 }
 
 .modal-content input {
@@ -72,6 +77,38 @@ body {
 	font-family: Poiret One;
 	
 }
+.message{
+	color: red;
+	font-size: 25px;
+}
+
+
+/*Loading Animation*/
+.loading-modal{
+	position: absolute;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	top: 0;
+	left: 0;
+	min-height: 100%;
+	background-color: rgba(1,1,1,0.8);
+}
+.loader {
+	width: 120px;
+    height: 120px;
+    border: 30px solid #f3f3f3; /* Light grey */
+    border-top: 30px solid #EA9010; /* Blue */
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+ 
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 
 nav {
 	background-color: #EA9010;

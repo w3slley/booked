@@ -3,8 +3,8 @@ include "../classes/BookEvent.php";
 session_start();
 
 $id = $_SESSION['id'];
-$add_book_id = $_POST['add_book_id'];
+$hash_id = $_POST['hash_id'];
 
 $data = new BookEvent();
-$data->display_edit_book($id, $add_book_id);
+$data->display_edit_book($id, $hash_id);
 

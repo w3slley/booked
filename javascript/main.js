@@ -1,3 +1,30 @@
+//Add book into DB
+$('.nav-add').on('submit', function(event){
+	event.preventDefault();
+	$('.message').html('');
+	let bookTitle = $('.book-title').val();
+	let authorName = $('.author-name').val();
+	let category = $('.category').val();
+	let month = $('.month_nav').val();
+	let year = $('.year').val();
+	let classification = parseInt($('.classification').val());
+
+	let loadingModal = $('.loading-modal');
+	loadingModal[0].style.display = "flex";
+
+
+	$.post('includes/add_book.inc.php', {book:bookTitle, author:authorName, category:category, month:month, year:year, classification: classification}, function(data){
+		$('.message').html(data);
+		loadingModal[0].style.display = "none";
+		if(parseInt(data)>1900 || parseInt(data)<2100){
+			window.location = "initial_page.php?year="+data;
+		}
+		
+	});
+
+});
+
+
 //Displaying months when scrolled
 window.onscroll = function(){
 	//console.log(window.scrollY);//This is how you get the number of pixels scrolled!! I spend a lot of time trying to find this shit...
@@ -30,12 +57,12 @@ let box = document.querySelectorAll('.box');
 
 
 //Function that deletes reading event from DB
-function deleteBook(id, year){
+function deleteBook(hashId, year){
 	let q = confirm("If you really want to delete this book from your list, press OK.");//User is asked if really want to exclude the book
 	if(q == true){ //If positive,
-		$.post('includes/delete_book.php', {add_book_id: id, year: year}, function(data){ //sends data via Ajax to file delete_book.php where the "reading event" (still need to find a way to call this) will be deleted
-		
-			window.location = 'initial_page.php?year='+data+'&del=success'; //Gets one data from the php file and it's the last year the user has. Then, the user will be redirected for the page of the books read in the last year.
+		$.post('includes/delete_book.php', {hash_id: hashId, year: year}, function(data){ //sends data via Ajax to file delete_book.php where the "reading event" (still need to find a way to call this) will be deleted
+			console.log(data);
+			//window.location = 'initial_page.php?year='+data+'&del=success'; //Gets one data from the php file and it's the last year the user has. Then, the user will be redirected for the page of the books read in the last year.
 			
 		});
 	}
@@ -58,7 +85,7 @@ $('.delete_cover').click(function(e){
 $('#add_cover').click(function(e){
 	e.preventDefault();
 	$.post('includes/add_bookcover.php', {add_book_id: addBookId, book_id: bookId}, function(data){
-		alert('The bookcover was downloaded!');
+		alert('The bookcover was _book_ced!');
 		window.location = 'initial_page.php?edit=true&add_book='+addBookId+'&book_id='+bookId;
 	});
 });
@@ -117,6 +144,12 @@ window.onclick = function(event){
 	}
 }
 
+
+let close = $('.close');
+close.on('click', function(){
+	modal.style.display = 'none';
+	
+});
 window.onkeyup = function(event){
 	if(event.keyCode == 27){
 		editModal.style.display = 'none';
@@ -124,9 +157,9 @@ window.onkeyup = function(event){
 	}
 }
 
-function editReadingEvent($add_book_id){
+function editReadingEvent(hashId){
 	editModal.style.display = 'block';
-	$.post('includes/edit_modal.php', {add_book_id: $add_book_id}, function(data){
+	$.post('includes/edit_modal.php', {hash_id: hashId}, function(data){
 		editModalContent.innerHTML = data;
 
 		//AJAX in EDIT SECTION
@@ -137,13 +170,13 @@ function editReadingEvent($add_book_id){
 		let month = document.querySelector('.month_edit');
 		let year = document.querySelector('.edit_year_number');
 		let classificationEdit = document.querySelector('.classification_input');
-		let addBookIdEdit = document.querySelector('.add_book_id_input'); 
+		let hashIdEdit = document.querySelector('.hash_id_input'); 
 
-		//let url = window.location.search;
+		
 		
 		//update info
 		title.onkeyup = function(){
-			$.post('includes/edit_book.php', {addBookId: addBookIdEdit.value, title: title.value}, function(){
+			$.post('includes/edit_book.php', {hash_id: hashIdEdit.value, title: title.value}, function(){
 				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
 					$('.books').html(data);
 					displayGrade();
@@ -153,7 +186,7 @@ function editReadingEvent($add_book_id){
 			});
 		}
 		author.onkeyup = function(){
-			$.post('includes/edit_book.php', {addBookId: addBookIdEdit.value, author: author.value}, function(){
+			$.post('includes/edit_book.php', {hash_id: hashIdEdit.value, author: author.value}, function(){
 				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
 					$('.books').html(data);
 					displayGrade();
@@ -165,7 +198,7 @@ function editReadingEvent($add_book_id){
 
 		month.onchange = function(){
 
-			$.post('includes/edit_book.php', {addBookId: addBookIdEdit.value, month: month.value}, function(){
+			$.post('includes/edit_book.php', {hash_id: hashIdEdit.value, month: month.value}, function(){
 				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
 					$('.books').html(data);
 					displayGrade();
@@ -175,7 +208,7 @@ function editReadingEvent($add_book_id){
 		}
 
 		classificationEdit.onkeyup = function(){
-			$.post('includes/edit_book.php', {addBookId: addBookIdEdit.value, classification: classificationEdit.value}, function(){
+			$.post('includes/edit_book.php', {hash_id: hashIdEdit.value, classification: classificationEdit.value}, function(){
 				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
 					$('.books').html(data);
 					displayGrade();
@@ -184,10 +217,9 @@ function editReadingEvent($add_book_id){
 			});
 		}
 
-		//refresh initial page
+		
 		
 	
 	});
 
-	
 }

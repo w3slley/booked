@@ -1,11 +1,12 @@
 <?php
 include "../classes/BookEvent.php";
-//Procedure to delete the book from list:
-if(isset($_POST['add_book_id'])){
-    $add_book_id= $_POST['add_book_id'];
+//Procedure to delete the book from list: There is still a security vunerability: if the user insert the id of other book, it will delete it even though they have no authority to do so. One alternative is to add a new parameter to the delete_book function: the id. Then. when the user can only delete a note added by him/her.
+if(isset($_POST['hash_id'])){
+    
+    $hash_id= $_POST['hash_id'];
     $year = $_POST['year'];
     $event = new BookEvent();
-    $last_year = $event->delete_book($add_book_id);
+    $last_year = $event->delete_book($hash_id);
 
     $check_year = $event->find_year($year);
     if($check_year == True){
