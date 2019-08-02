@@ -54,7 +54,6 @@ body {
 }
 
 .modal-content input {
-	outline: none;
 	border: solid 1px black;
 	padding: 10px 10px 10px 10px;
 	border-radius: 5px;
@@ -401,6 +400,7 @@ p .years {
 	padding: 0 2px 0 2px;
 	border-radius: 5px;
 	font-size: 20px;
+
 }
 
 .box button {
@@ -433,13 +433,11 @@ p .years {
 	position: absolute;
 	top: 60px;
 	right: 10px;
-	padding: 20px 10px;
-	border: 1px solid black;
-	border-radius: 5px;
+	padding: 25px;
+	border-radius: 2px;	
 	display: none;
-
-	
 }
+
 .rating p{
 	font-size: 60px;
 	margin: 0;
@@ -550,89 +548,66 @@ p .years {
 	width: 100%;
 	background-color: rgba(1,1,1, 0.7);
 	z-index: 101;
+	align-items: center;
+	justify-content: center;
 }
 .edit-modal-content{
-
-	margin: 4% auto;
 	width: 90%;
+	height: 90%;
 	background-color: white;
-	height: 550px;
-	border: solid 1px #888;
 	border-radius: 5px;
 	text-align: center;
+	background-color: #2E2F2F;
+	border: solid 1px black;
 }
 
 
 /*THIS IS THE STYLING OF THE EDITING SECTION*/
 
 .edit_cover {
-	width: 300px;
-	float: left;
+	width: 30%;
 	border-radius: 2px;
+	margin: 20px 15px;
 
 }
-
-#add_cover {
-	
-	color: white;
-	position: absolute;
-	left: 9%;
-	top: 38%;
-	width: 50px;
-	display: none;
-	cursor: pointer;
-
-}
-
-
 .box_edit{
-	background-color: red;
-	margin: auto;
+	display: flex;
 	width: 100%;
 	height: 100%;
 	position: relative;
 }
 .box_edit form{
-	background-color: blue;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 25%;
-	margin: auto;
+	background-color: #ACA885;
 	height: 100%;
 	width: 30%;
 
 }
+.edit_category_name{
+	font-weight: bold;
+}
+.edit_year_number{
+	font-weight: bold;
+}
 .box_edit p{
-	margin: 5px 40px 5px 40px;
+	margin: 5px 40px 5px 20px;
 	font-size: 25px;
 	text-align: left;
 
 }
 .box_edit input{
-	margin: 0 auto;
-	width: 80%;
+	margin:0 auto;
+	width: 90%;
 	font-size: 25px;
 	border-radius: 5px;
 	font-family: Poiret One;
+	border: solid 1px black;
 }
 .box_edit select{
 	font-size: 25px;
 	font-family: Poiret One;
 	margin: 0;
 }
-.save_button_edit{
-	position: absolute;
-	font-size: 25px;
-	right: 2%;
-	bottom: 2%;
-	border-radius: 5px;
-	font-family: Poiret One;
-	border: none;
-	background-color: white;
-	cursor: pointer;
 
-}
 .delete_cover {
 	position: absolute;
 	font-size: 25px;
@@ -665,6 +640,31 @@ p .years {
 	}
 }
 
+.comment{
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+	border: none;
+	font-family: Poiret One;
+	font-size: 30px;
+	border-radius: 5px;
+
+}
+
+.comment textarea{
+	overflow: auto;
+	width: 90%;
+	height: 80%;
+	resize: none;
+	border: solid 1px black;
+
+}
+.comment p{
+	color: white;
+}
 /*FOOTER*/
 
 footer{

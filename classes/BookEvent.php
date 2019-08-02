@@ -3,22 +3,14 @@
 
 	class BookEvent extends Database{
 		private $user_id;
-
 		private $book_title;
 		private $author_name;
 		private $category;
-		
-		/*private $book_id;
-		private $author_id;*/
 		private $category_id;
-		
-
 		private $month;
 		private $month_id;
 		private $year;
 		private $year_id;
-
-		private $add_book_id;
 		private $hash_id;
 		private $classification;
 
@@ -51,10 +43,6 @@
 			return $result['id'];
 
 		}
-
-		
-
-		
 
 		public function add_category($category){
 			$this->category = $category;
@@ -206,56 +194,64 @@
 			$stmt->execute([$this->user_id, $this->year]);
 			$result = $stmt->fetchAll();
 			
-			
-			echo '<div class="books">';
-			foreach($result as $data){ ?>
-			
-			<div class="box" value="<?php echo $data['month_name'] ?>">
-			
-			
-			<?php 
-			$location = 'bookcovers/bookcover'.$data['add_book_id'].'.jpg';
-
-			if(file_exists($location)==True){
-				echo '<img class="cover" src="'.$location.'">';
+			if(empty($result)){
+				echo '<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books not found. Go to <a style="color: white" href="dashboard.php">dashboard</a></p>';
 			}
-			else {
+			else{
+?>
+				<div class="books">'
+				<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books read in <?php echo $this->year; ?>:</p>'
+<?php
+				foreach($result as $data){ ?>
 				
-				echo '<img class="cover" src="bookcovers/default_bookcover.jpg">';
-			}
-			?>
-			<div class="book_info">
-				<p class="title"><?php echo $data['book_title']; ?></p> <br>
-				<p class="author">Author: <span><?php echo $data['author_name']; ?></span></p>
-				<p class="category">Category: <span><?php echo $data['catg_name']; ?></span></p>
-				<p class="month">Month finished: <span><?php echo $data['month_name']; ?></span></p>
-				<p class="date">Date added: <span><?php echo $data['task_date']; ?></span></p>
+				<div class="box" value="<?php echo $data['month_name'] ?>">
+				
+				
+				<?php 
+				$location = 'bookcovers/bookcover'.$data['add_book_id'].'.jpg';
 
-				<div class="rating">
-					<p><span class="grade"><?php echo $data['classification']?></span>%</p>
+				if(file_exists($location)==True){
+					echo '<img class="cover" src="'.$location.'">';
+				}
+				else {
+					
+					echo '<img class="cover" src="bookcovers/default_bookcover.jpg">';
+				}
+				?>
+				<div class="book_info">
+					<p class="title"><?php echo $data['book_title']; ?></p> <br>
+					<p class="author">Author: <span><?php echo $data['author_name']; ?></span></p>
+					<p class="category">Category: <span><?php echo $data['catg_name']; ?></span></p>
+					<p class="month">Month finished: <span><?php echo $data['month_name']; ?></span></p>
+					<p class="date">Date added: <span><?php echo $data['task_date']; ?></span></p>
+
+					<div class="rating">
+						<p><span class="grade"><?php echo $data['classification']?></span></p>
+					</div>
 				</div>
-			</div>
-			
-			<?php 
+				
+				<?php 
 
-			
-			?>
-			<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
-				<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
-				<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
-				<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
-			</div>
-	
+				
+				?>
+				<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
+					<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
+					<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
+					<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
+				</div>
+		
 
-			</div>
-			
-			<?php  
+				</div>
+				
+				<?php  
+				}
+			echo '</div>';
 			}
-		echo '</div>';
+			
 		}
 
 
-		public function refresh_books_year($user_id, $year){
+		public function refresh_books_year($user_id, $year){ //I created this function because of problems with the location of the bookcovers!
 			$this->user_id = $user_id;
 			$this->year = $year;
 
@@ -290,7 +286,7 @@
 				<p class="date">Date added: <span><?php echo $data['task_date']; ?></span></p>
 
 				<div class="rating">
-					<p><span class="grade"><?php echo $data['classification']?></span>%</p>
+					<p><span class="grade"><?php echo $data['classification']?></span></p>
 				</div>
 			</div>
 			
@@ -312,7 +308,7 @@
 		echo '</div>';
 		}
 
-		public function refresh_books_month($user_id, $year, $month){
+		public function refresh_books_month($user_id, $year, $month){//I created this function because of problems with the location of the bookcovers!
 			$this->user_id = $user_id;
 			$this->year = $year;
 			$this->month_name = $month;
@@ -348,7 +344,7 @@
 				<p class="date">Date added: <span><?php echo $data['task_date']; ?></span></p>
 
 				<div class="rating">
-					<p><span class="grade"><?php echo $data['classification']?></span>%</p>
+					<p><span class="grade"><?php echo $data['classification']?></span></p>
 				</div>
 			</div>
 			
@@ -426,57 +422,63 @@
 		echo '</div>';
 		}
 
+
+
 		public function display_books_month($user_id,$month, $year){
 			$this->user_id = $user_id;
 			$this->year = $year;
 			$this->month = $month;
 
-			$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date, classification, hash_id FROM add_book JOIN users ON user_id = users.id  JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? AND month_name = ? ORDER BY month_id, add_book.id DESC"; //When I use ORDER BY id DESC that means it will display always the last row added!
+			$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date, classification, hash_id FROM add_book JOIN users ON user_id = users.id  JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? AND month_name = ? ORDER BY month_id, add_book.id"; //When I use ORDER BY id DESC that means it will display always the last row added!
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->user_id, $this->year, $this->month]);
-			$result = $stmt->fetchAll(); ?>
-
-			<div class="books"> <?php
-			foreach($result as $data){ ?>
-
-			<div class="box">
-			<?php $location = 'bookcovers/bookcover'.$data['add_book_id'].'.jpg'; ?>
-			
-			<?php 
-			if(file_exists($location)==True){
-				echo '<img class="cover" src="'.$location.'">';
+			$result = $stmt->fetchAll(); 
+			if(empty($result)){
+				echo '<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books not found. Go to <a style="color: white" href="dashboard.php">dashboard</a></p>';
 			}
-			else {
+			else{?>
+			<div class="books"> 
+				<p class="text-month">Books read in <?php echo $this->month; ?> of <?php echo $year; ?>:</p>
+<?php
+
+				foreach($result as $data){ ?>
 				
-				echo '<img class="cover" src="bookcovers/default_bookcover.jpg">';
-			}
-			?>
-			<div class="book_info">
-				<p class="title"><?php echo $data['book_title']; ?></p> <br>
-				<p class="author">Author: <span><?php echo $data['author_name']; ?></span></p>
-				<p class="category">Category: <span><?php echo $data['catg_name']; ?></span></p>
-				<p class="month">Month finished: <span><?php echo $data['month_name']; ?></span></p>
-				<p class="date">Date added: <span><?php echo $data['task_date']; ?></span></p>
-				<div class="rating">
-					<p><span class="grade"><?php echo $data['classification']?></span>%</p>
+				<div class="box">
+					<?php $location = 'bookcovers/bookcover'.$data['add_book_id'].'.jpg'; ?>
+				
+					<?php 
+					if(file_exists($location)==True){
+					echo '<img class="cover" src="'.$location.'">';
+					}
+					else {
+					
+					echo '<img class="cover" src="bookcovers/default_bookcover.jpg">';
+					}
+					?>
+					<div class="book_info">
+						<p class="title"><?php echo $data['book_title']; ?></p> <br>
+						<p class="author">Author: <span><?php echo $data['author_name']; ?></span></p>
+						<p class="category">Category: <span><?php echo $data['catg_name']; ?></span></p>
+						<p class="month">Month finished: <span><?php echo $data['month_name']; ?></span></p>
+						<p class="date">Date added: <span><?php echo $data['task_date']; ?></span></p>
+						<div class="rating">
+							<p><span class="grade"><?php echo $data['classification']?></span></p>
+						</div>
+					</div>
+					<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
+						<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
+						<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
+						<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
+					</div>
+
 				</div>
-			</div>
+<?php 			} ?>
 			
-			<?php 
-
-			
-			
-			?>
-			<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
-				<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
-				<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
-				<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
 			</div>
-
-			</div>
-			</div>
-			<?php  
+  
+<?php		
 			}
+
 		}
 
 		public function books_read_month($user_id, $year, $month){
@@ -632,8 +634,13 @@
 						
 					</div>
 					<button class="delete_cover">Delete book cover</button>
-					<?php echo '<a style="cursor: pointer"><img id="add_cover" src="images/plus.png"></a>'; ?>
+					<!--<?php echo '<a style="cursor: pointer"><img id="add_cover" src="images/plus.png"></a>'; ?> -->
 				</form>
+				<div class="comment">
+					<p>Comments:</p>
+					<textarea spellcheck = "false" class="comment"></textarea>
+				</div>
+				
 
 			</div>
 			<?php
@@ -708,20 +715,11 @@
 			$this->hash_id = $hash_id;
 			$this->classification = $classification;
 
-			$sql = "UPDATE add_book SET classification = ? WHERE id = ?";
+			$sql = "UPDATE add_book SET classification = ? WHERE hash_id = ?";
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->classification, $this->hash_id]);
 		}
 
-		public function update_info($hash_id, $book_title, $author_name, $category, $month, $classification){
-			$update = new BookEvent();
-			$update->update_book_title($hash_id, $book_title);
-			$update->update_author_name($hash_id, $author_name);
-			$update->update_category($hash_id, $category);
-			$update->update_month_finished($hash_id, $month);
-			$update->update_classification($book_title, $classification);
-		}
-		
 
 		public function get_last_year($user_id){
 			$this->user_id = $user_id;
@@ -818,6 +816,33 @@
 			
 
 		}
+		public function display_months_sidebar($id, $year){
+			$url_path = $_SERVER['PHP_SELF'];
+
+			$data = new BookEvent();
+
+?>
+			<div class="months">
+				<p class="books_year">All year: <?php echo $data->books_read_year($id, $year);?> books!</p>
+				<ul id="month_names">			
+					
+					<li><a class="January" href="<?php echo $url_path.'?year='.$year.'&month=january'; ?>">January: <?php echo $data->books_read_month($id, $year, 'January'); ?></a></li>
+					<li><a class="February" href="<?php echo $url_path.'?year='.$year.'&month=february'; ?>">February: <?php echo $data->books_read_month($id, $year, 'February'); ?></a></li>
+					<li><a class="March" href="<?php echo $url_path.'?year='.$year.'&month=march'; ?>">March: <?php echo $data->books_read_month($id, $year, 'March'); ?></a></li>
+					<li><a class="April" href="<?php echo $url_path.'?year='.$year.'&month=april'; ?>">April: <?php echo $data->books_read_month($id, $year, 'April'); ?></a></li>
+					<li><a class="May" href="<?php echo $url_path.'?year='.$year.'&month=may'; ?>">May: <?php echo $data->books_read_month($id, $year, 'May'); ?></a></li>
+					<li><a class="June" href="<?php echo $url_path.'?year='.$year.'&month=june'; ?>">June: <?php echo $data->books_read_month($id, $year, 'June'); ?></a></li>
+					<li><a class="July" href="<?php echo $url_path.'?year='.$year.'&month=july'; ?>">July: <?php echo $data->books_read_month($id, $year, 'July'); ?></a></li>
+					<li><a class="August" href="<?php echo $url_path.'?year='.$year.'&month=august'; ?>">August: <?php echo $data->books_read_month($id, $year, 'August'); ?></a></li>
+					<li><a class="September" href="<?php echo $url_path.'?year='.$year.'&month=september'; ?>">September: <?php echo $data->books_read_month($id, $year, 'September'); ?></a></li>
+					<li><a class="October" href="<?php echo $url_path.'?year='.$year.'&month=october'; ?>">October: <?php echo $data->books_read_month($id, $year, 'October'); ?></a></li>
+					<li><a class="November" href="<?php echo $url_path.'?year='.$year.'&month=november'; ?>">November: <?php echo $data->books_read_month($id, $year, 'November'); ?></a></li>
+					<li><a class="December" href="<?php echo $url_path.'?year='.$year.'&month=december'; ?>">December: <?php echo $data->books_read_month($id, $year, 'December'); ?></a></li>
+				</ul>
+			</div>
+<?php
+		}
+
 
 		public function display_months(){
 			$sql = "SELECT * FROM month_finished";
@@ -832,7 +857,6 @@
 			}
 			
 			echo '</select>';
-
 
 		}
 		public function display_months_edit($hash_id){

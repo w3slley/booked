@@ -63,12 +63,21 @@ Now it's runing as it use to (some error had occur with googletrans but now it's
 1)Fixed some issues with the async editing of the books. I changed the design of the classification from a circle to a square. It's not the way I want and I'll probably change again later. I also fixed the problems with the change I made before regarding the author's and book's table. These were just code I forgot to delete in the BookEvent.php file.
 
 31/07/2019
-This is what I need to do today:
-1)implement error handler in the add book, login and sign up forms.(DONE ONLY IN THE ADD BOOK FORM)
-2)add close button on modals. (DONE ON ADD BOOK MODAL)
-3)finish the design on the edit book section.
-4) I will try to implement a new feature: add a hash_id column in the add_book table. It will allow me to use it in the delete_book function without users knowing the id of books (DONE) and it will allow me to display a single note (with the hash_id in the uri). (DONE PARTIALLY)
 
+1)implemented error handler in the add book form.
+2)added close button on edit modal.
+3) I will try to implement a new feature: add a hash_id column in the add_book table. It will allow me to use it in the delete_book function without users knowing the id of books (DONE) and it will allow me to display a single note (with the hash_id in the uri). (DONE PARTIALLY)
+4)Added hash_id column in the add_book table. Now each book has a unique hash id which makes way harder for anyone to guess what the id of the book really is (both in the edit and delete functions - both are displayed in the front end and could be used as a attack vector).
+
+01/08/2019
+
+1)Fixed ugly code in the initial_page file (it was the one that displayed the months sidebar - now is in the class file and not in the main page).
+2)Added a text area in the edit section for future implementation of the comment system.
+
+02/08/2019
+
+1)Fixed error handler problem with the year and month in the url. Before the user could insert anything there and it wouldn't display nothing. Now there's a error message and a link to the dashboard.
+2)
 
 
 ######################################################################
@@ -76,8 +85,8 @@ I'm back at the development of the web app. I need to implement some features:
 1)Use PDO in the interaction with the mysql database (DONE).
 2)Display categories and months when adding a new book to DB. Give the users the option to choose a category from the db or to add a new one. The same thing could work with the years. (DONE with months)
 3)Do it also in the edit section (DONE with months)
-4)Implement AJAX calls on the entire website.
-5)Create the front end of the index and login page. (DONE - partially)
+4)Implement AJAX calls on the entire website.(DONE on going)
+5)Create the front end of the index and login page. (DONE)
 6)Create the front end of the profile page.
 7)Make sure when the user delete one book and it's the only one read in that particular year, then the user has to be redirected to another page - and not the page of the excluded year (DONE).
 8)Add a last added book in the dashboard. (DONE)
@@ -87,16 +96,21 @@ I'm back at the development of the web app. I need to implement some features:
 12) Solve problem with delete funcionality (DONE)
 13) Create section where users can add comments and classification on the books.
 14) Need to make the classification unique for each user. Right now it's enbeded in the books table. I have to add another column in the add_book table with the name 'classification' or 'grade'.
-15) Add error handlers in the grade part of the modal. I need to make sure that the user can only insert a number from 0 to 100.
-16) I need to fix the problem with the years in the edit section. When you alter the year on it, it doesn't happen. I need to make sure that when a new year is inserted there, it needs the be created in the DB (if it doesn't exist yet) and redirected to there.
-17)Finish the editing section using AJAX.
+15) Add error handlers in the grade part of the modal. I need to make sure that the user can only insert a number from 0 to 100. (DONE)
+16) I need to fix the problem with the years in the edit section. When you alter the year on it, it doesn't happen. I need to make sure that when a new year is inserted there, it needs the be created in the DB (if it doesn't exist yet) and redirected to there.(Instead, I just don't allow users to edit the year anymore. If the want to, they will have to add the book again. I will ponder about this later)
+17)Finish the editing section using AJAX.(DONE partially)
 18)Create a design for the editing section.
-19)Don't forget to fix the security problem in the edit section. Right now, I can edit anyone's books if I know the add_book_id. I need to make sure that only the user that added the book can access it.
-20)Create a new layout for the dashboard.
+19)Don't forget to fix the security problem in the edit section. Right now, I can edit anyone's books if I know the add_book_id. I need to make sure that only the user that added the book can access it. (DONE)
+20)Create a new layout for the dashboard.(IN PROGRESS)
 21)I need to add error handlers in the sign up process.
 22) There are major things I need to implement. First, I have to change the way the reading events are stored in the database. There won't be more books and authors tables. They will be added directely into the reading event. I'll need to do this with the year and category as well. It's going to be a pain in the ass but I need to do it. I won't probabily need to do this with the months and years tables though. If the user made a mistake and inserted a wrong year, they just need to add the book again. (DONE)
-23) Add error handlers in the modal for adding a new book.
+23) Add error handlers in the modal for adding a new book.(DONE)
 24) Implement the feature where only the books in that month are displayed when the user changes its information.
-25) Move some code that right now is in the initial_page.php file to the class BookEvent. That way you only need to instanciate the class from the initial_page.php file and all the mess goes into the class. It can also be useful when the user edit information on the books because I can just update the html in the class using AJAX.
-26)There is still a security vunerability: if the user insert the id of other book, it will delete it even though they have no authority to do so. One alternative is to add a new parameter to the delete_book function: the id. Then. when the user can only delete a note added by him/her. I need to fix this right away.
+25) Move some code that right now is in the initial_page.php file to the class BookEvent. That way you only need to instanciate the class from the initial_page.php file and all the mess goes into the class. It can also be useful when the user edit information on the books because I can just update the html in the class using AJAX.(DONE)
+26)There is still a security vunerability: if the user insert the id of other book, it will delete it even though they have no authority to do so. One alternative is to add a new parameter to the delete_book function: the id. Then, when the user can only delete a note added by him/her. I need to fix this right away. (Fixed this by adding hash_id as an identifier. Now each note has a unique hash id - more complicated then just one number to guess. Even then I still have to implement a security check in the server to see if the user that is trying to delete the note is actually the same user who created it).
+27)Need to implement a way of adding the same book twice in the database (right not it doesn't display the bookcover)! Just a comment: if you press Ctrl + . you can add emoticons... 🤣️
+28) I need to add a username column back into the database...
+29)Edit functionality is not working when searching. I have to fix that.
+30)Make sure that when the user updates the book info the month sidebar is updated as well.
+31)When the user updates the book info in the month section all the books read in the read are displayed. I have to fix that.
 

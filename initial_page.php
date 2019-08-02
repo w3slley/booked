@@ -80,7 +80,7 @@
 
 		$url = $_SERVER['REQUEST_URI']; //This is how you get the current URL from the SERVER!! That's pretty usefull.
 		$year_url_initial = strpos($url, '2'); 
-		$yearInUrl = substr($url, $year_url_initial, 4); //This works like variable[0:5] in python... substr(string, start, lenght)
+		$yearInUrl = substr($url, $year_url_initial, 4); //This works like variable[0:5] in python... substr(string, start, lenght). This thing gets the year out of the url!
 		
 		
 		//The links will take the year from the url! #I also added a new function (books_read_month and books_read_year) that output the number of books read in that particular month and year, respectively!
@@ -101,34 +101,16 @@
 			</form>
 		<?php
 		if(!isset($_GET['home']) AND !isset($_GET['search']) AND !isset($_GET['edit'])) { //This means that the tab with the months will only be shown when there are no 'home', 'search' and 'edit' with values in the url! That means the months will not be shown when the user logs in, when he/she searchs for something and when he/she edits information on books.
-			$data = new BookEvent();
+			$months = new BookEvent();
 
-			echo '
-			<div class="months">
-				<p class="books_year">All year: '.$data->books_read_year($id, $yearInUrl).' books!</p>
-				<ul id="month_names">			
-					
-					<li><a class="January" href="'.$url_path.'?year='.$yearInUrl.'&month=january">January: '.$data->books_read_month($id, $yearInUrl, 'January').'</a></li>
-					<li><a class="February"  href="'.$url_path.'?year='.$yearInUrl.'&month=february">February: '.$data->books_read_month($id, $yearInUrl, 'February').'</a></li>
-					<li><a class="March"  href="'.$url_path.'?year='.$yearInUrl.'&month=march">March: '.$data->books_read_month($id, $yearInUrl, 'March').'</a></li>
-					<li><a class="April"  href="'.$url_path.'?year='.$yearInUrl.'&month=april">April: '.$data->books_read_month($id, $yearInUrl, 'April').'</a></li>
-					<li><a class="May"  href="'.$url_path.'?year='.$yearInUrl.'&month=may">May: </a>'.$data->books_read_month($id, $yearInUrl, 'May').'</a></li>
-					<li><a  class="June"  href="'.$url_path.'?year='.$yearInUrl.'&month=june">June: '.$data->books_read_month($id, $yearInUrl, 'June').'</a></li>
-					<li><a  class="July"  href="'.$url_path.'?year='.$yearInUrl.'&month=july">July: '.$data->books_read_month($id, $yearInUrl, 'July').'</a></li>
-					<li><a  class="August"  href="'.$url_path.'?year='.$yearInUrl.'&month=august">August: '.$data->books_read_month($id, $yearInUrl, 'August').'</a></li>
-					<li><a class="September"  href="'.$url_path.'?year='.$yearInUrl.'&month=september">September: '.$data->books_read_month($id, $yearInUrl, 'September').'</a></li>
-					<li><a class="October"  href="'.$url_path.'?year='.$yearInUrl.'&month=october">October: '.$data->books_read_month($id, $yearInUrl, 'October').'</a></li>
-					<li><a class="November"  href="'.$url_path.'?year='.$yearInUrl.'&month=november">November: '.$data->books_read_month($id, $yearInUrl, 'November').'</a></li>
-					<li><a class="December" href="'.$url_path.'?year='.$yearInUrl.'&month=december">December: '.$data->books_read_month($id, $yearInUrl, 'December').' </a></li>
-				</ul>
-			</div>
-			';
+			$months->display_months_sidebar($id, $_GET['year']); //displays the sidebar with the information regarding the books read on each month of the year.
 		}
+
+
 		//DISPLAY BOOKS READ IN A YEAR!
 		//This is how I got to display the books read in a especific month. 
 		if(isset($_GET['year']) AND !isset($_GET['month'])){ // if there's values in year and no month
 			$year = $_GET['year'];
-			echo '<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books read in '.$year.':</p>';
 			$uri = $_SESSION['path'];
 			$check_position = strpos($uri, 'month');
 			if($check_position == false){ //If there's no month in the uri, then display all the books read in the year! A more elegant solution...
@@ -155,30 +137,8 @@
 		if(isset($_GET['del'])){
 
 			if($_GET['del']=='success'){
-
 					echo "<script>alert('The book you selected is no longer in your list!')</script>";
-					
-					//header("Location: initial_page.php?year=".$_GET['year']);
 				}
-		}
-
-
-		//Action:
-
-		
-		
-		//ADD NEW BOOK COVER FROM THE EDIT SECTION
-		if(isset($_GET['addCover'])){
-			$add_book_id= $_GET['add_book'];
-			if($_GET['addCover'] == 'true'){
-				$download = new BookEvent();
-				$download->download_book_cover_edit($add_book_id);
-				$url = $_SERVER['QUERY_STRING'];
-				$newUrl = str_replace('&addCover=true', '', $url);
-				//header('Location: initial_page.php?'.$newUrl);	//This is supose to solve the problem I'm having with the page not showing the new book cover image.
-			}
-			
-				
 		}
 
 		?>
@@ -192,71 +152,20 @@
 			
 
 		<?php
-			if(isset($_GET['book'])){
+			if(isset($_GET['book'])){//Displaying individual book
 				$book = new BookEvent();
 				$book->showUniqueBook($_GET['book']);
 			}
 
 
 			//This is how I managed to display only the books read in the month selected:
-			
 			$data = new BookEvent();
 			if(isset($_GET['month']) and isset($_GET['year'])){//And if there's value in year and month,
 				$month_name = $_GET['month'];
 				$year_number = $_GET['year'];
 
-				//And if month is equal to these values,
-				if($month_name == "january"){
-					echo '<p class="text-month">Books read in january of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);
+				$data->display_books_month($id, $month_name, $year_number);
 
-				}
-				elseif($month_name == "february"){
-					echo '<p class="text-month">Books read in february of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);	
-				}
-				elseif($month_name == "march"){
-					echo '<p class="text-month">Books read in march of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);	
-				}
-				elseif($month_name == "april"){
-					echo '<p class="text-month">Books read in april of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);	
-				}
-				elseif($month_name == "may"){
-					echo '<p class="text-month">Books read in may of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);	
-				}
-				elseif($month_name == "june"){
-					echo '<p class="text-month">Books read in june of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);	
-				}
-				elseif($month_name == "july"){
-					echo '<p class="text-month">Books read in july of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);	
-				}
-				elseif($month_name == "august"){
-					echo '<p class="text-month">Books read in august of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);	
-				}
-				elseif($month_name == "september"){
-					echo '<p class="text-month">Books read in september of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);	
-				}
-				elseif($month_name == "october"){
-					echo '<p class="text-month">Books read in october of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);	
-				}
-				elseif($month_name == "november"){
-					echo '<p class="text-month">Books read in november of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);	
-				}
-				elseif($month_name == "december"){
-					echo '<p class="text-month">Books read in december of '.$year_number.':</p>';
-					$data->display_books_month($id, $month_name, $year_number);	
-				}
-				//Else, nothing is displayed.
-				
 			}
 		?>
 
