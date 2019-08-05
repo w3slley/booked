@@ -14,9 +14,14 @@ $('.nav-add').on('submit', function(event){
 
 
 	$.post('includes/add_book.inc.php', {book:bookTitle, author:authorName, category:category, month:month, year:year, classification: classification}, function(data){
-		$('.message').html(data);
+		if(data.length != 4){
+			$('.message').html(data);
+		}
+		
 		loadingModal[0].style.display = "none";
-		window.location = "initial_page.php?year="+data;
+		if(parseInt(data)>1900 || parseInt(data)<2100){
+			window.location = "initial_page.php?year="+data;
+		}
 	});
 
 });
