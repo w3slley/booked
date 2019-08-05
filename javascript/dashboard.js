@@ -33,3 +33,9 @@ window.onclick = function(event){
 		modal.style.display = 'none';
 	}
 }
+
+let close = $('.close');
+close.on('click', function(){
+	modal.style.display = 'none';
+	
+});

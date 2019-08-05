@@ -1,6 +1,6 @@
 <?php  
 	session_start();
-	include "includes/dbh.inc.php";
+	
 	include "classes/BookEvent.php";
 	if(isset($_SESSION['id'])){
 	$id = $_SESSION['id'];
@@ -12,7 +12,7 @@
 			<link rel="stylesheet" type="text/css" href="css/dashboard.css">
 			<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One|Satisfy" rel="stylesheet">
-			
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 			
 		</head>
 		<body>

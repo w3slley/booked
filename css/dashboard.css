@@ -68,6 +68,19 @@ body {
 	
 }
 
+.close{
+	position: absolute;
+	right: 30px;
+	top: -30px;
+	font-size: 150px;
+	margin: 0;
+	cursor: pointer;
+	color: white;
+}
+.close:hover{
+	color: black;
+}
+
 #message-add {
 	margin-left: 10px;
 	margin-top: 10px;

@@ -200,7 +200,7 @@
 			else{
 ?>
 				<div class="books">'
-				<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books read in <?php echo $this->year; ?>:</p>'
+				<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books read in <?php echo $this->year; ?>:</p>
 <?php
 				foreach($result as $data){ ?>
 				
@@ -260,8 +260,10 @@
 			$stmt->execute([$this->user_id, $this->year]);
 			$result = $stmt->fetchAll();
 			
-			
-			echo '<div class="books">';
+?>
+			<div class="books">
+			<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books read in <?php echo $this->year; ?>:</p>
+<?php
 			foreach($result as $data){ ?>
 			
 			<div class="box" value="<?php echo $data['month_name'] ?>">

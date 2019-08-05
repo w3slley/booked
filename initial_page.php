@@ -1,8 +1,8 @@
 <?php 
 	session_start();
 	include "classes/BookEvent.php";
-	include "includes/dbh.inc.php";
 	$id = $_SESSION['id'];
+	$data = new BookEvent();
 
 	if(!isset($id)){
 		header("Location: index.php");
@@ -30,8 +30,8 @@
 						<input class="category" type="text" name="category" placeholder="Category"><br>
 						
 						<?php 
-							$month = new BookEvent();
-							echo $month->display_months();
+							
+							echo $data->display_months();
 						?><br>
 						<input class="year" type="text" name="year" placeholder="Year finished"><br>
 						<input class="classification" type="text" name="classification" placeholder="Your grade (0-100)"><br>
@@ -65,8 +65,8 @@
 			<a href="dashboard.php"><img class="home-icon" src="images/home.png"></a>
 			<div class="years">
 			<?php
-			$years_nav = new BookEvent();
-			$years_nav->display_years_homepage($id); 
+			
+			$data->display_years_homepage($id); 
 			?>
 			</div>
 			
@@ -101,9 +101,9 @@
 			</form>
 		<?php
 		if(!isset($_GET['home']) AND !isset($_GET['search']) AND !isset($_GET['edit'])) { //This means that the tab with the months will only be shown when there are no 'home', 'search' and 'edit' with values in the url! That means the months will not be shown when the user logs in, when he/she searchs for something and when he/she edits information on books.
-			$months = new BookEvent();
+			
 
-			$months->display_months_sidebar($id, $_GET['year']); //displays the sidebar with the information regarding the books read on each month of the year.
+			$data->display_months_sidebar($id, $_GET['year']); //displays the sidebar with the information regarding the books read on each month of the year.
 		}
 
 
@@ -114,8 +114,8 @@
 			$uri = $_SESSION['path'];
 			$check_position = strpos($uri, 'month');
 			if($check_position == false){ //If there's no month in the uri, then display all the books read in the year! A more elegant solution...
-				$display = new BookEvent();
-				$display->display_books_year($id, $year);
+				
+				$data->display_books_year($id, $year);
 
 			}
 		}	
@@ -125,7 +125,7 @@
 			$search = "%{$_GET['search']}%"; //This is how you use this variable with LIKE. You have to insert the $_GET inside {} and then use %!
 			$search_displayed = str_replace("%", "", $search);
 			echo "<p style='margin: 0 0 10px 0;'class='text_search_result'>Results for  \"".$search_displayed."\":</p>";
-			$data = new BookEvent();
+			
 			$data->search($id, $search);
 		}
 		
@@ -153,13 +153,13 @@
 
 		<?php
 			if(isset($_GET['book'])){//Displaying individual book
-				$book = new BookEvent();
-				$book->showUniqueBook($_GET['book']);
+				
+				$data->showUniqueBook($_GET['book']);
 			}
 
 
 			//This is how I managed to display only the books read in the month selected:
-			$data = new BookEvent();
+			
 			if(isset($_GET['month']) and isset($_GET['year'])){//And if there's value in year and month,
 				$month_name = $_GET['month'];
 				$year_number = $_GET['year'];
