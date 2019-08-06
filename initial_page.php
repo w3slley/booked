@@ -13,53 +13,14 @@
 		<html>
 		<head>
 			<title>Booked | Keep track of books you read!</title>
+			<link rel="stylesheet" type="text/css" href="css/main.css">
 
-			<link rel="stylesheet" type="text/css" href="css/initial_page.css">
-			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One|Dosis|Satisfy" rel="stylesheet">
-			<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<?php include 'layouts/links.php' ?>
 		</head>
 		<body>
 		<div class="container">
-			<div class="modal">
-				<div class="modal-content">
-					<span class="close">&times;</span>
-					<form class="nav-add" method="POST" action="includes/add_book.inc.php">
-						<input class="book-title" type="text" name="book" placeholder="Book title"><br>
-						<input class="author-name" type="text" name="author" placeholder="Author"><br>
-						<input class="category" type="text" name="category" placeholder="Category"><br>
-						
-						<?php 
-							
-							echo $data->display_months();
-						?><br>
-						<input class="year" type="text" name="year" placeholder="Year finished"><br>
-						<input class="classification" type="text" name="classification" placeholder="Your grade (0-100)"><br>
-						
-						<button type="submit" name="submit">Add book</button>
-						<p class="message"></p>
-					</form>
-					<div class="loading-modal">
-						<div class="loader"></div>
-					</div>
-					
-					
-				</div>
-			</div>
-		
-			<nav class="nav">
-				<div class="logo">
-					<img src="images/books.svg" >
-					<p>Booked</p>
-				</div>
-				<p class="add-book"><img style="width: 30px" src="images/plus2.png">Add book</p>
-				
-				<form method="POST" action="includes/logout.inc.php">
-					<button class="logout-button" type="submit" name="submit">Logout</button>
-				</form>
-				<a class="profile" href="profile.php">Profile</a>
-			</nav>
-	
+			<?php include 'layouts/addBook-modal.php'; ?>		
+			<?php include 'layouts/nav.php'; ?>
 
 		<div class="navbar"> 
 			<a href="dashboard.php"><img class="home-icon" src="images/home.png"></a>
@@ -100,7 +61,7 @@
 			<button type="submit">Search</button>
 			</form>
 		<?php
-		if(!isset($_GET['home']) AND !isset($_GET['search']) AND !isset($_GET['edit'])) { //This means that the tab with the months will only be shown when there are no 'home', 'search' and 'edit' with values in the url! That means the months will not be shown when the user logs in, when he/she searchs for something and when he/she edits information on books.
+		if(!isset($_GET['home']) AND !isset($_GET['search']) AND !isset($_GET['edit']) AND !isset($_GET['book'])) { //This means that the tab with the months will only be shown when there are no 'home', 'search', 'edit' and 'book' (individual book parsed via hash_id) with values in the url! That means the months will not be shown when the user logs in, when he/she searchs for something and when he/she edits information on books.
 			
 
 			$data->display_months_sidebar($id, $_GET['year']); //displays the sidebar with the information regarding the books read on each month of the year.
@@ -153,8 +114,12 @@
 
 		<?php
 			if(isset($_GET['book'])){//Displaying individual book
-				
-				$data->showUniqueBook($_GET['book']);
+				if($data->showUniqueBook($_GET['book']) != False){
+					$data->showUniqueBook($_GET['book']);
+				}
+				else{
+					echo 'Your book was not found. Go to the <a href="dashboard.php">Dashboard</a>';
+				}
 			}
 
 
@@ -169,14 +134,7 @@
 			}
 		?>
 
-		<footer>
-			<ul>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Blog</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-			<p class="trademark">Created by Weslley. 2018-2019. All rights reserved. </p>
-		</footer>
+		<?php include 'layouts/footer.php' ?>
 		</div>
 		<script src="javascript/main.js"></script>
 		</body>

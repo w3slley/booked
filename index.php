@@ -1,9 +1,13 @@
 <?php  
-	
+	session_start();
 	if(isset($_SESSION['id'])){
 		header("Location: dashboard.php");
 	}
-	else { ?>
+	else { 
+	/*setcookie('userId', hash('sha256', 'text'));*/
+
+
+	?>
 
 	<!DOCTYPE html>
 	<html>
@@ -16,10 +20,7 @@
 		
 	</head>
 	<body>
-		
-	<?php 
-		if(!isset($_SESSION['id'])) {?>
-		
+
 		<div class="header">
 			<nav>
 				
@@ -41,8 +42,8 @@
 			</div>
 			<div class="sign-up">
 				<form method="POST" action="includes/signup.inc.php">
-					
 					<input type="text" name="name" placeholder="Name"><br>
+					<input type="text" name="user-name" placeholder="Username"><br>
 					<input type="email" name="email" placeholder="E-mail"><br>
 					<input type="password" name="password" placeholder="Password"><br>
 					<input type="password" name="password2" placeholder="Repeat password"><br>
@@ -128,6 +129,4 @@
 		<script src="javascript/index.js"></script>
 	</body>
 	</html>
-	<?php }
-?>
 

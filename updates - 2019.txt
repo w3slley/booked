@@ -86,6 +86,10 @@ I messed around with the commits and ended up going back to a previous version n
 2)Removed all variables linked to the BookEvent class and only initiated one: $data = new BookEvent(). It will be used to call all methods in the class.
 3)Fixed add book interaction in the dashboard.php file. Not the user can add a book as intended.
 
+06/08/2018
+1)Fixed session problems I was having in the index page and also in the dashboard page (I forgot to add the session_start() in the beginning of the page).
+2)
+
 ######################################################################
 I'm back at the development of the web app. I need to implement some features:
 1)Use PDO in the interaction with the mysql database (DONE).

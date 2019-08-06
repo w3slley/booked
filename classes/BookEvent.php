@@ -957,8 +957,11 @@
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->hash_id]);
 			$data = $stmt->fetch();
-			?>
-			
+			if(empty($data)){
+				return False;
+			}
+			else{?>
+
 			<div class="box" value="<?php echo $data['month_name'] ?>">
 			
 			
@@ -984,11 +987,6 @@
 					<p><span class="grade"><?php echo $data['classification']?></span>%</p>
 				</div>
 			</div>
-			
-			<?php 
-
-			
-			?>
 			<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
 				<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
 				<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
@@ -998,6 +996,7 @@
 
 			</div>
 			
-			<?php  
-			}
+<?php 
+			}		 
+		}
 	}

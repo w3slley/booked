@@ -8,17 +8,18 @@
 	}
 
 	else {
-
-		$email = $_POST['email'];
+		
+		$email_username = $_POST['email'];
 		$password = $_POST['password'];
 
 		$login = new User();
-		$data = $login->login($email, $password);
+		$data = $login->login($email_username, $password);
 		if($data != False){
 			session_start();
 
 		
 			$_SESSION['name'] = $data['name'];
+			$_SESSION['user_name'] = $data['user_name'];
 			$_SESSION['email'] = $data['email'];
 			$_SESSION['id'] = $data['id'];
 			

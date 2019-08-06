@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+session_start();
+if(isset($_SESSION['id'])){
+    header('Location: dashboard.php');
+}
+else{ ?>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,8 +22,8 @@
             <div class="logo">
                 
                 <p><img src="images/books.svg" >Booked</p>
-			</div>
-            <p>Email:</p><br>         
+            </div>
+            <p>Email or Username:</p><br>         
             <input autofocus type="name" name="email"><br>
             <p>Password:</p><br>
             <input type="password" name="password"><br>
@@ -26,3 +32,6 @@
     </div>
 </body>
 </html>
+
+<?php
+}

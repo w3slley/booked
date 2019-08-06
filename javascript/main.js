@@ -58,7 +58,6 @@ let deleteButton = document.querySelectorAll('.delete_book_button');
 let box = document.querySelectorAll('.box');
 
 
-
 //Function that deletes reading event from DB
 function deleteBook(hashId, year){
 	let q = confirm("If you really want to delete this book from your list, press OK.");//User is asked if really want to exclude the book
@@ -125,7 +124,6 @@ window.onclick = function(event){
 		modal.style.display = 'none';
 	}
 }
-
 
 let close = $('.close');
 close.on('click', function(){

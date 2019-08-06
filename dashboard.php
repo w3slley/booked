@@ -5,15 +5,14 @@
 	if(isset($_SESSION['id'])){
 	$id = $_SESSION['id'];
 	$data = new BookEvent();
+
 ?>
 <!DOCTYPE html>
 		<html>
 		<head>
 			<title>Booked | Dashboard</title>
 			<link rel="stylesheet" type="text/css" href="css/dashboard.css">
-			<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display|Poiret+One|Satisfy" rel="stylesheet">
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<?php include 'layouts/links.php'; ?>
 			
 		</head>
 		<body>
@@ -43,18 +42,7 @@
 					
 				</div>
 			</div>
-			<nav>
-				<div class="logo">
-					<img src="images/books.svg" >
-					<p>Booked</p>
-				</div>
-				<p class="add-book"><img style="width: 30px" src="images/plus2.png">Add book</p>
-				
-				<form method="POST" action="includes/logout.inc.php">
-					<button class="logout-button" type="submit" name="submit">Logout</button>
-				</form>
-				<a class="profile" href="profile.php">Profile</a>
-			</nav>
+			<?php include 'layouts/nav.php'; ?>
 
 
 			<div class="body-div">
@@ -69,9 +57,7 @@
 					<button type="submit">Search</button>
 				</form>
 
-
-				
-					<?php
+				<?php
 					$get_data = new BookEvent();
 					$data = $get_data->last_reading_event($id);
 
@@ -121,15 +107,14 @@
 				</div>
 			</div>
 
-			<footer>
-				<ul>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Contact</a></li>
-				</ul>
-				<p class="trademark">Created by Weslley. 2018-2019. All rights reserved. </p>
-    		</footer>
+			<?php include 'layouts/footer.php'; ?>
 
 			<script src="javascript/dashboard.js"></script>
 		</body>
-<?php } ?>
+<?php }
+
+else{
+	header("Location: index.php");
+}
+
+ ?>

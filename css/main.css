@@ -1,4 +1,7 @@
-
+#bit-notification-bar-spacer{ /*Have to do this for firefox...*/
+	display: none;
+	height: 0;
+}
 body {
 	margin: 0;
 	padding: 0;
@@ -9,7 +12,6 @@ body {
 }
 
 
-
 .add-book{
 	margin: 0; 
 	font-size: 40px;
@@ -18,7 +20,6 @@ body {
 	width: 19%;
 
 }
-
 
 .modal{
 	display: none;
@@ -130,7 +131,7 @@ nav {
     left: 45px;
     font-size: 35px;
     font-family: Satisfy;
-    cursor: default;
+    cursor: pointer;
 }
 
 #message-add {
@@ -665,6 +666,8 @@ p .years {
 .comment p{
 	color: white;
 }
+
+
 /*FOOTER*/
 
 footer{

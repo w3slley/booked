@@ -32,6 +32,7 @@ modalContent = document.querySelector('.modal-content');
 addBook = document.querySelector('.add-book');
 addBook.onclick = function(){
 	modal.style.display = 'block';
+	$('.message').html('');
 }
 window.onclick = function(event){
 	if(event.target == modal){

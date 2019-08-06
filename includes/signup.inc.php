@@ -9,13 +9,14 @@
 	else{
 
 		$name = $_POST['name'];
+		$user_name = $_POST['user-name'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 
-		if ( empty($name) || empty($email) || empty($password)) {
+		if ( empty($name) || empty($user_name)|| empty($email) || empty($password)) {
 			header("Location: ../index.php?signup=empty");
 		}
 		elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -23,8 +24,8 @@
 		}
 		else {
 			//Inserting the data in the database.
-			$data = new User();
-			$data->signup($name, $email, $hashedPassword);
+			$user = new User();
+			$user->signup($name, $user_name, $email, $hashedPassword);
 
 			header("Location: ../login.php?signup=success");
 			
