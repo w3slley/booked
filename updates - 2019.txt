@@ -86,9 +86,14 @@ I messed around with the commits and ended up going back to a previous version n
 2)Removed all variables linked to the BookEvent class and only initiated one: $data = new BookEvent(). It will be used to call all methods in the class.
 3)Fixed add book interaction in the dashboard.php file. Not the user can add a book as intended.
 
-06/08/2018
+06/08/2019
 1)Fixed session problems I was having in the index page and also in the dashboard page (I forgot to add the session_start() in the beginning of the page).
-2)
+2) Added layout folder to better organize the file structure.
+3) Started to implement the layout of the profile page.
+
+22/08/2019
+1)Changed how book covers are stored and displayed. The website no longer downloads any bookcovers. The python script from now on only gets the url from the goodreads servers and hands over to php so that it can save it into the database. Then the image is rendered from there. However there are some things I need to fix still: for instance the image styling in the edit section changed and I have to handle that. I also understand that changing some major feature of the website like that is something very important and should be documented and each line of code changed highlighted, otherwise it would be very damaging for the company to realize one change like this made other part of the app unusable and broke everything up. So I will try to write some documentation in the future about each function in the Book Event file and also how the entire app works in the future (when I get time haha). For now I only need to fix the css problem. When I do so, I'll get back here.
+2)Fixed css problem I was having with bookcover in the edit section.
 
 ######################################################################
 I'm back at the development of the web app. I need to implement some features:
@@ -124,4 +129,8 @@ I'm back at the development of the web app. I need to implement some features:
 30)Make sure that when the user updates the book info the month sidebar is updated as well.
 31)When the user updates the book info in the month section all the books read in the read are displayed. I have to fix that.
 32) I need to add error handlers when the user edits the classification of a book. Right now they can insert anything and will be added to the database. I have to allow only numbers between 0 and 100.
+33) I need to implement the showuniquebook function so that when the user adds the book (or other trigger) the user will be redirected to the page of the book withs its information. Right now it's not being used.
+34)When you add a classification of, say, '95d' with a 'd' at the end, the grade 95 is added to the database nonetheless. I have to figure out some way to prevent that and only let users insert numbers.
+35)Right now (07/08/2019) there is a xss vunerability in the search section of the website. I will leave it alone for now and ponder how I could gain access to other users information only with this vunerability. It happened because I allowed the search term to be inserted in the p tag which says "Results for '':" and in doing so, if you search for <script>alert('test')</script> it will run the javascript code. I will think about how to solve this.
+36)I've been thinking about a new approach to the website. Instead of downloading the bookcovers, I could simply stored the url in the database and that's it. The site wouldn't be scalable the way it is now.(DONE)
 

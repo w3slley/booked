@@ -1,4 +1,3 @@
-//Add book into DB
 $('.nav-add').on('submit', function(event){
 	event.preventDefault();
 	$('.message').html('');
@@ -14,17 +13,15 @@ $('.nav-add').on('submit', function(event){
 
 
 	$.post('includes/add_book.inc.php', {book:bookTitle, author:authorName, category:category, month:month, year:year, classification: classification}, function(data){
-
 		if(data.length != 4){
 			$('.message').html(data);
 		}
-
+		
 		loadingModal[0].style.display = "none";
 		if(parseInt(data)>1900 || parseInt(data)<2100){
 			window.location = "initial_page.php?year="+data;
-
 		}
-
+		
 	});
 
 });
@@ -38,13 +35,13 @@ addBook.onclick = function(){
 	$('.message').html('');
 }
 window.onclick = function(event){
-	if(event.target == modal){
+	
+	if(event.target == modal){//If clicked outside the add book modal content
 		modal.style.display = 'none';
 	}
 }
-
 let close = $('.close');
 close.on('click', function(){
 	modal.style.display = 'none';
-
+	
 });

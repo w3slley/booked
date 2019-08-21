@@ -85,8 +85,14 @@
 		if(isset($_GET['search'])){//When there's the term 'search' and 'submit' in the URL, then:
 			$search = "%{$_GET['search']}%"; //This is how you use this variable with LIKE. You have to insert the $_GET inside {} and then use %!
 			$search_displayed = str_replace("%", "", $search);
+			;
 			echo "<p style='margin: 0 0 10px 0;'class='text_search_result'>Results for  \"".$search_displayed."\":</p>";
-			
+			/*
+			These are two functions which remove the tags of a possible javascript code used for xss atacks:
+			filter_var($search_displayed, FILTER_SANITIZE_STRING);
+			strip_tags($search_displayed);
+			I will leave the site vunerable so that I can discover new ways to hack it!
+			*/
 			$data->search($id, $search);
 		}
 		
@@ -139,6 +145,7 @@
 		<script src="javascript/main.js"></script>
 		</body>
 		</html>
+		
 
 <?php
 	} ?>

@@ -1,6 +1,7 @@
 <?php  
 	session_start();
-
+	include 'classes/BookEvent.php';
+	$data = new BookEvent();
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,9 @@
 	<?php include 'layouts/links.php'; ?>
 </head>
 <body>
+	<?php include 'layouts/addBook-modal.php' ?>
 	<?php include 'layouts/nav.php' ?>
+	
 	<?php  
 		if(isset($_SESSION['id'])){
 			echo "<h1>Dados pessoais</h1>";
@@ -23,6 +26,6 @@
 	?>
 
 	<?php include 'layouts/footer.php' ?>
-
+	<script src="javascript/profile.js"></script>
 </body>
 </html>

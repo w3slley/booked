@@ -39,7 +39,8 @@ def get_img_url (search_book): #This function gets the url of image of the books
 
 
 url = get_img_url(search_book) 
-location = '/var/www/html/booked/bookcovers/bookcover'+sys.argv[3]+'.jpg' #argument three is the id of the book - bookId!
-urllib.request.urlretrieve(url, location) 
+print(url)
+#location = '/var/www/html/booked/bookcovers/bookcover'+sys.argv[3]+'.jpg' #argument three is the id of the book - bookId!
+#urllib.request.urlretrieve(url, location) 
 #THIS IS HOW YOU DOWNLOAD IMAGE USING PYTHON!
 

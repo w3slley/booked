@@ -8,12 +8,12 @@ body {
 	background-color: #2E2F2F;
 	font-family: Poiret One;
 	height: 100%;
-	
+
 }
 
 
 .add-book{
-	margin: 0; 
+	margin: 0;
 	font-size: 40px;
 	cursor: pointer;
 	margin: 0 auto;
@@ -39,7 +39,7 @@ body {
 	border: solid 1px #888;
 	border-radius: 5px;
 	text-align: center;
-	
+
 }
 .modal-content .close{
 	position: absolute;
@@ -75,7 +75,7 @@ body {
 .modal-content button{
 	font-size: 30px;
 	font-family: Poiret One;
-	
+
 }
 .message{
 	color: red;
@@ -102,7 +102,7 @@ body {
     border-top: 30px solid #EA9010; /* Blue */
     border-radius: 50%;
     animation: spin .7s linear infinite;
- 
+
 }
 @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -160,7 +160,7 @@ nav {
 	font-family: Poiret One;
 	font-size: 15px;
 	cursor: pointer;
-	
+
 }
 
 .profile {
@@ -184,7 +184,7 @@ nav {
 	position: absolute;
 	left: 10px;
 	bottom: 5px;
-	
+
 
 }
 
@@ -197,7 +197,7 @@ nav {
 	padding-bottom: 0;
 	font-family: Poirot One;
 	/*box-shadow: 0 2px 5px -2px gray; /*This creates a shadow in the bottom of the element*/
-	
+
 }
 
 .navbar a {
@@ -208,17 +208,17 @@ nav {
 	border-radius: 4px 4px 0 0;
 
 
-	
+
 }
 
 .years{ /*Years displayed in the page - these are the years the user read any book*/
 	font-family: Poiret One;
 	margin: 0 auto;
 	width: 80%;
-	
-	
+
+
 	/*word-break: break-word; /*If you want to break text, that's how you do it!*/
-	
+
 
 }
 
@@ -308,7 +308,7 @@ p .years {
 .books_year a {
 	text-decoration: none;
 	color:white;
-	
+
 
 }
 
@@ -336,7 +336,7 @@ p .years {
 	display: none;
 	animation-name: month-in;
 	animation-duration: 2s;
-	
+
 }
 
 .months li {
@@ -381,7 +381,7 @@ p .years {
 /*STARTS HERE THE STYLING OF THE BOOKS COVER*/
 
 .box{
-	
+
 	width: 40%;
 	padding: 0 0 250px 0;
 	background-color: #ACA885;
@@ -414,7 +414,7 @@ p .years {
 	position: relative;
 	width: 82%;
 	float: right;
-	
+
 }
 .book_info p{
 	margin: 8px;
@@ -435,7 +435,7 @@ p .years {
 	top: 60px;
 	right: 10px;
 	padding: 25px;
-	border-radius: 2px;	
+	border-radius: 2px;
 	display: none;
 }
 
@@ -483,7 +483,7 @@ p .years {
  	right: 2%;
 	bottom: 3%;
 	transition: opacity .5s;
-	
+
 }
 .delete_book_button img{
 	width: 40px;
@@ -496,7 +496,7 @@ p .years {
 
 .box:hover .edit_book_button {
    opacity: 1; /* On :hover of div show button */
- 
+
 }
 .box:hover .delete_book_button {
 	opacity: 1;
@@ -504,12 +504,12 @@ p .years {
 }
 @keyframes box-animation-in {
 	from{padding: 0 0 250px 0;}
-	to{padding: 0px 15px 250px 15px;}	
+	to{padding: 0px 15px 250px 15px;}
 }
 
 @keyframes box-animation-out {
 	from{padding: 0px 15px 250px 15px;}
-	to{padding: 0 0 250px 0;}	
+	to{padding: 0 0 250px 0;}
 }
 
 
@@ -667,11 +667,15 @@ p .years {
 	color: white;
 }
 
+.book-cover-edit{
+	width: auto;
+	margin: 100px;
+}
 
 /*FOOTER*/
 
 footer{
-	
+
 	width: 100%;
 	height: 120px;
 	margin-top: 200px;
