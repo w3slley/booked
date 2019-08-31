@@ -261,7 +261,7 @@ p .years {
 	font-family: Poiret One;
 	font-size: 20px;
 	margin-bottom: 5px;
-	width: 250px;
+	width: 220px;
 }
 .search button {
 	position: absolute;
@@ -394,7 +394,7 @@ p .years {
 	display: flex;
 }
 .left{
-	width: 70%;
+	width: 85%;
 }
 .right{
 	width: 30%;
@@ -440,7 +440,7 @@ p .years {
 	font-family: Poiret One;
 }
 .book_info .title{
-	font-size: 38px;
+	font-size: 35px;
 	margin: 0;
 	font-weight: bold;
 }
