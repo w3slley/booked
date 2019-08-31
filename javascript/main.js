@@ -14,7 +14,7 @@ $('.nav-add').on('submit', function(event){
 
 
 	$.post('includes/add_book.inc.php', {book:bookTitle, author:authorName, category:category, month:month, year:year, classification: classification}, function(data){
-		
+
 		if(data.length != 4){
 			$('.message').html(data);
 		}
@@ -33,9 +33,13 @@ $('.nav-add').on('submit', function(event){
 window.onscroll = function(){
 	//console.log(window.scrollY);//This is how you get the number of pixels scrolled!! I spend a lot of time trying to find this shit...
 	var scroll = window.scrollY;
-	var month = document.querySelector('.months');
-	var ul = document.getElementById('month_names');
-	var nav = document.querySelector('.nav');
+	var month = document.querySelector('.months')
+	var ul = document.getElementById('month_names')
+	var nav = document.querySelector('.nav')
+	let documentHeight = document.querySelector('body').scrollHeight-670//height of page
+	let x = (scroll/documentHeight)*100
+	let div = document.querySelector('.width')
+	let search = document.querySelector('.search')
 
 	if(scroll > 100){//when the scrolling position is higher than 100 pixels:
 		ul.style.display = 'block';
@@ -49,6 +53,24 @@ window.onscroll = function(){
 		month.style.height = "50px";
 		nav.style.boxShadow = 'none';
 
+
+	}
+
+	if(x > 95){//when almost at the bottom of page, month div will be displayed relative
+		let stopMonth = documentHeight-200
+		let stopSearch = documentHeight-200
+		month.style.position = 'relative'
+		month.style.top = stopMonth+'px'
+		search.style.position = 'relative'
+		search.style.top = stopSearch+'px'
+
+
+	}
+	else{
+		month.style.position = 'sticky'
+		month.style.top = '22%'
+		search.style.position = 'sticky'
+		search.style.top = '10%'
 
 	}
 }

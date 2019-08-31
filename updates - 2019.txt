@@ -95,6 +95,13 @@ I messed around with the commits and ended up going back to a previous version n
 1)Changed how book covers are stored and displayed. The website no longer downloads any bookcovers. The python script from now on only gets the url from the goodreads servers and hands over to php so that it can save it into the database. Then the image is rendered from there. However there are some things I need to fix still: for instance the image styling in the edit section changed and I have to handle that. I also understand that changing some major feature of the website like that is something very important and should be documented and each line of code changed highlighted, otherwise it would be very damaging for the company to realize one change like this made other part of the app unusable and broke everything up. So I will try to write some documentation in the future about each function in the Book Event file and also how the entire app works in the future (when I get time haha). For now I only need to fix the css problem. When I do so, I'll get back here.
 2)Fixed css problem I was having with bookcover in the edit section.
 
+
+30/08/2019
+1)Fixed problem with sticky position. Now when the user gets to the bottom of the page the month and search div will stop right before the footer tag.I also used flexbox in main page (to separate the books from the sidebar).
+
+
+
+
 ######################################################################
 I'm back at the development of the web app. I need to implement some features:
 1)Use PDO in the interaction with the mysql database (DONE).
@@ -114,7 +121,7 @@ I'm back at the development of the web app. I need to implement some features:
 15) Add error handlers in the grade part of the modal. I need to make sure that the user can only insert a number from 0 to 100. (DONE)
 16) I need to fix the problem with the years in the edit section. When you alter the year on it, it doesn't happen. I need to make sure that when a new year is inserted there, it needs the be created in the DB (if it doesn't exist yet) and redirected to there.(Instead, I just don't allow users to edit the year anymore. If the want to, they will have to add the book again. I will ponder about this later)
 17)Finish the editing section using AJAX.(DONE partially)
-18)Create a design for the editing section.
+18)Create a design for the editing section.(DONE partially)
 19)Don't forget to fix the security problem in the edit section. Right now, I can edit anyone's books if I know the add_book_id. I need to make sure that only the user that added the book can access it. (DONE)
 20)Create a new layout for the dashboard.(IN PROGRESS)
 21)I need to add error handlers in the sign up process.
@@ -124,7 +131,7 @@ I'm back at the development of the web app. I need to implement some features:
 25) Move some code that right now is in the initial_page.php file to the class BookEvent. That way you only need to instanciate the class from the initial_page.php file and all the mess goes into the class. It can also be useful when the user edit information on the books because I can just update the html in the class using AJAX.(DONE)
 26)There is still a security vunerability: if the user insert the id of other book, it will delete it even though they have no authority to do so. One alternative is to add a new parameter to the delete_book function: the id. Then, when the user can only delete a note added by him/her. I need to fix this right away. (Fixed this by adding hash_id as an identifier. Now each note has a unique hash id - more complicated then just one number to guess. Even then I still have to implement a security check in the server to see if the user that is trying to delete the note is actually the same user who created it).
 27)Need to implement a way of adding the same book twice in the database (right not it doesn't display the bookcover)! Just a comment: if you press Ctrl + . you can add emoticons... 🤣️
-28) I need to add a username column back into the database...
+28) I need to add a username column back into the database...(DONE)
 29)Edit functionality is not working when searching. I have to fix that.
 30)Make sure that when the user updates the book info the month sidebar is updated as well.
 31)When the user updates the book info in the month section all the books read in the read are displayed. I have to fix that.
@@ -133,4 +140,4 @@ I'm back at the development of the web app. I need to implement some features:
 34)When you add a classification of, say, '95d' with a 'd' at the end, the grade 95 is added to the database nonetheless. I have to figure out some way to prevent that and only let users insert numbers.
 35)Right now (07/08/2019) there is a xss vunerability in the search section of the website. I will leave it alone for now and ponder how I could gain access to other users information only with this vunerability. It happened because I allowed the search term to be inserted in the p tag which says "Results for '':" and in doing so, if you search for <script>alert('test')</script> it will run the javascript code. I will think about how to solve this.
 36)I've been thinking about a new approach to the website. Instead of downloading the bookcovers, I could simply stored the url in the database and that's it. The site wouldn't be scalable the way it is now.(DONE)
-
+37) I just realized after learning nodejs and express that the code base for booked is messed up as fuck. I need to implement some structure into the initial_page file. Since learning express I have been developing a sense of structure into the code that is just not present in this project. I have to fix that later. I'll come up with some standards I'll utilize in the future. For instance, I only need to return data from the BookEvent class and then use it into the view. I have to implement something related to MVC since it's so plesent to work with it (worked with laravel, node and started dealing with flask). I'll have to go through every method at the BookEvent class and fix things.

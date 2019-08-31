@@ -524,7 +524,7 @@
 		public function search($user_id, $search_term){
 			$this->user_id = $user_id;
 
-			$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date FROM add_book
+			$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date, hash_id FROM add_book
 			JOIN users ON user_id = users.id
 			JOIN categories ON catg_id = categories.id
 			JOIN month_finished ON month_id = month_finished.id
@@ -894,7 +894,7 @@
 		public function last_reading_event($user_id){
 			$this->user_id = $user_id;
 
-			$sql = "SELECT add_book.id, book_title, author_name, catg_name, month_name, year_number, task_date, classification FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ?ORDER BY id DESC;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
+			$sql = "SELECT add_book.id, book_title, author_name, catg_name, month_name, year_number, task_date, classification, book_cover_url FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ?ORDER BY id DESC;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$this->user_id]);
 			$result = $stmt->fetch();
