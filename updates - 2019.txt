@@ -100,7 +100,7 @@ I messed around with the commits and ended up going back to a previous version n
 1)Fixed problem with sticky position. Now when the user gets to the bottom of the page the month and search div will stop right before the footer tag.I also used flexbox in main page (to separate the books from the sidebar).
 
 03/09/2019
-1)Created a new branch for fixing problems with OOP php.
+1)Created a new branch for fixing problems with OOP php. I'm going to change things here and then merge into the master branch. That's how you are supposed to fix bugs and add features.
 
 
 ######################################################################

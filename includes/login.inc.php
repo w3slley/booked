@@ -1,35 +1,26 @@
 <?php
+include "../classes/User.php";
+session_start();
+$user = new User;
 
-	include "../classes/User.php";
+if(!isset($_POST['submit'])) {
+	header("Location: ../initial_page.php");
 
-	if(!isset($_POST['submit'])) {
-		header("Location: ../initial_page.php");
+}
 
-	}
+$email_username = $_POST['email'];
+$password = $_POST['password'];
 
-	else {
-		
-		$email_username = $_POST['email'];
-		$password = $_POST['password'];
+$data = $user->login($email_username, $password);
+if($data){
 
-		$login = new User();
-		$data = $login->login($email_username, $password);
-		if($data != False){
-			session_start();
+	$_SESSION['name'] = $data['name'];
+	$_SESSION['user_name'] = $data['user_name'];
+	$_SESSION['email'] = $data['email'];
+	$_SESSION['id'] = $data['id'];
+	header("Location: ../dashboard.php");
 
-		
-			$_SESSION['name'] = $data['name'];
-			$_SESSION['user_name'] = $data['user_name'];
-			$_SESSION['email'] = $data['email'];
-			$_SESSION['id'] = $data['id'];
-			
-
-			header("Location: ../dashboard.php");
-			
-		}
-		else{
-			header("Location: ../login.php?login=error");
-		}
-		
-
-	}
+}
+else{
+	header("Location: ../login.php?login=error");
+}

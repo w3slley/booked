@@ -16,30 +16,18 @@
 		private $book_cover_url;
 
 		public function add_book_event($user_id, $book_title, $author_name, $category_id, $month_id, $classification, $year_id, $task_date, $hash_id, $book_cover_url){
-			$this->hash_id = $hash_id;
-			$this->user_id = $user_id;
-			$this->book_title = $book_title;
-			$this->author_name = $author_name;
-			$this->category_id = $category_id;
-			$this->month_id = $month_id;
-			$this->classification = $classification;
-			$this->year_id = $year_id;
-			$this->book_cover_url = $book_cover_url;
-
 
 			$sql = "INSERT INTO add_book (user_id, book_title, author_name, catg_id, month_id, year_id, classification, task_date, hash_id, book_cover_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->user_id, $this->book_title, $this->author_name, $this->category_id, $this->month_id,$this->classification, $this->year_id, $task_date, $this->hash_id, $this->book_cover_url]);
+			$stmt->execute([$user_id, $book_title, $author_name, $category_id, $month_id,$classification, $year_id, $task_date, $hash_id, $book_cover_url]);
 
 		}
 
 		public function get_add_book_id($user_id, $book_title){
-			$this->user_id = $user_id;
-			$this->book_title = $book_title;
 
 			$sql = "SELECT * FROM add_book WHERE user_id = ? AND book_title = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->user_id, $this->book_title]);
+			$stmt->execute([$user_id, $book_title]);
 			$result = $stmt->fetch();
 
 			return $result['id'];
@@ -47,43 +35,40 @@
 		}
 
 		public function add_category($category){
-			$this->category = $category;
 
 			$sql = "SELECT * FROM categories WHERE catg_name = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->category]);
+			$stmt->execute([$category]);
 			$result = $stmt->fetch();
 
 			if(empty($result)){
 				$sql2 = "INSERT INTO categories (catg_name) VALUES (?)";
 				$stmt2 = $this->connect()->prepare($sql2);
-				$stmt2->execute([$this->category]);
+				$stmt2->execute([$category]);
 			}
 
 		}
 
 		public function add_year($year){
-			$this->year = $year;
 
 			$sql = "SELECT * FROM year_finished WHERE year_number = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->year]);
+			$stmt->execute([$year]);
 			$result = $stmt->fetch();
 
 			if(empty($result)){
 				$sql2 = "INSERT INTO year_finished (year_number) VALUES (?)";
 				$stmt2 = $this->connect()->prepare($sql2);
-				$stmt2->execute([$this->year]);
+				$stmt2->execute([$year]);
 			}
 
 		}
 
 		public function select_month_id($month){
-			$this->month = $month;
 
 			$sql = "SELECT id FROM month_finished WHERE month_name = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->month]);
+			$stmt->execute([$month]);
 
 			$result = $stmt->fetch();
 			if(!empty($result)){
@@ -97,11 +82,10 @@
 
 
 		public function select_year_id($year){
-			$this->year = $year;
 
 			$sql = "SELECT id FROM year_finished WHERE year_number = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->year]);
+			$stmt->execute([$year]);
 
 			$result = $stmt->fetch();
 			if(!empty($result)){
@@ -118,11 +102,10 @@
 
 
 		public function select_category_id($category){
-			$this->category = $category;
 
 			$sql = "SELECT id FROM categories WHERE catg_name = ?";
 			$stmt = $this->connect()->prepare($sql);
-			$stmt->execute([$this->category]);
+			$stmt->execute([$category]);
 			$result = $stmt->fetch();
 			if(!empty($result)){
 				return $result['id'];
