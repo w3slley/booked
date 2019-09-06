@@ -520,6 +520,7 @@ p .years {
 	opacity: 1;
 
 }
+
 @keyframes box-animation-in {
 	from{padding: 0 0 250px 0;}
 	to{padding: 0px 15px 250px 15px;}
@@ -529,6 +530,7 @@ p .years {
 	from{padding: 0px 15px 250px 15px;}
 	to{padding: 0 0 250px 0;}
 }
+
 
 
 .cover {
