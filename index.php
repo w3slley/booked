@@ -1,10 +1,10 @@
-<?php  
+<?php
 
 	session_start();
 	if(isset($_SESSION['id'])){
 		header("Location: dashboard.php");
 	}
-	else { 
+	else {
 	/*setcookie('userId', hash('sha256', 'text'));*/
 
 
@@ -18,13 +18,13 @@
 		<link rel="stylesheet" href="css/index.css">
 		<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Ubuntu|Poiret+One|Dosis|Acme|Rajdhani|Satisfy" rel="stylesheet">
-		
+
 	</head>
 	<body>
 
 		<div class="header">
 			<nav>
-				
+
 				<div class="logo">
 					<img src="images/books.svg" >
 					<p>Booked</p>
@@ -38,7 +38,7 @@
 				</ul>
 			</nav>
 			<div class="welcome">
-			
+
 			<span class="text"></span>
 			</div>
 			<div class="sign-up">
@@ -51,7 +51,7 @@
 					<button type="submit" name="submit">Sign up</button>
 				</form>
 			</div>
-		</div>	
+		</div>
 
 		<div class="body">
 			<div class="container1">
@@ -81,13 +81,13 @@
 				<img src="images/education.svg">
 				<p>So, what are you waiting for? Sign up <a href="#">here</a>!</p>
 			</div>
-			
+
 		</div>
-		
+
 			<?php
 			if(isset($_GET['password'])) {
 				$password = $_GET['password'];
-		
+
 				if($password=="notEqual") {
 				echo "The passwords are not equal. Please, try again.";
 				}
@@ -102,12 +102,6 @@
 					echo "You are now sign up. Please, login.";
 				}
 			}
-
-			?>
-
-
-		<?php
-
 			if(isset($_GET['logout'])) {
 					$logout = $_GET['logout'];
 
@@ -115,9 +109,8 @@
 					echo "Bye, until next time!";
 				}
 			}
-		}	
-		?>
-		
+			}
+			?>
 
 		<footer>
 			<ul>
@@ -130,4 +123,3 @@
 		<script src="javascript/index.js"></script>
 	</body>
 	</html>
-

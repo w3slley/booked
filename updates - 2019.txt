@@ -99,6 +99,15 @@ I messed around with the commits and ended up going back to a previous version n
 30/08/2019
 1)Fixed problem with sticky position. Now when the user gets to the bottom of the page the month and search div will stop right before the footer tag.I also used flexbox in main page (to separate the books from the sidebar).
 
+03/09/2019
+1)Created a new branch for fixing problems with OOP php. I'm going to change things here and then merge into the master branch. That's how you are supposed to fix bugs and add features.
+
+08/09/2019
+Added search.php file. All the searches will go there.
+1)Fixed display_books_year and search functions. Now they only pass of data to the view page. I need to do that for all functions. I'll get there 🤣️.
+2)Improved some things in the initial page and other view files (such as dumb and useless code and others).
+3)Fixed problems with search in the views. Before some pages were redirecting to the initialpage file and others to the search file. Now all the searches are made in the search.php file.
+4)Added strip_tags function for the search field and in the years field (the latter in the initial page).
 
 
 
@@ -141,3 +150,5 @@ I'm back at the development of the web app. I need to implement some features:
 35)Right now (07/08/2019) there is a xss vunerability in the search section of the website. I will leave it alone for now and ponder how I could gain access to other users information only with this vunerability. It happened because I allowed the search term to be inserted in the p tag which says "Results for '':" and in doing so, if you search for <script>alert('test')</script> it will run the javascript code. I will think about how to solve this.
 36)I've been thinking about a new approach to the website. Instead of downloading the bookcovers, I could simply stored the url in the database and that's it. The site wouldn't be scalable the way it is now.(DONE)
 37) I just realized after learning nodejs and express that the code base for booked is messed up as fuck. I need to implement some structure into the initial_page file. Since learning express I have been developing a sense of structure into the code that is just not present in this project. I have to fix that later. I'll come up with some standards I'll utilize in the future. For instance, I only need to return data from the BookEvent class and then use it into the view. I have to implement something related to MVC since it's so plesent to work with it (worked with laravel, node and started dealing with flask). I'll have to go through every method at the BookEvent class and fix things.
+38)Right now users cannot edit books in the search area. Fix that.
+39)Fix update books in search page. When users update the book info in the search.php file the books don't reload. Fix it.

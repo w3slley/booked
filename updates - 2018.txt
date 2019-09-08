@@ -1,12 +1,12 @@
 15/05 14:05
 	Features done:
 	
-1) Now every time the user adds book that its authos is already in the DB it will no longer add him/her again, it will just gather their id.The same goes with the categories.
+1) Now every time the user adds book that its author is already in the DB it will no longer add him/her again, it will just gather their id.The same goes with the categories.
 	
 2) The user can now see wich books he/she read in each month (the books are displayed in a table).
 
 3) The years shown are gather from the database. I have to find a way to only display the years the user added books.	
-	4)Implemented error handlers: if one input is empty a message will appear telling the user he/she didn't fill in all the fields.
+4)Implemented error handlers: if one input is empty a message will appear telling the user he/she didn't fill in all the fields.
 	
 
 16/05 12:14
