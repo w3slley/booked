@@ -24,10 +24,12 @@
 
 <div class="navbar">
 	<a href="dashboard.php"><img class="home-icon" src="images/home.png"></a>
-	<div class="years">
-  	<?php
-  	$book->display_years_homepage($id);
-  	?>
+	<div class="years"><?php
+		$result = $book->display_years_homepage($id);
+		foreach($result as $data){ ?>
+			<a id="year-unit" href="initial_page.php?year=<?php echo $data['year_number']?>" onclick='giveId()'><?php echo $data['year_number']?></a>
+<?php
+		} ?>
 	</div>
 </div>
 <div class="container">
