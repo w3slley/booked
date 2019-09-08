@@ -19,7 +19,6 @@
 			$result = $stmt->fetch();
 
 			return $result['id'];
-
 		}
 
 		public function add_category($category){
@@ -36,7 +35,6 @@
 
 				return true;
 			}
-
 		}
 
 		public function add_year($year){
@@ -53,7 +51,6 @@
 
 				return true;
 			}
-
 		}
 
 		public function select_month_id($month){
@@ -69,12 +66,9 @@
 			else{
 				return false;
 			}
-
 		}
 
-
 		public function select_year_id($year){
-
 			$sql = "SELECT id FROM year_finished WHERE year_number = ?";
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$year]);
@@ -86,12 +80,7 @@
 			else{
 				return false;
 			}
-
 		}
-
-
-
-
 
 		public function select_category_id($category){
 
@@ -109,10 +98,11 @@
 
 		public function download_book_cover_url($book_title, $author_name){
 			//Download the book cover into the file "bookcovers" where the user add a new book read.
-		return shell_exec('python3 /var/www/html/projects/booked/python/get_book_url_img.py "'.$book_title.'" "'.$author_name.'" ');
+			return shell_exec('python3 /var/www/html/projects/booked/python/get_book_url_img.py "'.$book_title.'" "'.$author_name.'" ');
 
 		}
-		public function get_book_cover_url($hash_id){
+
+		public function get_book_cover_url($hash_id){//gets bookcover url
 			$sql = "SELECT * FROM add_book WHERE hash_id = ?";
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$hash_id]);
@@ -123,8 +113,7 @@
 
 		//FUNCTIONS USED IN THE index.php page!
 
-		public function display_years_homepage($user_id){
-
+		public function display_years_homepage($user_id){//gets all the years the user read books
 			$sql = "SELECT DISTINCT year_number FROM add_book
 				JOIN users ON user_id = users.id
 				JOIN categories ON catg_id = categories.id
@@ -134,17 +123,11 @@
 			$stmt->execute([$user_id]);
 			$result = $stmt->fetchAll();
 
-			foreach($result as $data){
-				echo "<a id='year-unit' href='initial_page.php?year=".$data['year_number']."' onclick='giveId()'>".$data['year_number']." </a>";
-			}
-
-
-
+			return $result;
 		}
 
 		public function display_years_input($user_id){
 
-
 			$sql = "SELECT DISTINCT year_number FROM add_book
 				JOIN users ON user_id = users.id
 				JOIN categories ON catg_id = categories.id
@@ -153,12 +136,7 @@
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$user_id]);
 			$result = $stmt->fetchAll();
-			echo "<div class='years'>";
-			foreach($result as $data){
-				echo "<a id='year-unit' href='initial_page.php?year=".$data['year_number']."' onclick='giveId()'>".$data['year_number']."</a>";
-			}
-			echo "</div>";
-
+			return $result;
 		}
 
 		public function get_smallest_year(){
@@ -169,65 +147,12 @@
 			return $result['smallest_year'];
 		}
 
-		public function display_books_year($user_id, $year){
-
-
+		public function display_books_year($user_id, $year){//gets data about the books read in a particular year
 			$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date, classification, hash_id FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? ORDER BY month_id, add_book.id;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$user_id, $year]);
 			$result = $stmt->fetchAll();
-
-			if(empty($result)){
-				echo '<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books not found. Go to <a style="color: white" href="dashboard.php">dashboard</a></p>';
-			}
-			else{
-?>
-				<div class="books">'
-				<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books read in <?php echo $year; ?>:</p>
-<?php
-				foreach($result as $data){ ?>
-
-				<div class="box" value="<?php echo $data['month_name'] ?>">
-
-
-				<?php
-				$book = new BookEvent();
-				$location = $book->get_book_cover_url($data['hash_id']);
-
-
-				echo '<img class="cover" src="'.$location.'">';
-
-				?>
-				<div class="book_info">
-					<p class="title"><?php echo $data['book_title']; ?></p> <br>
-					<p class="author">Author: <span><?php echo $data['author_name']; ?></span></p>
-					<p class="category">Category: <span><?php echo $data['catg_name']; ?></span></p>
-					<p class="month">Month finished: <span><?php echo $data['month_name']; ?></span></p>
-					<p class="date">Date added: <span><?php echo $data['task_date']; ?></span></p>
-
-					<div class="rating">
-						<p><span class="grade"><?php echo $data['classification']?></span></p>
-					</div>
-				</div>
-
-				<?php
-
-
-				?>
-				<div><!-- The data goes from here to the javascript.js file and then I use AJAX to pass the data to an includes file called delete_book.php and from there the book is deleted! -->
-					<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
-					<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
-					<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
-				</div>
-
-
-				</div>
-
-				<?php
-				}
-			echo '</div>';
-			}
-
+			return $result;
 		}
 
 
@@ -480,7 +405,6 @@
 
 		public function search($user_id, $search_term){
 
-
 			$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date, hash_id FROM add_book
 			JOIN users ON user_id = users.id
 			JOIN categories ON catg_id = categories.id
@@ -492,42 +416,7 @@
 			$stmt = $this->connect()->prepare($sql);
 			$stmt->execute([$user_id, $search_term, $search_term, $search_term]);
 			$result = $stmt->fetchAll();
-
-			foreach($result as $data){ ?>
-
-			<div class="box">
-
-			<?php
-			$book = new BookEvent();
-			$location = $book->get_book_cover_url($data['hash_id']);
-
-
-			echo '<img class="cover" src="'.$location.'">';
-			?>
-			<div class="book_info">
-				<p class="title"><?php echo $data['book_title']; ?></p>
-				<p class="author">Author: <?php echo $data['author_name']; ?></p>
-				<p class="category">Category: <?php echo $data['catg_name']; ?></p>
-				<p class="month">Month finished: <?php echo $data['month_name']; ?></p>
-				<p class="year">Year finished: <?php echo $data['year_number']; ?></p>
-				<p class="date">Date added: <?php echo $data['task_date']; ?></p>
-			</div>
-
-			<?php
-
-
-			?>
-				<div>
-					<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
-				<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
-				<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
-
-				</div>
-
-
-			</div>
-			<?php
-			}
+			return $result;
 		}
 
 		public function display_edit_book($user_id, $hash_id){
