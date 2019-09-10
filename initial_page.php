@@ -57,7 +57,7 @@
 			if(!$check_position){ //If there's no month in the uri, then display all the books read in the year! A more elegant solution...
 				$booksYear = $book->display_books_year($id, $year);
 				if(empty($booksYear)){ ?>
-					<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books not found. Go to <a style="color: white" href="dashboard.php">dashboard</a></p>';
+					<p style="color: white; font-size:30px; margin:0 0 5px 15px">Books not found. Go to <a style="color: white" href="dashboard.php">dashboard</a></p>
 	<?php	}
 				else{ //When there are books in the database they are displayed in the page.
 ?>
@@ -68,7 +68,7 @@
 							$location = $book->get_book_cover_url($data['hash_id']);?>
 
 							<div class="box" value="<?php echo $data['month_name'] ?>">
-								<img class="cover" src="<?php echo $location; ?>">';
+								<img class="cover" src="<?php echo $location; ?>">
 								<div class="book_info">
 									<p class="title"><?php echo $data['book_title']; ?></p> <br>
 									<p class="author">Author: <span><?php echo $data['author_name']; ?></span></p>
