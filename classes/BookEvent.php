@@ -459,11 +459,9 @@
 				<?php
 				$book = new BookEvent();
 				$location = $book->get_book_cover_url($data['hash_id']);
-
-
-				echo '<img class="book-cover-edit" src="'.$location.'">';
-
 				?>
+
+				<img class="book-cover-edit" src=" <?php echo $location; ?>">
 
 				<form method="POST" action="includes/edit_book.php">
 					<p class="title_text">Title: </p>
@@ -474,28 +472,20 @@
 					<?php echo ' <p class="edit_category_name">'.$data["catg_name"].'</p><br>  '?>
 					<p class="month_text">Month finished:</p><br>
 					<?php
-						$month = new BookEvent();
-						echo $month->display_months_edit($hash_id);?><br>
+						
+						echo $this->display_months_edit($hash_id);?><br>
 					<p class="year_text">Year finished:</p>
 					<?php echo ' <p class="edit_year_number">'.$data["year_number"].'</p> '?>
 					<p class="classification">Grade:</p>
 					<input name="classification" class="classification_input" value="<?php echo $data['classification']; ?>">
-					<?php echo ' <input style="display:none" name="hash_id" value="'.$hash_id.'"> ' //In here a created a input that stores the hash_id. It is then passed to the edit_book.php file to update the values. ?>
+					<input style="display:none" name="hash_id" value=" <?php echo $hash_id;?>"> <?php //In here a created a input that stores the hash_id. It is then passed to the edit_book.php file to update the values. ?> 
 
 					<div>
 						<input hidden class="hash_id_input" value="<?php echo $hash_id; ?>" name="hash_id" type="text">
 						<input hidden class="type-reload" name="type-reload" value="<?php  ?>">
 
 					</div>
-					<button class="delete_cover">Delete book cover</button>
-					<!--<?php echo '<a style="cursor: pointer"><img id="add_cover" src="images/plus.png"></a>'; ?> -->
 				</form>
-				<div class="comment">
-					<p>Comments:</p>
-					<textarea spellcheck = "false" class="comment"></textarea>
-				</div>
-
-
 			</div>
 			<?php
 

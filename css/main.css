@@ -590,11 +590,10 @@ p .years {
 
 /*THIS IS THE STYLING OF THE EDITING SECTION*/
 
-.edit_cover {
-	width: 30%;
-	border-radius: 2px;
+.book-cover-edit {
+	width: 40%;
 	margin: 20px 15px;
-
+	border-radius: 5px;
 }
 .box_edit{
 	display: flex;
@@ -605,7 +604,7 @@ p .years {
 .box_edit form{
 	background-color: #ACA885;
 	height: 100%;
-	width: 30%;
+	width: 60%;
 
 }
 .edit_category_name{
@@ -621,7 +620,6 @@ p .years {
 
 }
 .box_edit input{
-	margin:0 auto;
 	width: 90%;
 	font-size: 25px;
 	border-radius: 5px;
