@@ -1,6 +1,7 @@
 <?php
 	include "Database.php";
 
+
 	class BookEvent extends Database{
 
 		public function add_book_event($user_id, $book_title, $author_name, $category_id, $month_id, $classification, $year_id, $task_date, $hash_id, $book_cover_url){
@@ -155,6 +156,27 @@
 			return $result;
 		}
 
+		public function refresh_books_search($user_id, $search_term){
+			try{
+				$sql = "SELECT add_book.id as add_book_id, book_title, author_name, catg_name, month_name, year_number, task_date, hash_id FROM add_book
+			JOIN users ON user_id = users.id
+			JOIN categories ON catg_id = categories.id
+			JOIN month_finished ON month_id = month_finished.id
+			JOIN year_finished ON year_id = year_finished.id
+			WHERE user_id = ? HAVING book_title LIKE ? OR author_name LIKE ?
+			OR catg_name LIKE ? ORDER BY year_id DESC";
+
+			$stmt = $this->connect()->prepare($sql);
+			$stmt->execute([$user_id, $search_term, $search_term, $search_term]);
+			$result = $stmt->fetchAll();
+			return $result;
+			
+			}
+			catch(PDOException $e){
+				return 'ERROR: '.$e->getMessage();
+			}
+			
+		}
 
 		public function refresh_books_year($user_id, $year){ //I created this function because of problems with the location of the bookcovers!
 			$sql = "SELECT add_book.id, book_title, author_name, catg_name, month_name, year_number, task_date, classification, hash_id FROM add_book JOIN users ON user_id = users.id JOIN categories ON catg_id = categories.id JOIN month_finished ON month_id = month_finished.id JOIN year_finished ON year_id = year_finished.id WHERE user_id = ? AND year_number = ? ORDER BY month_id, add_book.id;"; //This is how you do it bro. You now order the books by the month the user read the book! And now is in descending order, meaning that the first books are the ones first chronologically.

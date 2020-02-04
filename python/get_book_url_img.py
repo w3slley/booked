@@ -1,5 +1,4 @@
 from urllib.request import Request, urlopen
-from googletrans import Translator
 import urllib.request
 from unicodedata import normalize
 import sys
@@ -15,7 +14,7 @@ search_book = book_title.replace(" ", "+")
 
 
 def get_img_url (search_book): #This function gets the url of image of the books's cover.
-    url_google = "https://www.google.pt/search?q="+ search_book+"+goodreads&oq=grit+g&aqs=chrome.0.69i59j0j69i57j69i60l3.1902j0j4&sourceid=chrome&ie=UTF-8"
+    url_google = "https://www.google.com/search?q="+search_book+"+goodreads&sourceid=chrome&ie=UTF-8"
     #insert the desired book to search into google's search url
 
     req = Request(url_google, headers={'User-Agent': 'Mozilla/5.0'}) #makes connection with the website (secure way using the headers)

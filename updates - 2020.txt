@@ -1,0 +1,7 @@
+04/02/2020
+
+I took the day to fix some things on the web application and also prepare it for deploying on Heroku. While doing this I spent some hours banging my head against the wall trying to fix one problem (updating book's information while in the search page). But that's done and I'll deploy the app like this to heroku. 
+While doing the above, I started thinking about implementing an API service that given a book's title and author it retrieves from the internet the bookcover. Since I couldn't use neither google books' nor goodreads API, it might be a good learning experience to implement my own (and it could be useful for other people). After setting everything on heroku I'll focus on that.
+
+1)Fix updating books' information on search page.
+

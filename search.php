@@ -23,6 +23,8 @@
 	<?php include 'layouts/nav.php'; ?>
 
 <div class="navbar">
+	<input hidden class="search_term" value="<?php echo "%{$_GET['q']}%"; ?>">
+
 	<a href="dashboard.php"><img class="home-icon" src="images/home.png"></a>
 	<div class="years"><?php
 		$result = $book->display_years_homepage($id);
@@ -47,28 +49,45 @@
     	I will leave the site vunerable so that I can discover new ways to hack it!
     	*/
     	$searchBook = $book->search($id, $search);
-			foreach($searchBook as $data){ ?>
+    	?> 
+    	<div class="books">
+    		
+    	
+    	<?php
+    	if($searchBook[0] == ''){
+    		//case when there is no book which matched with search term.
+    	}
+    	else{
+    		foreach($searchBook as $data){ ?>
 
-			<div class="box"><?php
-				$location = $book->get_book_cover_url($data['hash_id']);?>
-				<img class="cover" src="<?php echo $location;?>">';
+				<div class="box"><?php
+					$location = $book->get_book_cover_url($data['hash_id']); ?>
+					<img class="cover" src="<?php echo $location;?>">
 
-				<div class="book_info">
-					<p class="title"><?php echo $data['book_title']; ?></p>
-					<p class="author">Author: <?php echo $data['author_name']; ?></p>
-					<p class="category">Category: <?php echo $data['catg_name']; ?></p>
-					<p class="month">Month finished: <?php echo $data['month_name']; ?></p>
-					<p class="year">Year finished: <?php echo $data['year_number']; ?></p>
-					<p class="date">Date added: <?php echo $data['task_date']; ?></p>
+					<div class="book_info">
+						<p class="title"><?php echo $data['book_title']; ?></p>
+						<p class="author">Author: <?php echo $data['author_name']; ?></p>
+						<p class="category">Category: <?php echo $data['catg_name']; ?></p>
+						<p class="month">Month finished: <?php echo $data['month_name']; ?></p>
+						<p class="year">Year finished: <?php echo $data['year_number']; ?></p>
+						<p class="date">Date added: <?php echo $data['task_date']; ?></p>
+					</div>
+					<div>
+						<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
+						<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>', true)"><img alt="edit books' information" src="images/edit.png"></button>
+						<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
+					</div>
 				</div>
-				<div>
-					<input hidden class="delete_book_input" value="<?php echo $data['hash_id'] ?>">
-					<button class="edit_book_button" onclick="editReadingEvent('<?php echo $data['hash_id']; ?>')"><img alt="edit books' information" src="images/edit.png"></button>
-					<button onclick="deleteBook('<?php echo $data['hash_id']; ?>', <?php echo $data['year_number']; ?>)" class="delete_book_button"><img src="images/trash-can.svg"></button>
-				</div>
-			</div>
-			<?php
-			}
+				<?php
+				}
+    	}
+
+    	?> 
+    </div>
+<?php
+    }
+    else{
+    	header('Location: dashboard.php');
     }
 ?>
   </div>

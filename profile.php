@@ -17,14 +17,14 @@
 
 	<?php
 		if(isset($_SESSION['id'])){
-			echo "<h1>Dados pessoais</h1>";
-			echo "<p class='info'>Name: ".$_SESSION['name']."</p>";
-			echo "<p class='info'>Username: ".$_SESSION['user_name']."</p>";
-			echo "<p class='info'>E-mail: ".$_SESSION['email']."</p>";
-			echo "</div>";
-		}
 	?>
+			<h1>Dados pessoais</h1>
+			<p class='info'><b>Name</b>: <?php echo $_SESSION['name'] ?></p>
+			<p class='info'><b>Username</b>: <?php echo $_SESSION['user_name'] ?></p>
+			<p class='info'><b>E-mail</b>: <?php echo $_SESSION['email'] ?></p>
+			</div>
 
+	<?php } ?>
 	<?php include 'layouts/footer.php' ?>
 	<script src="javascript/profile.js"></script>
 </body>

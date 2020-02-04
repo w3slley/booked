@@ -93,7 +93,7 @@ nav ul li a:hover{
 
 .sign-up{
     position: absolute;
-    height: 78%;
+    height: auto;
     width: 30%;
     top: 15%;
     right: 25px;
@@ -118,13 +118,13 @@ nav ul li a:hover{
 }
 
 .sign-up button{
-    padding: 20px;
+    padding: 10px;
     font-family: Rajdhani;
     font-size: 35px;
     margin: 10px auto;
     width: 85%;
     border: none;
-    background-color: #5EB1BF;
+    background-color: rgba(10,150,10,1);
     margin: 10px;
     border-radius: 5px;
     color: white;
@@ -250,7 +250,8 @@ nav ul li a:hover{
 /*FOOTER*/
 
 footer{
-	background-color: black;
+    font-family: Ubuntu;
+	background-color: #262626;
 	color: white;
 }
 footer ul li{
@@ -267,9 +268,12 @@ footer ul li a:hover{
 	color: white;
     text-decoration: underline white;
 }
+footer a{
+    color: white;
+}
 footer .trademark{
 	margin: 0;
 	text-align: center;
 	position: relative;
-	bottom: 0;
+	bottom: 10px;
 }

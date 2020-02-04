@@ -160,7 +160,7 @@ window.onkeyup = function(event){
 	}
 }
 
-function editReadingEvent(hashId){
+function editReadingEvent(hashId, isThisOnSearch=false){
 	editModal.style.display = 'flex';
 
 	$.post('includes/edit_book.php', {hash_id: hashId}, function(data){
@@ -175,39 +175,80 @@ function editReadingEvent(hashId){
 		let year = document.querySelector('.edit_year_number');
 		let classificationEdit = document.querySelector('.classification_input');
 		let hashIdEdit = document.querySelector('.hash_id_input');
-
 		//update info
 		title.onkeyup = function(){
+
 			$.post('includes/update_book.php', {hash_id: hashIdEdit.value, title: title.value}, function(){
-				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
+				if(isThisOnSearch==true){
+					const searchTerm = document.querySelector('.search_term').value
+					$.post('includes/refresh_page_search.php', {searchTerm: searchTerm}, function(data){
+
+						$('.books').html(data);
+						displayGrade();
+					});
+				}
+				else{
+					$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
 					$('.books').html(data);
-					displayGrade();
-				});
+						displayGrade();
+					});
+				}
+				
 			});
 		}
 		author.onkeyup = function(){
 			$.post('includes/update_book.php', {hash_id: hashIdEdit.value, author: author.value}, function(){
-				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
+				if(isThisOnSearch==true){
+					const searchTerm = document.querySelector('.search_term').value
+					$.post('includes/refresh_page_search.php', {searchTerm: searchTerm}, function(data){
+
+						$('.books').html(data);
+						displayGrade();
+					});
+				}
+				else{
+					$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
 					$('.books').html(data);
-					displayGrade();
-				});
+						displayGrade();
+					});
+				}
 			});
 		}
 		month.onchange = function(){
 
 			$.post('includes/update_book.php', {hash_id: hashIdEdit.value, month: month.value}, function(){
-				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
+				if(isThisOnSearch==true){
+					const searchTerm = document.querySelector('.search_term').value
+					$.post('includes/refresh_page_search.php', {searchTerm: searchTerm}, function(data){
+
+						$('.books').html(data);
+						displayGrade();
+					});
+				}
+				else{
+					$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
 					$('.books').html(data);
-					displayGrade();
-				});
+						displayGrade();
+					});
+				}
 			});
 		}
 		classificationEdit.onkeyup = function(){
 			$.post('includes/update_book.php', {hash_id: hashIdEdit.value, classification: classificationEdit.value}, function(){
-				$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
+				if(isThisOnSearch==true){
+					const searchTerm = document.querySelector('.search_term').value
+					$.post('includes/refresh_page_search.php', {searchTerm: searchTerm}, function(data){
+
+						$('.books').html(data);
+						displayGrade();
+					});
+				}
+				else{
+					$.post('includes/refresh_page.php', {year: year.innerHTML}, function(data){
 					$('.books').html(data);
-					displayGrade();
-				});
+						displayGrade();
+					});
+				}
 			});
 		}
 	});

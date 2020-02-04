@@ -43,9 +43,15 @@ body {
 }
 
 .modal-content{
-	padding: 20px;
-	margin: 4% auto;
-	width: 50%;
+	padding: 15px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+	width: 40%;
+	height: 90%;
 	background-color: white;
 	height: 550px;
 	border: solid 1px #888;
@@ -55,15 +61,12 @@ body {
 }
 .modal-content .close{
 	position: absolute;
-	right: 30px;
-	top: -30px;
+	top: -80px;
+	right: -350px;
 	font-size: 150px;
 	margin: 0;
 	cursor: pointer;
 	color: white;
-}
-.close:hover{
-	color: black;
 }
 
 .modal-content input {
@@ -72,7 +75,7 @@ body {
 	border-radius: 5px;
 	margin: 0 0 20px 0;
 	font-size: 35px;
-	width: 80%;
+	width: 90%;
 	font-family: Poiret One;
 
 }
@@ -103,9 +106,11 @@ body {
 	justify-content: center;
 	width: 100%;
 	top: 0;
+	bottom: 0;
 	left: 0;
-	min-height: 100%;
-	background-color: rgba(1,1,1,0.8);
+	right: 0;
+	height: 100vh;
+	background-color: rgba(1,1,1,0.65);
 }
 .loader {
 	width: 120px;
@@ -702,8 +707,10 @@ footer{
 	background-color: black;
 	color: white;
 }
+footer ul{
+	padding: 0;
+}
 footer ul li{
-
 	list-style-type: none;
 }
 footer ul li a {
@@ -715,6 +722,9 @@ footer ul li a {
 footer ul li a:hover{
 	color: white;
     text-decoration: underline white;
+}
+footer a{
+    color: white;
 }
 footer .trademark{
 	margin: 0;
