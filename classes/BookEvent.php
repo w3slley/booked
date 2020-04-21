@@ -99,7 +99,12 @@
 
 		public function download_book_cover_url($book_title, $author_name){
 			//Download the book cover into the file "bookcovers" where the user add a new book read.
-			return shell_exec('python3 /var/www/html/projects/booked/python/get_book_url_img.py "'.$book_title.'" "'.$author_name.'" ');
+			try{
+				return shell_exec('python3 ../python/get_book_url_img.py "'.$book_title.'" "'.$author_name.'" ');
+			}
+			catch(PDOException $e){
+				return "ERROR: ".$e->getMessage;
+			}
 
 		}
 

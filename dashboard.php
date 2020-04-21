@@ -31,9 +31,10 @@
 				<button type="submit" name="submit">Add book</button>
 				<p class="message"></p>
 			</form>
-			<div class="loading-modal">
-				<div class="loader"></div>
-			</div>
+			
+		</div>
+		<div class="loading-modal">
+			<div class="loader"></div>
 		</div>
 	</div>
 
