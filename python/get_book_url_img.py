@@ -30,7 +30,7 @@ def get_img_url (search_book): #This function gets the url of image of the books
     book_page = urlopen(req).read()
     page_book = str(book_page, 'utf-8')
 
-    link_book_init = page_book.find('<img src=')
+    link_book_init = page_book.find('<img src="https://i.gr-assets.com/images/')
     link_book_final = page_book.find('"', link_book_init + 10)
 
     book_url_img = page_book[link_book_init + 10 : link_book_final] #this is the url of the image!!
